@@ -1,5 +1,5 @@
 group 'accenture.team3'
-version '1.0'
+version '0.1'
 
 buildscript {
     repositories {
@@ -16,7 +16,7 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
-    baseName = 'gs-spring-boot'
+    baseName = 'fooddelivery'
     version =  '0.1.0'
 }
 
@@ -41,11 +41,20 @@ dependencies {
     //test
     testCompile("junit:junit")
 
-    //Database
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    //Databases
+    compile("org.springframework.boot:spring-boot-starter-data-jpa") {
+        exclude module: ("org.hibernate:hibernate-entitymanager:4.3.11.Final")
+    }
+
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.1.Final'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
+    //compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10' //need lombok plugin
+
+    //connection pool
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '2.4.7'
+
     //EmbededDB
-    compile("com.h2database:h2")
+    runtime("com.h2database:h2")
 }
 
 task wrapper(type: Wrapper) {

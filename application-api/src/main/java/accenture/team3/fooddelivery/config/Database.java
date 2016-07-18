@@ -1,4 +1,5 @@
 package accenture.team3.fooddelivery.config;
 
-public class DataBase {
+public class Database {
+
 }

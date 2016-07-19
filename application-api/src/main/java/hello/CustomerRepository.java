@@ -12,5 +12,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
     and finding Customer entities.
      */
 
+    //works because of pojo has getters and setters
     List<Customer> findByLastName(String lastName);
 }

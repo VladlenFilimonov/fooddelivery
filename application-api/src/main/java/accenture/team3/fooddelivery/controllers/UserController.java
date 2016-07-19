@@ -1,6 +1,8 @@
 package accenture.team3.fooddelivery.controllers;
 
 import accenture.team3.fooddelivery.domain.User;
+import accenture.team3.fooddelivery.domain.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +19,17 @@ requests for /greeting by returning a new instance of the Greeting class:
 @Controller
 public class UserController {
 
-    private static final String template = "Hello, %s!";
+    /*
+    As soon as Spring sees the @Autowired annotation on top of the ProductRepository
+    reference, it assigns the object of InMemoryProductRepository to this reference
+    since Spring already created and holds the InMemoryProductRepository object in
+    its object container (the web application context).
+     */
+    @Autowired
+    private UserRepository userRepository;
 
-    @RequestMapping("/users")
+
+    @RequestMapping("/user")
     public String list(Model model) {
 
         User user;
@@ -29,6 +39,12 @@ public class UserController {
         System.out.println("user.toString() = " + user.toString());
         model.addAttribute("user", user);
 
+        return "user";
+    }
+
+    @RequestMapping("/users")
+    public String listUsers(Model model) {
+        model.addAttribute("users", userRepository.getAllUsers());
         return "users";
     }
 }

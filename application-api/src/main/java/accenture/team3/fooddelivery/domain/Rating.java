@@ -3,6 +3,7 @@ package accenture.team3.fooddelivery.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalTime;
 
 @Entity
 public class Rating extends DatedClass {
@@ -22,13 +23,15 @@ public class Rating extends DatedClass {
 
     }
 
-    public Rating(byte status, long restaurantDate, byte serviceRating, byte deliveryRating, byte foodRating, byte fieldRating) {
+    public Rating(byte status, long restaurantDate, byte serviceRating, byte deliveryRating, byte foodRating, byte fieldRating, LocalTime createdAt, LocalTime updatedAt) {
         this.status = status;
         this.restaurantDate = restaurantDate;
         this.serviceRating = serviceRating;
         this.deliveryRating = deliveryRating;
         this.foodRating = foodRating;
         this.fieldRating = fieldRating;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public byte getDeliveryRating() {

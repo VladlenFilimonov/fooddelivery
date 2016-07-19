@@ -3,7 +3,7 @@ package accenture.team3.fooddelivery.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 // Specifies that the class is an entity.
 @Entity
@@ -24,7 +24,7 @@ public class User extends DatedClass {
     public User() {
     }
 
-    public User(LocalDateTime reatedAt, LocalDateTime updatedAt, byte status, byte type) {
+    public User(LocalTime reatedAt, LocalTime updatedAt, byte status, byte type) {
         this.createdAt = reatedAt;
         this.updatedAt = updatedAt;
         this.status = status;

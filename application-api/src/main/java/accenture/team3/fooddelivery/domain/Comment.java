@@ -3,7 +3,7 @@ package accenture.team3.fooddelivery.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class Comment extends DatedClass {
@@ -24,15 +24,14 @@ public class Comment extends DatedClass {
     public Comment() {
     }
 
-    public Comment(long restaurantId, LocalDateTime createdAt, LocalDateTime updatedAt, byte status, byte type, String content, long userId) {
+    public Comment(long restaurantId, byte status, byte type, String content, long userId, LocalTime createdAt, LocalTime updatedAt) {
         this.restaurantId = restaurantId;
-        this.createdAt = createdAt;
-        // FIXME by default should be same as createdAt
-        this.updatedAt = updatedAt;
         this.status = status;
         this.type = type;
         this.content = content;
         this.userId = userId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     /* Getters and Setters */

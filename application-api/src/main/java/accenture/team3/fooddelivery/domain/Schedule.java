@@ -1,5 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ public class Schedule extends DatedClass {
     private long id;
     private long restaurantId;
     private byte status;
+    @Embedded
     private ArrayList<Day> openingHours;
 
     public Schedule(long restaurantId, LocalTime createdAt, LocalTime updatedAt, byte status, ArrayList<Day> openingHours) {

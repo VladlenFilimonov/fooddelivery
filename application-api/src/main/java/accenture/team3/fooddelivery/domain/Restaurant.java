@@ -4,17 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
-public class Restaurant {
+public class Restaurant extends DatedClass {
 
     @Id
     @GeneratedValue
     private Long id;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private byte status;
    // private Schedule schedule;
     private String companyName;
@@ -36,22 +33,6 @@ public class Restaurant {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public byte getStatus() {

@@ -7,22 +7,27 @@
 </head>
 <body>
 <!-- th - thymeleaf, :text is an attribute -->
-<p th:text="'Hello, ' + ${name} + '!'"/>
+
 <table>
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Surname</th>
+        <th>id</th>
+        <th>accessLevel</th>
+        <th>firstname</th>
+        <th>lastname</th>
+        <th>email</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody th:each="usr : ${users}">
     <tr>
-        <td th:text="${name}"></td>
-        <td th:text="${surname}"></td>
+        <td th:text="${usr.id}"></td>
+        <td th:text="${usr.accessLevel}"></td>
+        <td th:text="${usr.firstname}"></td>
+        <td th:text="${usr.lastname}"></td>
+        <td th:text="${usr.email}"></td>
     </tr>
     </tbody>
 </table>
-
 
 </body>
 </html>

@@ -17,7 +17,7 @@ public class TestController {
         this.testService = testService;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/addRestaurant")
     public String testAdd(@RequestParam(value = "name") String name,
                           @RequestParam(value = "email") String email) {
         Restaurant restaurant = new Restaurant();
@@ -25,6 +25,7 @@ public class TestController {
         restaurant.setContactEmail(email);
         return String.valueOf(testService.addRestaurant(restaurant).getId());
     }
+
 
     @RequestMapping("/find")
     public String getGet(@RequestParam(value = "id") String id) {

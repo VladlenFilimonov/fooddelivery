@@ -1,9 +1,10 @@
 package accenture.team3.fooddelivery.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalTime;
 
-@Entity
+//Designates a class whose mapping information is applied to the entities that inherit from it.
+@MappedSuperclass
 public abstract class DatedClass {
 
     protected LocalTime createdAt;

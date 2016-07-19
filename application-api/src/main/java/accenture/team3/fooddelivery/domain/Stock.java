@@ -1,5 +1,12 @@
 package accenture.team3.fooddelivery.domain;
 
+/*
+!!!!!!!!!!!!!!!!!!!!!!!
+Resaurce:
+https://www.mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

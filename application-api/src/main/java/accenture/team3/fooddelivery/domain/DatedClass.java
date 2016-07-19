@@ -1,27 +1,27 @@
 package accenture.team3.fooddelivery.domain;
 
 import javax.persistence.Entity;
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public abstract class DatedClass {
 
-    protected LocalDate createdAt;
-    protected LocalDate updatedAt;
+    protected LocalTime createdAt;
+    protected LocalTime updatedAt;
 
-    public LocalDate getCreatedAt() {
+    public LocalTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDate getUpdatedAt() {
+    public LocalTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(LocalDate updatedAt) {
+    public void setUpdatedAt(LocalTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

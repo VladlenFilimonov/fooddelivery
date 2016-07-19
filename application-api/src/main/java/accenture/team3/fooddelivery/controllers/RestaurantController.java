@@ -16,14 +16,6 @@ public class RestaurantController {
     @Autowired
     public RestaurantController(RestaurantCrudService restaurantCrudService) {
         this.restaurantCrudService = restaurantCrudService;
-        Restaurant restaurant = new Restaurant();
-        Restaurant restaurant2 = new Restaurant();
-        restaurant.setCompanyName("Lido");
-        restaurant.setContactEmail("lido@gmail.com");
-        restaurantCrudService.create(restaurant);
-        restaurant2.setCompanyName("Accenture");
-        restaurant2.setContactEmail("accenture@gmail.com");
-        restaurantCrudService.create(restaurant2);
     }
 
     @RequestMapping(method = RequestMethod.POST)

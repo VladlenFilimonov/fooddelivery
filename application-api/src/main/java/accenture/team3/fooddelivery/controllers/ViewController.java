@@ -35,4 +35,5 @@ public class ViewController {
         // i vozvrashaet stroku, kakuju view vzjatj
         return "indexThymeleaf";
     }
+
 }

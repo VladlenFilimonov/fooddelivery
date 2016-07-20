@@ -2,7 +2,6 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -20,8 +19,8 @@ public class Restaurant {
     private String phone;
     @Embedded
     private DeliveryTime deliveryTime;
-    @Embedded
-    private WorkWeek workWeek;
+    @OneToMany(mappedBy = "day")
+    private Set<Day> workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
@@ -37,7 +36,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, Set<Day> workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -92,13 +91,6 @@ public class Restaurant {
         this.deliveryTime = deliveryTime;
     }
 
-    public WorkWeek getWorkWeek() {
-        return workWeek;
-    }
-
-    public void setWorkWeek(WorkWeek workWeek) {
-        this.workWeek = workWeek;
-    }
 
     public BigDecimal getFreeDeliveryFrom() {
         return freeDeliveryFrom;
@@ -163,6 +155,14 @@ public class Restaurant {
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         return freeDeliveryFrom != null ? freeDeliveryFrom.equals(that.freeDeliveryFrom) : that.freeDeliveryFrom == null;
 
+    }
+
+    public Set<Day> getWorkWeek() {
+        return workWeek;
+    }
+
+    public void setWorkWeek(Set<Day> workWeek) {
+        this.workWeek = workWeek;
     }
 
     @Override

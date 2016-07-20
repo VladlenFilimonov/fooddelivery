@@ -2,10 +2,11 @@ package accenture.team3.fooddelivery.utils;
 
 
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.domain.Day;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
+import accenture.team3.fooddelivery.services.DayCrudService;
 import accenture.team3.fooddelivery.services.MealCrudService;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,18 @@ public class TempRestaurantsCreation {
 
     private RestaurantCrudService restaurantCrudService;
     private MealCrudService mealCrudService;
+    private DayCrudService dayCrudService;
 
     @Autowired
-    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, MealCrudService mealCrudService) {
+    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, MealCrudService mealCrudService, DayCrudService dayCrudService) {
         this.restaurantCrudService = restaurantCrudService;
         this.mealCrudService = mealCrudService;
+        this.dayCrudService = dayCrudService;
         createDB();
     }
 
     public void createDB() {
+
         Category category = new Category((byte) 1, 1l,
                 "Pizza",
                 "http://pizzaLogo",
@@ -49,12 +53,13 @@ public class TempRestaurantsCreation {
                 "http://WOK",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
+
         Restaurant restaurant = new Restaurant(1l,
                 "Lido",
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
+                WorkWeekFactory.createWorkWeek(),
                 new BigDecimal(25.00),
                 true,
                 true,
@@ -66,7 +71,7 @@ public class TempRestaurantsCreation {
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
+                WorkWeekFactory.createWorkWeek(),
                 new BigDecimal(100.00),
                 false,
                 false,
@@ -79,13 +84,16 @@ public class TempRestaurantsCreation {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
+                WorkWeekFactory.createWorkWeek(),
                 new BigDecimal(200.00),
                 true,
                 false,
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashMap<>(),
                 new HashSet<>());
+
+//        Day day1 = new Day(1L, restaurant1, Day.DAY.MONDAY, LocalTime.now(), LocalTime.now());
+
         Map<Long, String> restaurantMealURL = new HashMap<>();
         restaurantMealURL.put(category.getId(), "http://lido.lv/pizza");
         restaurantMealURL.put(category1.getId(), "http://lido.lv/BBQ");
@@ -113,6 +121,7 @@ public class TempRestaurantsCreation {
         restaurant2.setCategoryURL(restaurantMealURL2);
         restaurant2.setCategories(restMeals2);
 
+
         mealCrudService.create(category);
         mealCrudService.create(category1);
         mealCrudService.create(category2);
@@ -120,5 +129,8 @@ public class TempRestaurantsCreation {
         restaurantCrudService.create(restaurant);
         restaurantCrudService.create(restaurant1);
         restaurantCrudService.create(restaurant2);
+        //        dayCrudService.create(new Day((long) 1, restaurant, Day.DAY.MONDAY, LocalTime.now(), LocalTime.now()));
+        dayCrudService.create((Day) restaurant.getWorkWeek().toArray()[0]);
+        System.out.println("( (Day)restaurant.getWorkWeek().toArray()[0] ).getDay() = " + ((Day) restaurant.getWorkWeek().toArray()[0]).getDay());
     }
 }

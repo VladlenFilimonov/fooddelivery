@@ -11,13 +11,17 @@ import java.util.Set;
  */
 public abstract class WorkWeekFactory {
 
-    public static Set<Day> createWorkWeek(LocalTime mondayFrom, LocalTime mondayTo) {
+    public static Set<Day> createWorkWeek() {
 
         Set<Day> workWeek = new HashSet<>();
 
         for (int i = 0; i < 7; i++) {
             Day day = new Day();
+            day.setId((long) i + 1);
             day.setDay(Day.DAY.values()[i]);
+            day.setFromTime(LocalTime.now());
+            day.setToTime(LocalTime.now());
+            workWeek.add(day);
         }
         return workWeek;
 

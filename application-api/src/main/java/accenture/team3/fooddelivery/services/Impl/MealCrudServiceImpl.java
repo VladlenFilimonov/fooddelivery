@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.services.Impl;
 
-import accenture.team3.fooddelivery.dao.MealDao;
+import accenture.team3.fooddelivery.dao.CategoryDao;
 import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.services.MealCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import java.util.List;
 @Service
 class MealCrudServiceImpl implements MealCrudService {
 
-    private MealDao mealDao;
+    private CategoryDao mealDao;
 
     @Autowired
-    public MealCrudServiceImpl(MealDao mealDao) {
+    public MealCrudServiceImpl(CategoryDao mealDao) {
         this.mealDao = mealDao;
     }
 

@@ -4,12 +4,14 @@ package accenture.team3.fooddelivery.utils;
 import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.Comment;
 import accenture.team3.fooddelivery.domain.Restaurant;
+import accenture.team3.fooddelivery.domain.User;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import accenture.team3.fooddelivery.services.CommentCrudService;
 import accenture.team3.fooddelivery.services.MealCrudService;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
+import accenture.team3.fooddelivery.services.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +29,14 @@ public class TempRestaurantsCreation {
     private RestaurantCrudService restaurantCrudService;
     private MealCrudService mealCrudService;
     private CommentCrudService commentCrudService;
+    private UserCrudService userCrudService;
 
     @Autowired
-    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, MealCrudService mealCrudService, CommentCrudService commentCrudService) {
+    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, MealCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
         this.restaurantCrudService = restaurantCrudService;
         this.mealCrudService = mealCrudService;
         this.commentCrudService = commentCrudService;
+        this.userCrudService = userCrudService;
         createDB();
     }
 
@@ -123,12 +127,7 @@ public class TempRestaurantsCreation {
         restaurant2.setCategoryURL(restaurantMealURL2);
         restaurant2.setCategories(restMeals2);
 
-        Comment comment = new Comment(1l,
-                (byte) 1,
-                (byte) 1,
-                "test ",
-                1l,
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()));
+
 
         mealCrudService.create(category);
         mealCrudService.create(category1);
@@ -138,6 +137,20 @@ public class TempRestaurantsCreation {
         restaurantCrudService.create(restaurant1);
         restaurantCrudService.create(restaurant2);
 
+        User user = new User(new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), (byte) 1, "user");
+        userCrudService.create(user);
+
+        // public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime,User user) {
+        Comment comment = new Comment(1l, (byte) 1, (byte) 1, "test", new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), user);
         commentCrudService.create(comment);
+
+        /*Comment comment = new Comment(1l,
+                (byte) 1,
+                (byte) 1,
+                "test ",
+                1l,
+                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()));
+                */
+        //commentCrudService.create(comment);
     }
 }

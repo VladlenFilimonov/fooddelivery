@@ -9,7 +9,7 @@ import javax.persistence.ManyToMany;
 import java.util.Set;
 
 @Entity
-public class Meal {
+public class Category {
 
     @Id
     private Long id;
@@ -18,13 +18,13 @@ public class Meal {
     private byte status;
     @Embedded
     private SystemDateTime systemDateTime;
-    @ManyToMany(mappedBy = "meals")
+    @ManyToMany(mappedBy = "categories")
     private Set<Restaurant> restaurants;
 
-    public Meal() {
+    public Category() {
     }
 
-    public Meal(byte status, Long id, String name, String pictureURL, SystemDateTime systemDateTime, Set<Restaurant> restaurants) {
+    public Category(byte status, Long id, String name, String pictureURL, SystemDateTime systemDateTime, Set<Restaurant> restaurants) {
         this.status = status;
         this.id = id;
         this.name = name;
@@ -86,11 +86,11 @@ public class Meal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Meal meal = (Meal) o;
+        Category category = (Category) o;
 
-        if (id != null ? !id.equals(meal.id) : meal.id != null) return false;
-        if (name != null ? !name.equals(meal.name) : meal.name != null) return false;
-        return pictureURL != null ? pictureURL.equals(meal.pictureURL) : meal.pictureURL == null;
+        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+        return pictureURL != null ? pictureURL.equals(category.pictureURL) : category.pictureURL == null;
 
     }
 

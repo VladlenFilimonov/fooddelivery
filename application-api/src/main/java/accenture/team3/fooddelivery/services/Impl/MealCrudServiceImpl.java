@@ -1,7 +1,7 @@
 package accenture.team3.fooddelivery.services.Impl;
 
 import accenture.team3.fooddelivery.dao.MealDao;
-import accenture.team3.fooddelivery.domain.Meal;
+import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.services.MealCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -20,22 +20,22 @@ class MealCrudServiceImpl implements MealCrudService {
     }
 
     @Override
-    public Meal create(Meal meal) {
-        return mealDao.save(meal);
+    public Category create(Category category) {
+        return mealDao.save(category);
     }
 
     @Override
-    public Meal update(Meal meal) {
-        return mealDao.save(meal);
+    public Category update(Category category) {
+        return mealDao.save(category);
     }
 
     @Override
-    public List<Meal> findAll() {
-        return (List<Meal>) mealDao.findAll();
+    public List<Category> findAll() {
+        return (List<Category>) mealDao.findAll();
     }
 
     @Override
-    public Meal findOneById(Long id) {
+    public Category findOneById(Long id) {
         return mealDao.findOne(id);
     }
 

@@ -2,6 +2,7 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
+import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -17,25 +18,26 @@ public class Restaurant {
     private String name;
     private String url;
     private String phone;
-    private Set<Day> workWeek;
     @Embedded
     private DeliveryTime deliveryTime;
+    @Embedded
+    private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
     @Embedded
     private SystemDateTime systemDateTime;
     @ElementCollection
-    private Map<Long, String> mealsURL;
+    private Map<Long, String> categoryURL;
     @ManyToMany
-    @JoinTable(name = "RESTAURANT_MEAL")
+    @JoinTable(name = "RESTAURANT_CATEGORY")
     @JsonIgnore
-    private Set<Meal> meals;
+    private Set<Category> categories;
 
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, Set<Day> workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> mealsURL, Set<Meal> meals) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -46,8 +48,8 @@ public class Restaurant {
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
         this.systemDateTime = systemDateTime;
-        this.mealsURL = mealsURL;
-        this.meals = meals;
+        this.categoryURL = categoryURL;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -90,11 +92,11 @@ public class Restaurant {
         this.deliveryTime = deliveryTime;
     }
 
-    public Set<Day> getWorkWeek() {
+    public WorkWeek getWorkWeek() {
         return workWeek;
     }
 
-    public void setWorkWeek(Set<Day> workWeek) {
+    public void setWorkWeek(WorkWeek workWeek) {
         this.workWeek = workWeek;
     }
 
@@ -130,20 +132,20 @@ public class Restaurant {
         this.systemDateTime = systemDateTime;
     }
 
-    public Map<Long, String> getMealsURL() {
-        return mealsURL;
+    public Map<Long, String> getCategoryURL() {
+        return categoryURL;
     }
 
-    public void setMealsURL(Map<Long, String> mealsURL) {
-        this.mealsURL = mealsURL;
+    public void setCategoryURL(Map<Long, String> categoryURL) {
+        this.categoryURL = categoryURL;
     }
 
-    public Set<Meal> getMeals() {
-        return meals;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setMeals(Set<Meal> meals) {
-        this.meals = meals;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

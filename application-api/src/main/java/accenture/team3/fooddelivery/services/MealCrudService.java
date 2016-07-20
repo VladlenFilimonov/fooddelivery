@@ -1,17 +1,17 @@
 package accenture.team3.fooddelivery.services;
 
-import accenture.team3.fooddelivery.domain.Meal;
+import accenture.team3.fooddelivery.domain.Category;
 
 import java.util.List;
 
 public interface MealCrudService {
-    Meal create(Meal meal);
+    Category create(Category category);
 
-    Meal update(Meal meal);
+    Category update(Category category);
 
-    List<Meal> findAll();
+    List<Category> findAll();
 
-    Meal findOneById(Long id);
+    Category findOneById(Long id);
 
     Long deleteById(Long id);
 }

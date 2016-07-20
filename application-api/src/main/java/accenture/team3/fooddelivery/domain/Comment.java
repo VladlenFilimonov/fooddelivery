@@ -12,7 +12,7 @@ public class Comment {
     @GeneratedValue
     private long id;
     // to which restuarant this comment is bound
-    private long restaurantId;
+    //private long restaurantId;
     private SystemDateTime systemDateTime;
 
     private byte status;
@@ -21,12 +21,13 @@ public class Comment {
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Restaurant restaurant;
 
     public Comment() {
     }
 
-    public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime, User user) {
-        this.restaurantId = restaurantId;
+    public Comment(byte status, byte type, String content, SystemDateTime systemDateTime, User user) {
         this.status = status;
         this.type = type;
         this.content = content;
@@ -42,14 +43,6 @@ public class Comment {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(long restaurantId) {
-        this.restaurantId = restaurantId;
     }
 
     public byte getStatus() {
@@ -93,6 +86,14 @@ public class Comment {
         this.user = user;
     }
 
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,7 +102,6 @@ public class Comment {
         Comment comment = (Comment) o;
 
         if (id != comment.id) return false;
-        if (restaurantId != comment.restaurantId) return false;
         if (status != comment.status) return false;
         if (type != comment.type) return false;
         return content.equals(comment.content);
@@ -111,7 +111,6 @@ public class Comment {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (restaurantId ^ (restaurantId >>> 32));
         result = 31 * result + (int) status;
         result = 31 * result + (int) type;
         result = 31 * result + content.hashCode();

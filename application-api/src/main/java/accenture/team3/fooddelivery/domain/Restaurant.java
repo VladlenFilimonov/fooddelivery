@@ -33,11 +33,13 @@ public class Restaurant {
     @JoinTable(name = "RESTAURANT_CATEGORY")
     @JsonIgnore
     private Set<Category> categories;
+    private String logoUrl;
+    private byte status;
 
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -50,6 +52,8 @@ public class Restaurant {
         this.systemDateTime = systemDateTime;
         this.categoryURL = categoryURL;
         this.categories = categories;
+        this.logoUrl = logoUrl;
+        this.status = status;
     }
 
     public Long getId() {
@@ -146,6 +150,22 @@ public class Restaurant {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
     }
 
     @Override

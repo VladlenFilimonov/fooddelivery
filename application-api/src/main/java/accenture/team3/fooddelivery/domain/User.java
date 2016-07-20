@@ -16,7 +16,7 @@ public class User {
     private long id;
 
     private byte status;
-    private byte type;
+    private String role;
     private SystemDateTime systemDateTime;
 
     /* Getters and Setters */
@@ -25,10 +25,10 @@ public class User {
     public User() {
     }
 
-    public User(SystemDateTime systemDateTime, byte status, byte type) {
+    public User(SystemDateTime systemDateTime, byte status, String role) {
         this.systemDateTime = systemDateTime;
         this.status = status;
-        this.type = type;
+        this.role = role;
     }
 
     public long getId() {
@@ -47,12 +47,12 @@ public class User {
         this.status = status;
     }
 
-    public byte getType() {
-        return type;
+    public String getRole() {
+        return role;
     }
 
-    public void setType(byte type) {
-        this.type = type;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public SystemDateTime getSystemDateTime() {

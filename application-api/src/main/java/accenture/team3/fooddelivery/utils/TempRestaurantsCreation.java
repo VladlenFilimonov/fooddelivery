@@ -8,8 +8,8 @@ import accenture.team3.fooddelivery.domain.User;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
+import accenture.team3.fooddelivery.services.CategoryCrudService;
 import accenture.team3.fooddelivery.services.CommentCrudService;
-import accenture.team3.fooddelivery.services.MealCrudService;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
 import accenture.team3.fooddelivery.services.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +27,12 @@ import java.util.Set;
 public class TempRestaurantsCreation {
 
     private RestaurantCrudService restaurantCrudService;
-    private MealCrudService mealCrudService;
+    private CategoryCrudService mealCrudService;
     private CommentCrudService commentCrudService;
     private UserCrudService userCrudService;
 
     @Autowired
-    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, MealCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
+    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, CategoryCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
         this.restaurantCrudService = restaurantCrudService;
         this.mealCrudService = mealCrudService;
         this.commentCrudService = commentCrudService;

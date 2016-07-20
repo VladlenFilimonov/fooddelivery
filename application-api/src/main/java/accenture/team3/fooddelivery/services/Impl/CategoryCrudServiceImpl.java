@@ -1,8 +1,8 @@
 package accenture.team3.fooddelivery.services.Impl;
 
-import accenture.team3.fooddelivery.dao.MealDao;
+import accenture.team3.fooddelivery.dao.CategoryDao;
 import accenture.team3.fooddelivery.domain.Category;
-import accenture.team3.fooddelivery.services.MealCrudService;
+import accenture.team3.fooddelivery.services.CategoryCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -10,39 +10,39 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class MealCrudServiceImpl implements MealCrudService {
+class CategoryCrudServiceImpl implements CategoryCrudService {
 
-    private MealDao mealDao;
+    private CategoryDao categoryDao;
 
     @Autowired
-    public MealCrudServiceImpl(MealDao mealDao) {
-        this.mealDao = mealDao;
+    public CategoryCrudServiceImpl(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
     }
 
     @Override
     public Category create(Category category) {
-        return mealDao.save(category);
+        return categoryDao.save(category);
     }
 
     @Override
     public Category update(Category category) {
-        return mealDao.save(category);
+        return categoryDao.save(category);
     }
 
     @Override
     public List<Category> findAll() {
-        return (List<Category>) mealDao.findAll();
+        return (List<Category>) categoryDao.findAll();
     }
 
     @Override
     public Category findOneById(Long id) {
-        return mealDao.findOne(id);
+        return categoryDao.findOne(id);
     }
 
     @Override
     public Long deleteById(Long id) {
         try {
-            mealDao.delete(id);
+            categoryDao.delete(id);
         } catch (EmptyResultDataAccessException e) {
             return 0l;
         }

@@ -2,7 +2,7 @@ package accenture.team3.fooddelivery.controllers;
 
 
 import accenture.team3.fooddelivery.domain.Category;
-import accenture.team3.fooddelivery.services.MealCrudService;
+import accenture.team3.fooddelivery.services.CategoryCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/meal")
-public class MealController {
+@RequestMapping("/category")
+public class CategoryController {
 
-    private MealCrudService mealCrudService;
+    private CategoryCrudService categoryCrudService;
 
     @Autowired
-    public MealController(MealCrudService mealCrudService) {
-        this.mealCrudService = mealCrudService;
+    public CategoryController(CategoryCrudService categoryCrudService) {
+        this.categoryCrudService = categoryCrudService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Category> findAllMeals() {
-        return mealCrudService.findAll();
+    public List<Category> findAllCategories() {
+        return categoryCrudService.findAll();
     }
 }

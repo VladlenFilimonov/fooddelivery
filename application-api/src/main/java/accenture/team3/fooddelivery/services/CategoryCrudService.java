@@ -4,7 +4,7 @@ import accenture.team3.fooddelivery.domain.Category;
 
 import java.util.List;
 
-public interface MealCrudService {
+public interface CategoryCrudService {
     Category create(Category category);
 
     Category update(Category category);

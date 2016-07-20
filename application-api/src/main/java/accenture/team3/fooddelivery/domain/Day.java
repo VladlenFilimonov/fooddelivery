@@ -6,40 +6,45 @@ import java.time.LocalTime;
 @Embeddable
 public class Day {
 
-    private Day day;
-    private LocalTime from;
-    private LocalTime to;
+    private DAY day;
+    private LocalTime fromTime;
+    private LocalTime toTime;
 
     public Day() {
     }
 
     public Day(LocalTime from, LocalTime to) {
-        this.from = from;
-        this.to = to;
+        this.fromTime = from;
+        this.toTime = to;
     }
 
-    public LocalTime getFrom() {
-        return from;
+    public void setTimes(LocalTime fromTime, LocalTime toTime) {
+        setFromTime(fromTime);
+        setFromTime(toTime);
     }
 
-    public void setFrom(LocalTime from) {
-        this.from = from;
+    public LocalTime getFromTime() {
+        return fromTime;
     }
 
-    public Day getDay() {
+    public void setFromTime(LocalTime fromTime) {
+        this.fromTime = fromTime;
+    }
+
+    public DAY getDay() {
         return day;
     }
 
-    public void setDay(Day day) {
+    public void setDay(DAY day) {
         this.day = day;
     }
 
-    public LocalTime getTo() {
-        return to;
+    public LocalTime getToTime() {
+        return toTime;
     }
 
-    public void setTo(LocalTime to) {
-        this.to = to;
+    public void setToTime(LocalTime toTime) {
+        this.toTime = toTime;
     }
 
     @Override
@@ -49,15 +54,15 @@ public class Day {
 
         Day day = (Day) o;
 
-        if (!from.equals(day.from)) return false;
-        return to.equals(day.to);
+        if (!fromTime.equals(day.fromTime)) return false;
+        return toTime.equals(day.toTime);
 
     }
 
     @Override
     public int hashCode() {
-        int result = from.hashCode();
-        result = 31 * result + to.hashCode();
+        int result = fromTime.hashCode();
+        result = 31 * result + toTime.hashCode();
         return result;
     }
 

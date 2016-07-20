@@ -2,9 +2,7 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Comment {
@@ -21,18 +19,19 @@ public class Comment {
     private byte type;
     // text
     private String content;
-    private long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     public Comment() {
     }
 
-    public Comment(long restaurantId, byte status, byte type, String content, long userId, SystemDateTime systemDateTime) {
+    public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime, User user) {
         this.restaurantId = restaurantId;
         this.status = status;
         this.type = type;
         this.content = content;
-        this.userId = userId;
         this.systemDateTime = systemDateTime;
+        this.user = user;
     }
 
     /* Getters and Setters */
@@ -77,20 +76,21 @@ public class Comment {
         this.content = content;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
     public SystemDateTime getSystemDateTime() {
         return systemDateTime;
     }
 
     public void setSystemDateTime(SystemDateTime systemDateTime) {
         this.systemDateTime = systemDateTime;
+    }
+
+    //@JoinColumn(name = "ID", nullable = false)
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -104,7 +104,6 @@ public class Comment {
         if (restaurantId != comment.restaurantId) return false;
         if (status != comment.status) return false;
         if (type != comment.type) return false;
-        if (userId != comment.userId) return false;
         return content.equals(comment.content);
 
     }
@@ -116,7 +115,6 @@ public class Comment {
         result = 31 * result + (int) status;
         result = 31 * result + (int) type;
         result = 31 * result + content.hashCode();
-        result = 31 * result + (int) (userId ^ (userId >>> 32));
         return result;
     }
 }

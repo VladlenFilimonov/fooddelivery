@@ -141,7 +141,7 @@ public class TempRestaurantsCreation {
         userCrudService.create(user);
 
         // public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime,User user) {
-        Comment comment = new Comment(1l, (byte) 1, (byte) 1, "test", new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), user);
+        Comment comment = new Comment((byte) 1, (byte) 1, "test", new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), user);
         commentCrudService.create(comment);
 
         /*Comment comment = new Comment(1l,

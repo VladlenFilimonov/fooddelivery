@@ -53,6 +53,15 @@ dependencies {
     //connection pool
     compile group: 'com.zaxxer', name: 'HikariCP', version: '2.4.7'
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.0'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.0'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.0'
+
     //EmbededDB
     runtime("com.h2database:h2")
 }

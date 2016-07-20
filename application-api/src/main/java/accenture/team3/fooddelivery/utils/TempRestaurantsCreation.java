@@ -33,18 +33,18 @@ public class TempRestaurantsCreation {
     }
 
     public void createDB() {
-        Meal meal = new Meal(1l,
+        Meal meal = new Meal((byte) 1, 1l,
                 "Pizza",
                 "http://pizzaLogo",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
 
-        Meal meal1 = new Meal(2l,
+        Meal meal1 = new Meal((byte) 1, 2l,
                 "BBQ",
                 "http://BBQ",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
-        Meal meal2 = new Meal(3l,
+        Meal meal2 = new Meal((byte) 1, 3l,
                 "WOK",
                 "http://WOK",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),

@@ -15,6 +15,7 @@ public class Meal {
     private Long id;
     private String name;
     private String pictureURL;
+    private byte status;
     @Embedded
     private SystemDateTime systemDateTime;
     @ManyToMany(mappedBy = "meals")
@@ -23,7 +24,8 @@ public class Meal {
     public Meal() {
     }
 
-    public Meal(Long id, String name, String pictureURL, SystemDateTime systemDateTime, Set<Restaurant> restaurants) {
+    public Meal(byte status, Long id, String name, String pictureURL, SystemDateTime systemDateTime, Set<Restaurant> restaurants) {
+        this.status = status;
         this.id = id;
         this.name = name;
         this.pictureURL = pictureURL;
@@ -45,6 +47,14 @@ public class Meal {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
     }
 
     public String getPictureURL() {

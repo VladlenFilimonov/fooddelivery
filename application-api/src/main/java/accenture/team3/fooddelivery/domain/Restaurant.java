@@ -28,16 +28,16 @@ public class Restaurant {
     @Embedded
     private SystemDateTime systemDateTime;
     @ElementCollection
-    private Map<Long, String> mealsURL;
+    private Map<Long, String> categoryURL;
     @ManyToMany
-    @JoinTable(name = "RESTAURANT_MEAL")
+    @JoinTable(name = "RESTAURANT_CATEGORY")
     @JsonIgnore
-    private Set<Meal> meals;
+    private Set<Category> categories;
 
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> mealsURL, Set<Meal> meals) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -48,8 +48,8 @@ public class Restaurant {
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
         this.systemDateTime = systemDateTime;
-        this.mealsURL = mealsURL;
-        this.meals = meals;
+        this.categoryURL = categoryURL;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -132,20 +132,20 @@ public class Restaurant {
         this.systemDateTime = systemDateTime;
     }
 
-    public Map<Long, String> getMealsURL() {
-        return mealsURL;
+    public Map<Long, String> getCategoryURL() {
+        return categoryURL;
     }
 
-    public void setMealsURL(Map<Long, String> mealsURL) {
-        this.mealsURL = mealsURL;
+    public void setCategoryURL(Map<Long, String> categoryURL) {
+        this.categoryURL = categoryURL;
     }
 
-    public Set<Meal> getMeals() {
-        return meals;
+    public Set<Category> getCategories() {
+        return categories;
     }
 
-    public void setMeals(Set<Meal> meals) {
-        this.meals = meals;
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

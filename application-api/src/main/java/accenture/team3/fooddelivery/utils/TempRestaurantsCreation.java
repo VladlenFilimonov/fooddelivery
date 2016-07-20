@@ -1,7 +1,7 @@
 package accenture.team3.fooddelivery.utils;
 
 
-import accenture.team3.fooddelivery.domain.Meal;
+import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
@@ -33,18 +33,18 @@ public class TempRestaurantsCreation {
     }
 
     public void createDB() {
-        Meal meal = new Meal((byte) 1, 1l,
+        Category category = new Category((byte) 1, 1l,
                 "Pizza",
                 "http://pizzaLogo",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
 
-        Meal meal1 = new Meal((byte) 1, 2l,
+        Category category1 = new Category((byte) 1, 2l,
                 "BBQ",
                 "http://BBQ",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
-        Meal meal2 = new Meal((byte) 1, 3l,
+        Category category2 = new Category((byte) 1, 3l,
                 "WOK",
                 "http://WOK",
                 new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
@@ -87,35 +87,35 @@ public class TempRestaurantsCreation {
                 new HashMap<>(),
                 new HashSet<>());
         Map<Long, String> restaurantMealURL = new HashMap<>();
-        restaurantMealURL.put(meal.getId(), "http://lido.lv/pizza");
-        restaurantMealURL.put(meal1.getId(), "http://lido.lv/BBQ");
-        Set<Meal> restMeals = new HashSet<>();
-        restMeals.add(meal);
-        restMeals.add(meal1);
-        restaurant.setMealsURL(restaurantMealURL);
-        restaurant.setMeals(restMeals);
+        restaurantMealURL.put(category.getId(), "http://lido.lv/pizza");
+        restaurantMealURL.put(category1.getId(), "http://lido.lv/BBQ");
+        Set<Category> restCategories = new HashSet<>();
+        restCategories.add(category);
+        restCategories.add(category1);
+        restaurant.setCategoryURL(restaurantMealURL);
+        restaurant.setCategories(restCategories);
 
         Map<Long, String> restaurantMealURL1 = new HashMap<>();
-        restaurantMealURL1.put(meal1.getId(), "http://accenture.lv/BBQ");
-        restaurantMealURL1.put(meal2.getId(), "http://accenture.lv/WOK");
-        Set<Meal> restMeals1 = new HashSet<>();
-        restMeals1.add(meal1);
-        restMeals1.add(meal2);
-        restaurant1.setMealsURL(restaurantMealURL1);
-        restaurant1.setMeals(restMeals1);
+        restaurantMealURL1.put(category1.getId(), "http://accenture.lv/BBQ");
+        restaurantMealURL1.put(category2.getId(), "http://accenture.lv/WOK");
+        Set<Category> restMeals1 = new HashSet<>();
+        restMeals1.add(category1);
+        restMeals1.add(category2);
+        restaurant1.setCategoryURL(restaurantMealURL1);
+        restaurant1.setCategories(restMeals1);
 
         Map<Long, String> restaurantMealURL2 = new HashMap<>();
-        restaurantMealURL2.put(meal.getId(), "http://stakehouse.lv/BBQ");
-        restaurantMealURL2.put(meal2.getId(), "http://stakehouse.lv/WOK");
-        Set<Meal> restMeals2 = new HashSet<>();
-        restMeals2.add(meal);
-        restMeals2.add(meal2);
-        restaurant2.setMealsURL(restaurantMealURL2);
-        restaurant2.setMeals(restMeals2);
+        restaurantMealURL2.put(category.getId(), "http://stakehouse.lv/BBQ");
+        restaurantMealURL2.put(category2.getId(), "http://stakehouse.lv/WOK");
+        Set<Category> restMeals2 = new HashSet<>();
+        restMeals2.add(category);
+        restMeals2.add(category2);
+        restaurant2.setCategoryURL(restaurantMealURL2);
+        restaurant2.setCategories(restMeals2);
 
-        mealCrudService.create(meal);
-        mealCrudService.create(meal1);
-        mealCrudService.create(meal2);
+        mealCrudService.create(category);
+        mealCrudService.create(category1);
+        mealCrudService.create(category2);
 
         restaurantCrudService.create(restaurant);
         restaurantCrudService.create(restaurant1);

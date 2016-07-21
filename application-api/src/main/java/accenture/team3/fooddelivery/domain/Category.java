@@ -2,23 +2,21 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Category {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String pictureURL;
     private byte status;
     @Embedded
     private SystemDateTime systemDateTime;
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany
     private Set<Restaurant> restaurants;
 
     public Category() {

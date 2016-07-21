@@ -137,20 +137,20 @@ public class TempRestaurantsCreation {
         restaurantCrudService.create(restaurant1);
         restaurantCrudService.create(restaurant2);
 
-        User user = new User(new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), (byte) 1, "user");
+        User user = new User(
+                "Name",
+                "Surname",
+                "password",
+                "me@me.lv",
+                "loginName",
+                (byte) 1,
+                "user",
+                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()));
         userCrudService.create(user);
 
         // public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime,User user) {
         Comment comment = new Comment((byte) 1, (byte) 1, "test", new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), user);
         commentCrudService.create(comment);
 
-        /*Comment comment = new Comment(1l,
-                (byte) 1,
-                (byte) 1,
-                "test ",
-                1l,
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()));
-                */
-        //commentCrudService.create(comment);
     }
 }

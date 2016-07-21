@@ -1,12 +1,13 @@
 package accenture.team3.fooddelivery.domain;
 
+import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalTime;
 
 @Entity
-public class Rating extends DatedClass {
+public class Rating {
 
     @Id
     @GeneratedValue
@@ -19,19 +20,20 @@ public class Rating extends DatedClass {
     private byte foodRating;
     private byte fieldRating;
 
+    private SystemDateTime systemDateTime;
+
     public Rating() {
 
     }
 
-    public Rating(byte status, long restaurantDate, byte serviceRating, byte deliveryRating, byte foodRating, byte fieldRating, LocalTime createdAt, LocalTime updatedAt) {
+    public Rating(byte status, long restaurantDate, byte serviceRating, byte deliveryRating, byte foodRating, byte fieldRating, SystemDateTime systemDateTime) {
         this.status = status;
         this.restaurantDate = restaurantDate;
         this.serviceRating = serviceRating;
         this.deliveryRating = deliveryRating;
         this.foodRating = foodRating;
         this.fieldRating = fieldRating;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.systemDateTime = systemDateTime;
     }
 
     public byte getDeliveryRating() {
@@ -90,5 +92,11 @@ public class Rating extends DatedClass {
         this.fieldRating = fieldRating;
     }
 
+    public SystemDateTime getSystemDateTime() {
+        return systemDateTime;
+    }
 
+    public void setSystemDateTime(SystemDateTime systemDateTime) {
+        this.systemDateTime = systemDateTime;
+    }
 }

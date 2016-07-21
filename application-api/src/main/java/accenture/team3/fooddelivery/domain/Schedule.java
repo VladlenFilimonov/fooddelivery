@@ -1,29 +1,30 @@
 package accenture.team3.fooddelivery.domain;
 
+import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 @Entity
-public class Schedule extends DatedClass {
+public class Schedule {
 
     @Id
     @GeneratedValue
     private long id;
     private long restaurantId;
     private byte status;
+    private SystemDateTime systemDateTime;
     @Embedded
     private ArrayList<Day> openingHours;
 
-    public Schedule(long restaurantId, LocalTime createdAt, LocalTime updatedAt, byte status, ArrayList<Day> openingHours) {
+    public Schedule(long restaurantId, SystemDateTime systemDateTime, byte status, ArrayList<Day> openingHours) {
         this.restaurantId = restaurantId;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
         this.status = status;
         this.openingHours = openingHours;
+        this.systemDateTime = systemDateTime;
     }
 
     public Schedule() {
@@ -41,8 +42,6 @@ public class Schedule extends DatedClass {
         if (id != schedule.id) return false;
         if (restaurantId != schedule.restaurantId) return false;
         if (status != schedule.status) return false;
-        if (!createdAt.equals(schedule.createdAt)) return false;
-        if (!updatedAt.equals(schedule.updatedAt)) return false;
         return openingHours.equals(schedule.openingHours);
 
     }
@@ -51,8 +50,6 @@ public class Schedule extends DatedClass {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (restaurantId ^ (restaurantId >>> 32));
-        result = 31 * result + createdAt.hashCode();
-        result = 31 * result + updatedAt.hashCode();
         result = 31 * result + (int) status;
         result = 31 * result + openingHours.hashCode();
         return result;
@@ -88,5 +85,13 @@ public class Schedule extends DatedClass {
 
     public void setOpeningHours(ArrayList<Day> openingHours) {
         this.openingHours = openingHours;
+    }
+
+    public SystemDateTime getSystemDateTime() {
+        return systemDateTime;
+    }
+
+    public void setSystemDateTime(SystemDateTime systemDateTime) {
+        this.systemDateTime = systemDateTime;
     }
 }

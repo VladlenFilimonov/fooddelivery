@@ -1,37 +1,38 @@
 package accenture.team3.fooddelivery.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+
+import javax.persistence.*;
 
 @Entity
-public class Comment extends DatedClass {
+public class Comment {
 
     // Specifies the primary key of an entity
     @Id
     @GeneratedValue
     private long id;
     // to which restuarant this comment is bound
-    private long restaurantId;
+    //private long restaurantId;
+    private SystemDateTime systemDateTime;
 
     private byte status;
     private byte type;
     // text
     private String content;
-    private long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Restaurant restaurant;
 
     public Comment() {
     }
 
-    public Comment(long restaurantId, byte status, byte type, String content, long userId, LocalTime createdAt, LocalTime updatedAt) {
-        this.restaurantId = restaurantId;
+    public Comment(byte status, byte type, String content, SystemDateTime systemDateTime, User user) {
         this.status = status;
         this.type = type;
         this.content = content;
-        this.userId = userId;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.systemDateTime = systemDateTime;
+        this.user = user;
     }
 
     /* Getters and Setters */
@@ -42,14 +43,6 @@ public class Comment extends DatedClass {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(long restaurantId) {
-        this.restaurantId = restaurantId;
     }
 
     public byte getStatus() {
@@ -76,12 +69,29 @@ public class Comment extends DatedClass {
         this.content = content;
     }
 
-    public long getUserId() {
-        return userId;
+    public SystemDateTime getSystemDateTime() {
+        return systemDateTime;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setSystemDateTime(SystemDateTime systemDateTime) {
+        this.systemDateTime = systemDateTime;
+    }
+
+    //@JoinColumn(name = "ID", nullable = false)
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override
@@ -92,12 +102,8 @@ public class Comment extends DatedClass {
         Comment comment = (Comment) o;
 
         if (id != comment.id) return false;
-        if (restaurantId != comment.restaurantId) return false;
         if (status != comment.status) return false;
         if (type != comment.type) return false;
-        if (userId != comment.userId) return false;
-        if (!createdAt.equals(comment.createdAt)) return false;
-        if (!updatedAt.equals(comment.updatedAt)) return false;
         return content.equals(comment.content);
 
     }
@@ -105,13 +111,9 @@ public class Comment extends DatedClass {
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (restaurantId ^ (restaurantId >>> 32));
-        result = 31 * result + createdAt.hashCode();
-        result = 31 * result + updatedAt.hashCode();
         result = 31 * result + (int) status;
         result = 31 * result + (int) type;
         result = 31 * result + content.hashCode();
-        result = 31 * result + (int) (userId ^ (userId >>> 32));
         return result;
     }
 }

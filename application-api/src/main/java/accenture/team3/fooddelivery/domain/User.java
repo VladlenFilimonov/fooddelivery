@@ -3,27 +3,29 @@ package accenture.team3.fooddelivery.domain;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 // Specifies that the class is an entity.
 @Entity
-@Table(name = "user")
 public class User {
 
-    // Specifies the primary key of an entity
     @Id
+    @GeneratedValue
     private long id;
-    private String login;
-    private byte status;
-    //should be encryped before persist
+    private String firstName;
+    private String lastName;
     private String password;
-
-    @ManyToMany
-    private Set<Role> roles;
+    private String email;
+    private String loginName;
+    private byte status;
+    private String role;
     private SystemDateTime systemDateTime;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Comment> comments = new HashSet<Comment>(0);
+    @OneToMany
+    private Set<Comment> comments;
+    @OneToMany
+    private Set<Restaurant> restaurant;
+    @OneToOne
+    private Rating rating;
 
     /* Getters and Setters */
 
@@ -31,30 +33,15 @@ public class User {
     public User() {
     }
 
-    public User(long id, String login, byte status, String password, Set<Role> roles, SystemDateTime systemDateTime, Set<Comment> comments) {
-        this.id = id;
-        this.login = login;
+    public User(String firstName, String lastName, String password, String email, String loginName, byte status, String role, SystemDateTime systemDateTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+        this.loginName = loginName;
         this.status = status;
-        this.password = password;
-        this.roles = roles;
+        this.role = role;
         this.systemDateTime = systemDateTime;
-        this.comments = comments;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public long getId() {
@@ -65,6 +52,46 @@ public class User {
         this.id = id;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
     public byte getStatus() {
         return status;
     }
@@ -73,12 +100,12 @@ public class User {
         this.status = status;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public SystemDateTime getSystemDateTime() {
@@ -97,26 +124,13 @@ public class User {
         this.comments = comments;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (status != user.status) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (roles != null ? !roles.equals(user.roles) : user.roles != null) return false;
-        return systemDateTime != null ? systemDateTime.equals(user.systemDateTime) : user.systemDateTime == null;
-
+    public Set<Restaurant> getRestaurant() {
+        return restaurant;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) status;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
-        result = 31 * result + (systemDateTime != null ? systemDateTime.hashCode() : 0);
-        return result;
+    public void setRestaurant(Set<Restaurant> restaurant) {
+        this.restaurant = restaurant;
     }
+
+    
 }

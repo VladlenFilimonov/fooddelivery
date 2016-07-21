@@ -14,6 +14,7 @@ import java.util.Set;
 public class Restaurant {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String url;
@@ -31,11 +32,16 @@ public class Restaurant {
     @ElementCollection
     private Map<Long, String> categoryURL;
     @ManyToMany
-    @JoinTable(name = "RESTAURANT_CATEGORY")
     @JsonIgnore
     private Set<Category> categories;
     private String logoUrl;
     private byte status;
+    @OneToMany
+    private Set<Rating> rating;
+    @OneToMany(targetEntity = Comment.class)
+    private Set<Comment> comment;
+    @ManyToOne
+    private User user;
 
     public Restaurant() {
     }
@@ -167,6 +173,30 @@ public class Restaurant {
 
     public void setStatus(byte status) {
         this.status = status;
+    }
+
+    public Set<Rating> getRating() {
+        return rating;
+    }
+
+    public void setRating(Set<Rating> rating) {
+        this.rating = rating;
+    }
+
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

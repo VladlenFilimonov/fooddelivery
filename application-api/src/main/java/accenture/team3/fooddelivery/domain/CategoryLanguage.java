@@ -7,13 +7,14 @@ import javax.persistence.*;
 @Entity
 public class CategoryLanguage {
     @Id
+    @GeneratedValue
     private Long id;
     @Embedded
     private SystemDateTime systemDateTime;
     private byte status;
     private String language;
     private String translation;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Category category;
 
     public CategoryLanguage() {

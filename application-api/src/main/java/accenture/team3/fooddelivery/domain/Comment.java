@@ -2,7 +2,11 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import java.util.Set;
 
 @Entity
 public class Comment {
@@ -11,18 +15,16 @@ public class Comment {
     @Id
     @GeneratedValue
     private long id;
-    // to which restuarant this comment is bound
-    //private long restaurantId;
     private SystemDateTime systemDateTime;
 
     private byte status;
     private byte type;
     // text
     private String content;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private User user;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Restaurant restaurant;
+    @ManyToOne(targetEntity = Restaurant.class)
+    private Set<Restaurant> restaurant;
 
     public Comment() {
     }
@@ -77,7 +79,6 @@ public class Comment {
         this.systemDateTime = systemDateTime;
     }
 
-    //@JoinColumn(name = "ID", nullable = false)
     public User getUser() {
         return this.user;
     }
@@ -86,11 +87,11 @@ public class Comment {
         this.user = user;
     }
 
-    public Restaurant getRestaurant() {
+    public Set<Restaurant> getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public void setRestaurant(Set<Restaurant> restaurant) {
         this.restaurant = restaurant;
     }
 

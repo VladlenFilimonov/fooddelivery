@@ -3,8 +3,7 @@ package accenture.team3.fooddelivery.controllers;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,14 +24,18 @@ public class RestaurantController {
         return restaurantCrudService.create(restaurant);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @RequestMapping(method = RequestMethod.GET)
     public List<Restaurant> findAllRestaurants() {
+        System.out.println("get user");
         return restaurantCrudService.findAll();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Restaurant> findRestaurant(@PathVariable("id") String id) {
-        return new ResponseEntity<>(restaurantCrudService.findOneById(Long.parseLong(id)), HttpStatus.ACCEPTED);
+    public Restaurant findRestaurant(@PathVariable("id") String id) {
+        System.out.println("get id admin");
+        return restaurantCrudService.findOneById(Long.parseLong(id));
     }
 
 //    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

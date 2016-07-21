@@ -2,6 +2,7 @@ package accenture.team3.fooddelivery.controllers;
 
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.dto.RestaurantGetDto;
+import accenture.team3.fooddelivery.dto.RestaurantPostDto;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,15 @@ public class RestaurantController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
-        return restaurantCrudService.create(restaurant);
+    public RestaurantGetDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
+        Restaurant restaurant = convertToEntity(restaurantPostDto);
+        return convertToDto(restaurantCrudService.create(restaurant));
     }
+
+//    @RequestMapping(method = RequestMethod.POST)
+//    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
+//        return restaurantCrudService.create(restaurant);
+//    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Restaurant> findAllRestaurants() {
@@ -62,6 +69,11 @@ public class RestaurantController {
     private RestaurantGetDto convertToDto(Restaurant restaurant) {
         RestaurantGetDto restaurantDto = modelMapper.map(restaurant, RestaurantGetDto.class);
         return restaurantDto;
+    }
+
+    private Restaurant convertToEntity(RestaurantPostDto restaurantPostDto) {
+        Restaurant restaurant = modelMapper.map(restaurantPostDto, Restaurant.class);
+        return restaurant;
     }
 
 }

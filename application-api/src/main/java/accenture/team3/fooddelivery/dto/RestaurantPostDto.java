@@ -19,6 +19,8 @@ public class RestaurantPostDto {
     private String url;
     //    private String phone;
 
+    //    @JsonSerialize(using = DateTimeSerializer.class)
+//    @JsonDeserialize(using = DateTimeDeserializer.class)
     private DeliveryTime deliveryTime;
     //@Embedded
 

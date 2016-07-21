@@ -6,7 +6,12 @@ import java.time.LocalTime;
 @Embeddable
 public class DeliveryTime {
 
+    //    @JsonSerialize(using = DateTimeSerializer.class)
+//    @JsonDeserialize(using = DateTimeDeserializer.class)
     private LocalTime fromTime;
+
+    //    @JsonSerialize(using = DateTimeSerializer.class)
+//    @JsonDeserialize(using = DateTimeDeserializer.class)
     private LocalTime toTime;
 
     public DeliveryTime() {

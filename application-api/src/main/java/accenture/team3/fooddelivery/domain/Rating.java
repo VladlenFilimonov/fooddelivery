@@ -2,9 +2,8 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Rating {
@@ -13,35 +12,19 @@ public class Rating {
     @GeneratedValue
     private long id;
     private byte status;
-    private long restaurantDate;
-
-    private byte serviceRating;
-    private byte deliveryRating;
-    private byte foodRating;
-    private byte fieldRating;
-
     private SystemDateTime systemDateTime;
+    @ManyToOne(targetEntity = Restaurant.class)
+    private Set<Restaurant> restaurant;
+    @OneToOne
+    private Rating user;
 
     public Rating() {
 
     }
 
-    public Rating(byte status, long restaurantDate, byte serviceRating, byte deliveryRating, byte foodRating, byte fieldRating, SystemDateTime systemDateTime) {
+    public Rating(byte status, SystemDateTime systemDateTime) {
         this.status = status;
-        this.restaurantDate = restaurantDate;
-        this.serviceRating = serviceRating;
-        this.deliveryRating = deliveryRating;
-        this.foodRating = foodRating;
-        this.fieldRating = fieldRating;
         this.systemDateTime = systemDateTime;
-    }
-
-    public byte getDeliveryRating() {
-        return deliveryRating;
-    }
-
-    public void setDeliveryRating(byte deliveryRating) {
-        this.deliveryRating = deliveryRating;
     }
 
     public long getId() {
@@ -60,37 +43,6 @@ public class Rating {
         this.status = status;
     }
 
-    public long getRestaurantDate() {
-        return restaurantDate;
-    }
-
-    public void setRestaurantDate(long restaurantDate) {
-        this.restaurantDate = restaurantDate;
-    }
-
-    public byte getServiceRating() {
-        return serviceRating;
-    }
-
-    public void setServiceRating(byte serviceRating) {
-        this.serviceRating = serviceRating;
-    }
-
-    public byte getFoodRating() {
-        return foodRating;
-    }
-
-    public void setFoodRating(byte foodRating) {
-        this.foodRating = foodRating;
-    }
-
-    public byte getFieldRating() {
-        return fieldRating;
-    }
-
-    public void setFieldRating(byte fieldRating) {
-        this.fieldRating = fieldRating;
-    }
 
     public SystemDateTime getSystemDateTime() {
         return systemDateTime;

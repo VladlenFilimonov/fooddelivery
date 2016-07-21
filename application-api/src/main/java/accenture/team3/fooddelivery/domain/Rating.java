@@ -16,7 +16,7 @@ public class Rating {
     @ManyToOne(targetEntity = Restaurant.class)
     private Set<Restaurant> restaurant;
     @OneToOne
-    private Rating user;
+    private User user;
 
     public Rating() {
 
@@ -25,6 +25,22 @@ public class Rating {
     public Rating(byte status, CreateUpdateTime createUpdateTime) {
         this.status = status;
         this.createUpdateTime = createUpdateTime;
+    }
+
+    public Set<Restaurant> getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Set<Restaurant> restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {

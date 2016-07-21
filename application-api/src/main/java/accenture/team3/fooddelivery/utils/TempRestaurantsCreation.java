@@ -126,7 +126,6 @@ public class TempRestaurantsCreation {
         restaurant2.setCategories(restMeals2);
 
 
-
         mealCrudService.create(category);
         mealCrudService.create(category1);
         mealCrudService.create(category2);

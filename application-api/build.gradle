@@ -35,6 +35,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
+    //Security
+    compile("org.springframework.boot:spring-boot-starter-security")
+
     //template engine
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 

@@ -20,7 +20,8 @@ public class Restaurant {
     private String phone;
     @Embedded
     private DeliveryTime deliveryTime;
-    @Embedded
+    //@Embedded
+    @Transient
     private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;

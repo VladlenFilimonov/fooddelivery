@@ -70,11 +70,14 @@ dependencies {
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.0'
 
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.8.0'
+
     //EmbededDB
     runtime("com.h2database:h2")
 
     // Add shared module
-    compile project(':shared')
+    // compile project(':shared')
 }
 
 task wrapper(type: Wrapper) {

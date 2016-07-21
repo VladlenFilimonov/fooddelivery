@@ -4,7 +4,6 @@ import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -13,28 +12,25 @@ import java.util.Set;
 /**
  * Created by student007 on 16.21.7.
  */
-public class RestaurantGetDto {
+public class RestaurantPostDto {
 
-    @Id
     private Long id;
     private String name;
     private String url;
     //    private String phone;
-    @Embedded
+
     private DeliveryTime deliveryTime;
     //@Embedded
-    @Transient
+
     private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
-    @Embedded
+
     private SystemDateTime systemDateTime;
-    @ElementCollection
+
     private Map<Long, String> categoryURL;
-    @ManyToMany
-    @JoinTable(name = "RESTAURANT_CATEGORY")
-    @JsonIgnore
+
     private Set<Category> categories;
     private String logoUrl;
     private byte status;

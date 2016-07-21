@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private long id;
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
 
     private byte status;
     private byte type;
@@ -29,11 +29,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(byte status, byte type, String content, SystemDateTime systemDateTime, User user) {
+    public Comment(byte status, byte type, String content, CreateUpdateTime createUpdateTime, User user) {
         this.status = status;
         this.type = type;
         this.content = content;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
         this.user = user;
     }
 
@@ -71,12 +71,12 @@ public class Comment {
         this.content = content;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public User getUser() {
@@ -98,23 +98,21 @@ public class Comment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Comment)) return false;
 
         Comment comment = (Comment) o;
 
-        if (id != comment.id) return false;
         if (status != comment.status) return false;
         if (type != comment.type) return false;
-        return content.equals(comment.content);
+        return content != null ? content.equals(comment.content) : comment.content == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) status;
+        int result = (int) status;
         result = 31 * result + (int) type;
-        result = 31 * result + content.hashCode();
+        result = 31 * result + (content != null ? content.hashCode() : 0);
         return result;
     }
 }

@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -14,17 +14,15 @@ public class Schedule {
     @Id
     @GeneratedValue
     private long id;
-    private long restaurantId;
     private byte status;
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     @Embedded
     private ArrayList<Day> openingHours;
 
-    public Schedule(long restaurantId, SystemDateTime systemDateTime, byte status, ArrayList<Day> openingHours) {
-        this.restaurantId = restaurantId;
+    public Schedule(CreateUpdateTime createUpdateTime, byte status, ArrayList<Day> openingHours) {
         this.status = status;
         this.openingHours = openingHours;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
     }
 
     public Schedule() {
@@ -32,43 +30,12 @@ public class Schedule {
     }
     // TODO aint it better to save weekday and working hour in an enum like Monday("09:00","21:30")
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Schedule schedule = (Schedule) o;
-
-        if (id != schedule.id) return false;
-        if (restaurantId != schedule.restaurantId) return false;
-        if (status != schedule.status) return false;
-        return openingHours.equals(schedule.openingHours);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (restaurantId ^ (restaurantId >>> 32));
-        result = 31 * result + (int) status;
-        result = 31 * result + openingHours.hashCode();
-        return result;
-    }
-
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(long restaurantId) {
-        this.restaurantId = restaurantId;
     }
 
     public byte getStatus() {
@@ -87,11 +54,13 @@ public class Schedule {
         this.openingHours = openingHours;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
+
+
 }

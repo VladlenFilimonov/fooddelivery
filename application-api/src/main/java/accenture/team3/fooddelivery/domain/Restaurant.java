@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +16,7 @@ public class Restaurant {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false)
     private String name;
     private String url;
     private String phone;
@@ -27,7 +28,7 @@ public class Restaurant {
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
     @Embedded
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     @ElementCollection
     private Map<Long, String> categoryURL;
     @ManyToMany
@@ -45,7 +46,7 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, SystemDateTime systemDateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, CreateUpdateTime createUpdateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -55,7 +56,7 @@ public class Restaurant {
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
         this.categoryURL = categoryURL;
         this.categories = categories;
         this.logoUrl = logoUrl;
@@ -134,12 +135,12 @@ public class Restaurant {
         this.cardPay = cardPay;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public Map<Long, String> getCategoryURL() {
@@ -201,29 +202,32 @@ public class Restaurant {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Restaurant)) return false;
 
         Restaurant that = (Restaurant) o;
 
         if (freeDeliveryWithClientCard != that.freeDeliveryWithClientCard) return false;
         if (cardPay != that.cardPay) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (status != that.status) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (url != null ? !url.equals(that.url) : that.url != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        return freeDeliveryFrom != null ? freeDeliveryFrom.equals(that.freeDeliveryFrom) : that.freeDeliveryFrom == null;
+        if (freeDeliveryFrom != null ? !freeDeliveryFrom.equals(that.freeDeliveryFrom) : that.freeDeliveryFrom != null)
+            return false;
+        return logoUrl != null ? logoUrl.equals(that.logoUrl) : that.logoUrl == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (freeDeliveryFrom != null ? freeDeliveryFrom.hashCode() : 0);
         result = 31 * result + (freeDeliveryWithClientCard ? 1 : 0);
         result = 31 * result + (cardPay ? 1 : 0);
+        result = 31 * result + (logoUrl != null ? logoUrl.hashCode() : 0);
+        result = 31 * result + (int) status;
         return result;
     }
 }

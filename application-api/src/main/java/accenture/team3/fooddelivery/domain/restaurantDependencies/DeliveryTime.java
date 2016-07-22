@@ -7,6 +7,7 @@ import java.time.LocalTime;
 public class DeliveryTime {
 
     private LocalTime fromTime;
+
     private LocalTime toTime;
 
     public DeliveryTime() {

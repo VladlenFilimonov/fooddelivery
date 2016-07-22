@@ -1,9 +1,8 @@
 package accenture.team3.fooddelivery.domain;
 
-import javax.persistence.Embeddable;
 import java.time.LocalTime;
 
-@Embeddable
+//@Embeddable
 public class Day {
 
     private DAY day;

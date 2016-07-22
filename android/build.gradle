@@ -12,5 +12,5 @@ repositories {
 }
 
 dependencies {
-    compile project(':shared')
+//    compile project(':shared')
 }

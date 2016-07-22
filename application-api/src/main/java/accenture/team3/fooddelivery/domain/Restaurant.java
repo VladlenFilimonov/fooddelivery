@@ -23,6 +23,7 @@ public class Restaurant {
     @Embedded
     private DeliveryTime deliveryTime;
     @Embedded
+    @Transient
     private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;

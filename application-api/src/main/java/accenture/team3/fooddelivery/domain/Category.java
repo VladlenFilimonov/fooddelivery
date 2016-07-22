@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,23 +11,24 @@ public class Category {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(nullable = false)
     private String name;
     private String pictureURL;
     private byte status;
     @Embedded
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     @ManyToMany
     private Set<Restaurant> restaurants;
 
     public Category() {
     }
 
-    public Category(byte status, Long id, String name, String pictureURL, SystemDateTime systemDateTime, Set<Restaurant> restaurants) {
+    public Category(byte status, Long id, String name, String pictureURL, CreateUpdateTime createUpdateTime, Set<Restaurant> restaurants) {
         this.status = status;
         this.id = id;
         this.name = name;
         this.pictureURL = pictureURL;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
         this.restaurants = restaurants;
     }
 
@@ -63,12 +64,12 @@ public class Category {
         this.pictureURL = pictureURL;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public Set<Restaurant> getRestaurants() {
@@ -82,11 +83,11 @@ public class Category {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Category)) return false;
 
         Category category = (Category) o;
 
-        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (status != category.status) return false;
         if (name != null ? !name.equals(category.name) : category.name != null) return false;
         return pictureURL != null ? pictureURL.equals(category.pictureURL) : category.pictureURL == null;
 
@@ -94,9 +95,9 @@ public class Category {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (pictureURL != null ? pictureURL.hashCode() : 0);
+        result = 31 * result + (int) status;
         return result;
     }
 }

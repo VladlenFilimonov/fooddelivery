@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.*;
 
@@ -10,7 +10,7 @@ public class CategoryLanguage {
     @GeneratedValue
     private Long id;
     @Embedded
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     private byte status;
     private String language;
     private String translation;
@@ -20,9 +20,9 @@ public class CategoryLanguage {
     public CategoryLanguage() {
     }
 
-    public CategoryLanguage(Long id, SystemDateTime systemDateTime, byte status, String language, String translation, Category category) {
+    public CategoryLanguage(Long id, CreateUpdateTime createUpdateTime, byte status, String language, String translation, Category category) {
         this.id = id;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
         this.status = status;
         this.language = language;
         this.translation = translation;
@@ -37,12 +37,12 @@ public class CategoryLanguage {
         this.id = id;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public byte getStatus() {
@@ -75,5 +75,26 @@ public class CategoryLanguage {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CategoryLanguage)) return false;
+
+        CategoryLanguage that = (CategoryLanguage) o;
+
+        if (status != that.status) return false;
+        if (language != null ? !language.equals(that.language) : that.language != null) return false;
+        return translation != null ? translation.equals(that.translation) : that.translation == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) status;
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (translation != null ? translation.hashCode() : 0);
+        return result;
     }
 }

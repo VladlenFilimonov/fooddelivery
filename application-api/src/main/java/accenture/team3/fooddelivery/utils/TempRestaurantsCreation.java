@@ -9,7 +9,7 @@ import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.services.CategoryCrudService;
 import accenture.team3.fooddelivery.services.CommentCrudService;
-import accenture.team3.fooddelivery.services.RestaurantCrudService;
+import accenture.team3.fooddelivery.services.RestaurantService;
 import accenture.team3.fooddelivery.services.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +25,14 @@ import java.util.Set;
 @Service
 public class TempRestaurantsCreation {
 
-    private RestaurantCrudService restaurantCrudService;
+    private RestaurantService restaurantService;
     private CategoryCrudService mealCrudService;
     private CommentCrudService commentCrudService;
     private UserCrudService userCrudService;
 
     @Autowired
-    public TempRestaurantsCreation(RestaurantCrudService restaurantCrudService, CategoryCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
-        this.restaurantCrudService = restaurantCrudService;
+    public TempRestaurantsCreation(RestaurantService restaurantService, CategoryCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
+        this.restaurantService = restaurantService;
         this.mealCrudService = mealCrudService;
         this.commentCrudService = commentCrudService;
         this.userCrudService = userCrudService;
@@ -139,9 +139,9 @@ public class TempRestaurantsCreation {
         mealCrudService.create(category1);
         mealCrudService.create(category2);
 
-        restaurantCrudService.create(restaurant);
-        restaurantCrudService.create(restaurant1);
-        restaurantCrudService.create(restaurant2);
+//        restaurantService.create(restaurant);
+//        restaurantService.create(restaurant1);
+//        restaurantService.create(restaurant2);
 
         User user = new User(
                 "Name",

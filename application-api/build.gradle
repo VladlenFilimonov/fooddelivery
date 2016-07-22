@@ -41,6 +41,9 @@ dependencies {
     //test
     testCompile("junit:junit")
 
+    // https://mvnrepository.com/artifact/org.modelmapper.extensions/modelmapper-spring
+    compile group: 'org.modelmapper.extensions', name: 'modelmapper-spring', version: '0.7.6'
+
     //Databases
     compile("org.springframework.boot:spring-boot-starter-data-jpa") {
         //     exclude module: ("org.hibernate:hibernate-entitymanager:4.3.11.Final")
@@ -64,6 +67,12 @@ dependencies {
 
     //EmbededDB
     runtime("com.h2database:h2")
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.8.0'
+
+    // Add shared module
+//    compile project(':shared')
 }
 
 task wrapper(type: Wrapper) {

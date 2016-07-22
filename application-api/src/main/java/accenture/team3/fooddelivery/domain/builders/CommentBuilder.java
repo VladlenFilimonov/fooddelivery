@@ -5,8 +5,6 @@ import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.User;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
-import java.util.Set;
-
 /**
  * Created by UberV on 21.07.2016.
  */
@@ -17,7 +15,7 @@ public class CommentBuilder {
     private byte type;
     private String content;
     private User user;
-    private Set<Restaurant> restaurant;
+    private Restaurant restaurant;
 
     public CommentBuilder() {
     }
@@ -42,7 +40,7 @@ public class CommentBuilder {
         return this;
     }
 
-    public CommentBuilder withRestaurant(Set<Restaurant> restaurant) {
+    public CommentBuilder withRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
         return this;
     }

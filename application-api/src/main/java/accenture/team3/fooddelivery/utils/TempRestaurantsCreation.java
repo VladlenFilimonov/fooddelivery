@@ -1,6 +1,7 @@
 package accenture.team3.fooddelivery.utils;
 
 
+import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.Comment;
 import accenture.team3.fooddelivery.domain.Restaurant;
@@ -26,16 +27,18 @@ import java.util.Set;
 public class TempRestaurantsCreation {
 
     private RestaurantService restaurantService;
-    private CategoryCrudService mealCrudService;
+    private CategoryCrudService categoryCrudService;
     private CommentCrudService commentCrudService;
     private UserCrudService userCrudService;
+    private RestaurantDao restaurantDao;
 
     @Autowired
-    public TempRestaurantsCreation(RestaurantService restaurantService, CategoryCrudService mealCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService) {
+    public TempRestaurantsCreation(RestaurantService restaurantService, CategoryCrudService categoryCrudService, CommentCrudService commentCrudService, UserCrudService userCrudService, RestaurantDao restaurantDao) {
         this.restaurantService = restaurantService;
-        this.mealCrudService = mealCrudService;
+        this.categoryCrudService = categoryCrudService;
         this.commentCrudService = commentCrudService;
         this.userCrudService = userCrudService;
+        this.restaurantDao = restaurantDao;
         createDB();
     }
 
@@ -134,14 +137,9 @@ public class TempRestaurantsCreation {
         restaurant2.setCategories(restMeals2);
 
 
-
-        mealCrudService.create(category);
-        mealCrudService.create(category1);
-        mealCrudService.create(category2);
-
-//        restaurantService.create(restaurant);
-//        restaurantService.create(restaurant1);
-//        restaurantService.create(restaurant2);
+        categoryCrudService.create(category);
+        categoryCrudService.create(category1);
+        categoryCrudService.create(category2);
 
         User user = new User(
                 "Name",
@@ -157,6 +155,23 @@ public class TempRestaurantsCreation {
         // public Comment(long restaurantId, byte status, byte type, String content, CreateUpdateTime systemDateTime,User user) {
         Comment comment = new Comment((byte) 1, (byte) 1, "test", new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()), user);
         commentCrudService.create(comment);
+
+        Set<Comment> comments = new HashSet<>();
+        comments.add(comment);
+
+        restaurant.setComment(comments);
+
+        restaurant.setUser(user);
+        restaurant1.setUser(user);
+        restaurant2.setUser(user);
+        restaurantDao.save(restaurant);
+        restaurantDao.save(restaurant1);
+        restaurantDao.save(restaurant2);
+
+        Restaurant res = restaurantDao.findOne(1l);
+        comment.setRestaurant(res);
+        commentCrudService.create(comment);
+
 
     }
 }

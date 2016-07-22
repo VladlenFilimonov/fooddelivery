@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Set;
 
 @Entity
 public class Comment {
@@ -24,7 +23,7 @@ public class Comment {
     @ManyToOne
     private User user;
     @ManyToOne(targetEntity = Restaurant.class)
-    private Set<Restaurant> restaurant;
+    private Restaurant restaurant;
 
     public Comment() {
     }
@@ -87,11 +86,11 @@ public class Comment {
         this.user = user;
     }
 
-    public Set<Restaurant> getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Set<Restaurant> restaurant) {
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 

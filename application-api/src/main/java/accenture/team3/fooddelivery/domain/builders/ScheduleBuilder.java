@@ -38,7 +38,7 @@ public class ScheduleBuilder {
         Schedule schedule = new Schedule();
         schedule.setStatus(status);
         schedule.setCreateUpdateTime(createUpdateTime);
-        schedule.setOpeningHours(openingHours);
+//        schedule.setOpeningHours(openingHours);
 
         return schedule;
     }

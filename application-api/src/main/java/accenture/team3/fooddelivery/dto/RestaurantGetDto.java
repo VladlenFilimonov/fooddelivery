@@ -1,6 +1,8 @@
 package accenture.team3.fooddelivery.dto;
 
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.domain.Comment;
+import accenture.team3.fooddelivery.domain.Rating;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 
 import java.math.BigDecimal;
@@ -17,17 +19,23 @@ public class RestaurantGetDto {
     private String url;
     private String phone;
     private DeliveryTime deliveryTime;
+    //    private Set<Schedule> schedule;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
     private Map<Long, String> categoryURL;
     private Set<Category> categories;
     private String logoUrl;
+    private Set<Rating> rating;
+    private Set<Comment> comment;
+    //    private User user;
+    private Long userId;
+    private String firstName, lastName;
 
     public RestaurantGetDto() {
     }
 
-    public RestaurantGetDto(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
+    public RestaurantGetDto(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, Set<Rating> rating, Set<Comment> comment, Long userId, String firstName, String lastName) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -39,6 +47,11 @@ public class RestaurantGetDto {
         this.categoryURL = categoryURL;
         this.categories = categories;
         this.logoUrl = logoUrl;
+        this.rating = rating;
+        this.comment = comment;
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -127,5 +140,45 @@ public class RestaurantGetDto {
 
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
+    }
+
+    public Set<Rating> getRating() {
+        return rating;
+    }
+
+    public void setRating(Set<Rating> rating) {
+        this.rating = rating;
+    }
+
+    public Set<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

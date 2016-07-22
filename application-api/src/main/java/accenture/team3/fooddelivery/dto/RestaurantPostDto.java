@@ -2,7 +2,6 @@ package accenture.team3.fooddelivery.dto;
 
 import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -17,7 +16,7 @@ public class RestaurantPostDto {
     private String url;
     private String phone;
     private DeliveryTime deliveryTime;
-    private WorkWeek workWeek;
+    //    private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
@@ -28,12 +27,12 @@ public class RestaurantPostDto {
     public RestaurantPostDto() {
     }
 
-    public RestaurantPostDto(String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
+    public RestaurantPostDto(String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
         this.name = name;
         this.url = url;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
-        this.workWeek = workWeek;
+//        this.workWeek = workWeek;
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
@@ -74,13 +73,13 @@ public class RestaurantPostDto {
         this.deliveryTime = deliveryTime;
     }
 
-    public WorkWeek getWorkWeek() {
-        return workWeek;
-    }
-
-    public void setWorkWeek(WorkWeek workWeek) {
-        this.workWeek = workWeek;
-    }
+//    public WorkWeek getWorkWeek() {
+//        return workWeek;
+//    }
+//
+//    public void setWorkWeek(WorkWeek workWeek) {
+//        this.workWeek = workWeek;
+//    }
 
     public BigDecimal getFreeDeliveryFrom() {
         return freeDeliveryFrom;

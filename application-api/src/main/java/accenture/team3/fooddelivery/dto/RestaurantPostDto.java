@@ -1,7 +1,6 @@
 package accenture.team3.fooddelivery.dto;
 
 import accenture.team3.fooddelivery.domain.Category;
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 
@@ -14,35 +13,33 @@ import java.util.Set;
  */
 public class RestaurantPostDto {
 
-    private Long id;
     private String name;
     private String url;
-    //    private String phone;
-
-    //    @JsonSerialize(using = DateTimeSerializer.class)
-//    @JsonDeserialize(using = DateTimeDeserializer.class)
+    private String phone;
     private DeliveryTime deliveryTime;
-    //@Embedded
-
     private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
-
-    private SystemDateTime systemDateTime;
-
     private Map<Long, String> categoryURL;
-
     private Set<Category> categories;
     private String logoUrl;
-    private byte status;
 
-    public Long getId() {
-        return id;
+    public RestaurantPostDto() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public RestaurantPostDto(String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
+        this.name = name;
+        this.url = url;
+        this.phone = phone;
+        this.deliveryTime = deliveryTime;
+        this.workWeek = workWeek;
+        this.freeDeliveryFrom = freeDeliveryFrom;
+        this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
+        this.cardPay = cardPay;
+        this.categoryURL = categoryURL;
+        this.categories = categories;
+        this.logoUrl = logoUrl;
     }
 
     public String getName() {
@@ -61,13 +58,13 @@ public class RestaurantPostDto {
         this.url = url;
     }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public DeliveryTime getDeliveryTime() {
         return deliveryTime;
@@ -109,14 +106,6 @@ public class RestaurantPostDto {
         this.cardPay = cardPay;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
-    }
-
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
-    }
-
     public Map<Long, String> getCategoryURL() {
         return categoryURL;
     }
@@ -140,13 +129,4 @@ public class RestaurantPostDto {
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
     }
-
-    public byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(byte status) {
-        this.status = status;
-    }
-
 }

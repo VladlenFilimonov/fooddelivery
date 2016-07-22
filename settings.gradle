@@ -1,5 +1,4 @@
 rootProject.name = 'fooddelivery'
 include 'android'
-include 'shared'
 include 'application-api'
 

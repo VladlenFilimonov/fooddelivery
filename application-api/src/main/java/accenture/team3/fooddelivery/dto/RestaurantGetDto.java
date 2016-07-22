@@ -1,9 +1,7 @@
 package accenture.team3.fooddelivery.dto;
 
 import accenture.team3.fooddelivery.domain.Category;
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -17,24 +15,31 @@ public class RestaurantGetDto {
     private Long id;
     private String name;
     private String url;
-    //    private String phone;
-
+    private String phone;
     private DeliveryTime deliveryTime;
-    //@Embedded
-
-    private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
-
-    private SystemDateTime systemDateTime;
-
     private Map<Long, String> categoryURL;
-
-
     private Set<Category> categories;
     private String logoUrl;
-    private byte status;
+
+    public RestaurantGetDto() {
+    }
+
+    public RestaurantGetDto(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.phone = phone;
+        this.deliveryTime = deliveryTime;
+        this.freeDeliveryFrom = freeDeliveryFrom;
+        this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
+        this.cardPay = cardPay;
+        this.categoryURL = categoryURL;
+        this.categories = categories;
+        this.logoUrl = logoUrl;
+    }
 
     public Long getId() {
         return id;
@@ -60,13 +65,13 @@ public class RestaurantGetDto {
         this.url = url;
     }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public DeliveryTime getDeliveryTime() {
         return deliveryTime;
@@ -74,14 +79,6 @@ public class RestaurantGetDto {
 
     public void setDeliveryTime(DeliveryTime deliveryTime) {
         this.deliveryTime = deliveryTime;
-    }
-
-    public WorkWeek getWorkWeek() {
-        return workWeek;
-    }
-
-    public void setWorkWeek(WorkWeek workWeek) {
-        this.workWeek = workWeek;
     }
 
     public BigDecimal getFreeDeliveryFrom() {
@@ -108,14 +105,6 @@ public class RestaurantGetDto {
         this.cardPay = cardPay;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
-    }
-
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
-    }
-
     public Map<Long, String> getCategoryURL() {
         return categoryURL;
     }
@@ -139,13 +128,4 @@ public class RestaurantGetDto {
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
     }
-
-    public byte getStatus() {
-        return status;
-    }
-
-    public void setStatus(byte status) {
-        this.status = status;
-    }
-
 }

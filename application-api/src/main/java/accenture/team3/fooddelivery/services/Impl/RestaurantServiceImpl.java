@@ -17,8 +17,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     private RestaurantDao restaurantDao;
     private ModelMapper modelMapper;
-    private RestaurantGetDto restaurantGetDto;
-    private RestaurantPostDto restaurantPostDto;
 
     @Autowired
     public RestaurantServiceImpl(RestaurantDao restaurantDao, ModelMapper modelMapper) {
@@ -44,7 +42,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public RestaurantGetDto findOneById(Long id) {
-        return convertToDto(restaurantDao.findOne(id));
+        Restaurant restaurant = restaurantDao.findOne(id);
+        if (restaurant == null) return null;
+        RestaurantGetDto restaurantGetDto = convertToDto(restaurant);
+
+        if (restaurant.getUser() == null) return restaurantGetDto;
+
+        restaurantGetDto.setUserId(restaurant.getUser().getId());
+        restaurantGetDto.setFirstName(restaurant.getUser().getFirstName());
+        restaurantGetDto.setLastName(restaurant.getUser().getLastName());
+
+        return restaurantGetDto;
     }
 
     @Override
@@ -58,7 +66,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     private RestaurantGetDto convertToDto(Restaurant restaurant) {
-        restaurantGetDto = modelMapper.map(restaurant, RestaurantGetDto.class);
+        RestaurantGetDto restaurantGetDto = modelMapper.map(restaurant, RestaurantGetDto.class);
         return restaurantGetDto;
     }
 

@@ -7,7 +7,6 @@ import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.User;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import accenture.team3.fooddelivery.services.CategoryCrudService;
 import accenture.team3.fooddelivery.services.CommentCrudService;
 import accenture.team3.fooddelivery.services.RestaurantCrudService;
@@ -41,6 +40,16 @@ public class TempRestaurantsCreation {
     }
 
     public void createDB() {
+
+//        Schedule mondayScedule = new Schedule((byte) 1,
+//                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
+//                1,
+//                LocalTime.now(),
+//                LocalTime.now()
+//                );
+//        Set<Schedule> schedule = new HashSet<Schedule>(0);
+//        schedule.add(mondayScedule);
+
         Category category = new Category((byte) 1, 1l,
                 "Pizza",
                 "http://pizzaLogo",
@@ -62,7 +71,6 @@ public class TempRestaurantsCreation {
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(25.00),
                 true,
                 true,
@@ -76,7 +84,6 @@ public class TempRestaurantsCreation {
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(100.00),
                 false,
                 false,
@@ -91,7 +98,6 @@ public class TempRestaurantsCreation {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(200.00),
                 true,
                 false,

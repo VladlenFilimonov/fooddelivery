@@ -2,7 +2,6 @@ package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,8 +21,8 @@ public class Restaurant {
     private String phone;
     @Embedded
     private DeliveryTime deliveryTime;
-    @Embedded
-    private WorkWeek workWeek;
+    @OneToMany(targetEntity = Schedule.class)
+    private Set<Schedule> schedule;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
@@ -46,13 +45,12 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, WorkWeek workWeek, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, CreateUpdateTime createUpdateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
+    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, CreateUpdateTime createUpdateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
-        this.workWeek = workWeek;
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
@@ -101,14 +99,6 @@ public class Restaurant {
 
     public void setDeliveryTime(DeliveryTime deliveryTime) {
         this.deliveryTime = deliveryTime;
-    }
-
-    public WorkWeek getWorkWeek() {
-        return workWeek;
-    }
-
-    public void setWorkWeek(WorkWeek workWeek) {
-        this.workWeek = workWeek;
     }
 
     public BigDecimal getFreeDeliveryFrom() {
@@ -197,6 +187,14 @@ public class Restaurant {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Set<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Rating {
     @ManyToOne(targetEntity = Restaurant.class)
     private Set<Restaurant> restaurant;
     @OneToOne
-    private Rating user;
+    private User user;
 
     public Rating() {
 

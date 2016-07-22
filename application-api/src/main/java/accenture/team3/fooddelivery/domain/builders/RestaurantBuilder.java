@@ -3,7 +3,6 @@ package accenture.team3.fooddelivery.domain.builders;
 import accenture.team3.fooddelivery.domain.*;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -19,7 +18,7 @@ public class RestaurantBuilder {
     private String name;
     private DeliveryTime deliveryTime;
 
-    private WorkWeek workWeek;
+    private Set<Schedule> schedule;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
@@ -58,8 +57,8 @@ public class RestaurantBuilder {
         return this;
     }
 
-    public RestaurantBuilder withWorkWeek(WorkWeek workWeek) {
-        this.workWeek = workWeek;
+    public RestaurantBuilder withSchedule(Set<Schedule> schedule) {
+        this.schedule = schedule;
         return this;
     }
 
@@ -123,7 +122,8 @@ public class RestaurantBuilder {
         restaurant.setUrl(url);
         restaurant.setPhone(phone);
         restaurant.setDeliveryTime(deliveryTime);
-        restaurant.setWorkWeek(workWeek);
+//        restaurant.setSchedule(schedule);
+        restaurant.setSchedule(this.schedule);
         restaurant.setFreeDeliveryFrom(freeDeliveryFrom);
         restaurant.setFreeDeliveryWithClientCard(freeDeliveryWithClientCard);
         restaurant.setCardPay(cardPay);

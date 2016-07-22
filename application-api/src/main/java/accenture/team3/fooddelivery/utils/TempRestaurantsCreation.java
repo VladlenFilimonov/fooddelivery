@@ -5,9 +5,8 @@ import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.domain.Comment;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.User;
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
-import accenture.team3.fooddelivery.domain.restaurantDependencies.WorkWeek;
 import accenture.team3.fooddelivery.services.CategoryCrudService;
 import accenture.team3.fooddelivery.services.CommentCrudService;
 import accenture.team3.fooddelivery.services.RestaurantService;
@@ -41,32 +40,41 @@ public class TempRestaurantsCreation {
     }
 
     public void createDB() {
+
+//        ScheduleDao mondayScedule = new ScheduleDao((byte) 1,
+//                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
+//                1,
+//                LocalTime.now(),
+//                LocalTime.now()
+//                );
+//        Set<ScheduleDao> schedule = new HashSet<ScheduleDao>(0);
+//        schedule.add(mondayScedule);
+
         Category category = new Category((byte) 1, 1l,
                 "Pizza",
                 "http://pizzaLogo",
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
 
         Category category1 = new Category((byte) 1, 2l,
                 "BBQ",
                 "http://BBQ",
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
         Category category2 = new Category((byte) 1, 3l,
                 "WOK",
                 "http://WOK",
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
         Restaurant restaurant = new Restaurant(1l,
                 "Lido",
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(25.00),
                 true,
                 true,
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashMap<>(),
                 new HashSet<>(),
                 "logo.png",
@@ -76,11 +84,10 @@ public class TempRestaurantsCreation {
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(100.00),
                 false,
                 false,
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashMap<>(),
                 new HashSet<>(),
                 "logo.png",
@@ -91,11 +98,10 @@ public class TempRestaurantsCreation {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new WorkWeek(),
                 new BigDecimal(200.00),
                 true,
                 false,
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()),
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashMap<>(),
                 new HashSet<>(),
                 "logo.png",
@@ -145,11 +151,11 @@ public class TempRestaurantsCreation {
                 "loginName",
                 (byte) 1,
                 "user",
-                new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()));
+                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()));
         userCrudService.create(user);
 
-        // public Comment(long restaurantId, byte status, byte type, String content, SystemDateTime systemDateTime,User user) {
-        Comment comment = new Comment((byte) 1, (byte) 1, "test", new SystemDateTime(LocalDateTime.now(), LocalDateTime.now()), user);
+        // public Comment(long restaurantId, byte status, byte type, String content, CreateUpdateTime systemDateTime,User user) {
+        Comment comment = new Comment((byte) 1, (byte) 1, "test", new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()), user);
         commentCrudService.create(comment);
 
     }

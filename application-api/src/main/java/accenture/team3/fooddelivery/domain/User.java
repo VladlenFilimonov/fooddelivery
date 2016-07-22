@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,14 +12,19 @@ public class User {
     @Id
     @GeneratedValue
     private long id;
+    @Column(nullable = false)
     private String firstName;
+    @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false)
     private String password;
     private String email;
+    @Column(nullable = false)
     private String loginName;
     private byte status;
+    @Column(nullable = false)
     private String role;
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     @OneToMany
     private Set<Comment> comments;
     @OneToMany
@@ -33,7 +38,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String password, String email, String loginName, byte status, String role, SystemDateTime systemDateTime) {
+    public User(String firstName, String lastName, String password, String email, String loginName, byte status, String role, CreateUpdateTime createUpdateTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -41,7 +46,7 @@ public class User {
         this.loginName = loginName;
         this.status = status;
         this.role = role;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
     }
 
     public long getId() {
@@ -108,12 +113,12 @@ public class User {
         this.role = role;
     }
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public Set<Comment> getComments() {
@@ -132,5 +137,32 @@ public class User {
         this.restaurant = restaurant;
     }
 
-    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (status != user.status) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (loginName != null ? !loginName.equals(user.loginName) : user.loginName != null) return false;
+        return role != null ? role.equals(user.role) : user.role == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+        result = 31 * result + (int) status;
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
+    }
 }

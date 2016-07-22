@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.commonDependencies.SystemDateTime;
+import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,19 +12,35 @@ public class Rating {
     @GeneratedValue
     private long id;
     private byte status;
-    private SystemDateTime systemDateTime;
+    private CreateUpdateTime createUpdateTime;
     @ManyToOne(targetEntity = Restaurant.class)
     private Set<Restaurant> restaurant;
     @OneToOne
-    private Rating user;
+    private User user;
 
     public Rating() {
 
     }
 
-    public Rating(byte status, SystemDateTime systemDateTime) {
+    public Rating(byte status, CreateUpdateTime createUpdateTime) {
         this.status = status;
-        this.systemDateTime = systemDateTime;
+        this.createUpdateTime = createUpdateTime;
+    }
+
+    public Set<Restaurant> getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Set<Restaurant> restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -44,11 +60,13 @@ public class Rating {
     }
 
 
-    public SystemDateTime getSystemDateTime() {
-        return systemDateTime;
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
     }
 
-    public void setSystemDateTime(SystemDateTime systemDateTime) {
-        this.systemDateTime = systemDateTime;
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
+
+
 }

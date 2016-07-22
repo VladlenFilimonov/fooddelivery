@@ -6,15 +6,15 @@ import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
 @Embeddable
-public class SystemDateTime {
+public class CreateUpdateTime {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public SystemDateTime() {
+    public CreateUpdateTime() {
     }
 
-    public SystemDateTime(LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public CreateUpdateTime(LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }

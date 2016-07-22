@@ -27,6 +27,22 @@ public class Rating {
         this.createUpdateTime = createUpdateTime;
     }
 
+    public Set<Restaurant> getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Set<Restaurant> restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }

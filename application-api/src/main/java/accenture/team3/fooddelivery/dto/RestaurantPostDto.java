@@ -16,6 +16,7 @@ public class RestaurantPostDto {
     private String url;
     private String phone;
     private DeliveryTime deliveryTime;
+    //    private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
@@ -31,6 +32,7 @@ public class RestaurantPostDto {
         this.url = url;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
+//        this.workWeek = workWeek;
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
@@ -70,6 +72,14 @@ public class RestaurantPostDto {
     public void setDeliveryTime(DeliveryTime deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
+
+//    public WorkWeek getWorkWeek() {
+//        return workWeek;
+//    }
+//
+//    public void setWorkWeek(WorkWeek workWeek) {
+//        this.workWeek = workWeek;
+//    }
 
     public BigDecimal getFreeDeliveryFrom() {
         return freeDeliveryFrom;

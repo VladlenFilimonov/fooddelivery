@@ -26,25 +26,25 @@ public class RestaurantController {
 
 //    @RequestMapping(method = RequestMethod.POST)
 //    public RestaurantPostDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
-////        Restaurant restaurant = convertToEntity(restaurantPostDto);
+//        Restaurant restaurant = convertToEntity(restaurantPostDto);
 //        return restaurantPostDto;
 //    }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public RestaurantGetDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
-//        Restaurant restaurant = convertToEntity(restaurantPostDto);
-//        return convertToDto(restaurantCrudService.create(restaurant));
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public RestaurantGetDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
+        Restaurant restaurant = convertToEntity(restaurantPostDto);
+        return convertToDto(restaurantCrudService.create(restaurant));
+    }
 
 //    @RequestMapping(method = RequestMethod.POST)
 //    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
 //        return restaurantCrudService.create(restaurant);
 //    }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
-        return restaurant;
-    }
+//    @RequestMapping(method = RequestMethod.POST)
+//    public Restaurant createRestaurant(@RequestBody Restaurant restaurant) {
+//        return restaurant;
+//    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Restaurant> findAllRestaurants() {

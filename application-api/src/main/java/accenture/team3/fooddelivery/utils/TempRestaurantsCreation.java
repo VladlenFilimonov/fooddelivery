@@ -41,13 +41,13 @@ public class TempRestaurantsCreation {
 
     public void createDB() {
 
-//        Schedule mondayScedule = new Schedule((byte) 1,
+//        ScheduleDao mondayScedule = new ScheduleDao((byte) 1,
 //                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
 //                1,
 //                LocalTime.now(),
 //                LocalTime.now()
 //                );
-//        Set<Schedule> schedule = new HashSet<Schedule>(0);
+//        Set<ScheduleDao> schedule = new HashSet<ScheduleDao>(0);
 //        schedule.add(mondayScedule);
 
         Category category = new Category((byte) 1, 1l,

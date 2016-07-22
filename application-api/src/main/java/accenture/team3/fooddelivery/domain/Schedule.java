@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -17,13 +18,13 @@ public class Schedule {
     private long id;
     private byte status;
     private CreateUpdateTime createUpdateTime;
-    private Integer weekDay;
+    private DayOfWeek weekDay;
     private LocalTime openTime;
     private LocalTime closeTime;
     @ManyToOne(targetEntity = Restaurant.class)
     private Set<Restaurant> restaurant;
 
-    public Schedule(byte status, CreateUpdateTime createUpdateTime, Integer weekDay, LocalTime openTime, LocalTime closeTime) {
+    public Schedule(byte status, CreateUpdateTime createUpdateTime, DayOfWeek weekDay, LocalTime openTime, LocalTime closeTime) {
         this.status = status;
         this.createUpdateTime = createUpdateTime;
         this.weekDay = weekDay;
@@ -61,11 +62,11 @@ public class Schedule {
         this.createUpdateTime = createUpdateTime;
     }
 
-    public Integer getWeekDay() {
+    public DayOfWeek getWeekDay() {
         return weekDay;
     }
 
-    public void setWeekDay(Integer weekDay) {
+    public void setWeekDay(DayOfWeek weekDay) {
         this.weekDay = weekDay;
     }
 

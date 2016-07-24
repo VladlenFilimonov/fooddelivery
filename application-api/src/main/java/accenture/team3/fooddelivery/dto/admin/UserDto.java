@@ -1,46 +1,30 @@
-package accenture.team3.fooddelivery.domain;
+package accenture.team3.fooddelivery.dto.admin;
 
+import accenture.team3.fooddelivery.domain.Comment;
+import accenture.team3.fooddelivery.domain.Rating;
+import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.UserDependencies.UserRole;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
-import javax.persistence.*;
 import java.util.Set;
 
-// Specifies that the class is an entity.
-@Entity
-public class User {
+public class UserDto {
 
-    @Id
-    @GeneratedValue
     private long id;
-    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
     private String password;
     private String email;
-    @Column(nullable = false)
     private String loginName;
     private byte status;
-    @Column(nullable = false)
-    @ManyToMany
     private Set<UserRole> userRoles;
     private CreateUpdateTime createUpdateTime;
-    @OneToMany
     private Set<Comment> comments;
-    @OneToMany
     private Set<Restaurant> restaurant;
-    @OneToOne
     private Rating rating;
 
-    /* Getters and Setters */
-
-    // POJO needs no argument constructor
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String password, String email, String loginName, byte status, Set<UserRole> userRoles, CreateUpdateTime createUpdateTime, Set<Comment> comments, Set<Restaurant> restaurant, Rating rating) {
+    public UserDto(long id, String firstName, String lastName, String password, String email, String loginName, byte status, Set<UserRole> userRoles, CreateUpdateTime createUpdateTime, Set<Comment> comments, Set<Restaurant> restaurant, Rating rating) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -52,6 +36,9 @@ public class User {
         this.comments = comments;
         this.restaurant = restaurant;
         this.rating = rating;
+    }
+
+    public UserDto() {
     }
 
     public long getId() {
@@ -148,32 +135,5 @@ public class User {
 
     public void setRating(Rating rating) {
         this.rating = rating;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (status != user.status) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        return loginName != null ? loginName.equals(user.loginName) : user.loginName == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = firstName != null ? firstName.hashCode() : 0;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
-        result = 31 * result + (int) status;
-        return result;
     }
 }

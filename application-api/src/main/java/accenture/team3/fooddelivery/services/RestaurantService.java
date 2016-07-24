@@ -1,8 +1,8 @@
 package accenture.team3.fooddelivery.services;
 
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.dto.RestaurantGetDto;
-import accenture.team3.fooddelivery.dto.RestaurantPostDto;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantGetDto;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantPostDto;
 
 import java.util.List;
 

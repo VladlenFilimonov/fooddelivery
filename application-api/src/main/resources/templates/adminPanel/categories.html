@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      lang="en"
+      xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin Panel</title>
+    <link href="../../static/bootstrap-3.3.6-dist/css/bootstrap.css"
+          th:href="@{/bootstrap-3.3.6-dist/css/bootstrap.css}" rel="stylesheet"/>
+
+    <link href="../../static/bootstrap-3.3.6-dist/css/bootstrap-theme.css"
+          th:href="@{/bootstrap-3.3.6-dist/css/bootstrap-theme.css}" rel="stylesheet"/>
+
+    <script src="../../static/js/jquery-2.js"
+            th:attr="src=@{js/jquery-2.js}"></script>
+
+    <script src="../../static/bootstrap-3.3.6-dist/js/bootstrap.js"
+            th:attr="src=@{/bootstrap-3.3.6-dist/js/bootstrap.js}"></script>
+</head>
+<body>
+<div th:fragment="categories">
+    <div class="panel panel-info">
+        <div class="panel-heading">Categories</div>
+        <div class="panel-body">
+            <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#addCategpry">
+                Add Category
+            </button>
+            <div class="table table-responsive"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

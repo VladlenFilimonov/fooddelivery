@@ -1,8 +1,6 @@
-package accenture.team3.fooddelivery.dto;
+package accenture.team3.fooddelivery.dto.restaurant;
 
 import accenture.team3.fooddelivery.domain.Category;
-import accenture.team3.fooddelivery.domain.Comment;
-import accenture.team3.fooddelivery.domain.Rating;
 import accenture.team3.fooddelivery.domain.restaurantDependencies.DeliveryTime;
 
 import java.math.BigDecimal;
@@ -12,54 +10,35 @@ import java.util.Set;
 /**
  * Created by student007 on 16.21.7.
  */
-public class RestaurantGetDto {
+public class RestaurantPostDto {
 
-    private Long id;
     private String name;
     private String url;
     private String phone;
     private DeliveryTime deliveryTime;
-    //    private Set<Schedule> schedule;
+    //    private WorkWeek workWeek;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
     private boolean cardPay;
     private Map<Long, String> categoryURL;
     private Set<Category> categories;
     private String logoUrl;
-    private Set<Rating> rating;
-    private Set<Comment> comment;
-    //    private User user;
-    private Long userId;
-    private String firstName, lastName;
 
-    public RestaurantGetDto() {
+    public RestaurantPostDto() {
     }
 
-    public RestaurantGetDto(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, Set<Rating> rating, Set<Comment> comment, Long userId, String firstName, String lastName) {
-        this.id = id;
+    public RestaurantPostDto(String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl) {
         this.name = name;
         this.url = url;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
+//        this.workWeek = workWeek;
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
         this.categoryURL = categoryURL;
         this.categories = categories;
         this.logoUrl = logoUrl;
-        this.rating = rating;
-        this.comment = comment;
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -93,6 +72,14 @@ public class RestaurantGetDto {
     public void setDeliveryTime(DeliveryTime deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
+
+//    public WorkWeek getWorkWeek() {
+//        return workWeek;
+//    }
+//
+//    public void setWorkWeek(WorkWeek workWeek) {
+//        this.workWeek = workWeek;
+//    }
 
     public BigDecimal getFreeDeliveryFrom() {
         return freeDeliveryFrom;
@@ -140,45 +127,5 @@ public class RestaurantGetDto {
 
     public void setLogoUrl(String logoUrl) {
         this.logoUrl = logoUrl;
-    }
-
-    public Set<Rating> getRating() {
-        return rating;
-    }
-
-    public void setRating(Set<Rating> rating) {
-        this.rating = rating;
-    }
-
-    public Set<Comment> getComment() {
-        return comment;
-    }
-
-    public void setComment(Set<Comment> comment) {
-        this.comment = comment;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 }

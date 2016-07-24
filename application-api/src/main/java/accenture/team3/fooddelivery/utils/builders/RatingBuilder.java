@@ -1,4 +1,4 @@
-package accenture.team3.fooddelivery.domain.builders;
+package accenture.team3.fooddelivery.utils.builders;
 
 import accenture.team3.fooddelivery.domain.Rating;
 import accenture.team3.fooddelivery.domain.Restaurant;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      lang="en"
+      xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin Panel</title>
+    <link href="../../static/bootstrap-3.3.6-dist/css/bootstrap.css"
+          th:href="@{/bootstrap-3.3.6-dist/css/bootstrap.css}" rel="stylesheet"/>
+
+    <link href="../../static/bootstrap-3.3.6-dist/css/bootstrap-theme.css"
+          th:href="@{/bootstrap-3.3.6-dist/css/bootstrap-theme.css}" rel="stylesheet"/>
+
+    <script src="../../static/js/jquery-2.js"
+            th:attr="src=@{js/jquery-2.js}"></script>
+
+    <script src="../../static/bootstrap-3.3.6-dist/js/bootstrap.js"
+            th:attr="src=@{/bootstrap-3.3.6-dist/js/bootstrap.js}"></script>
+    <script src="../../static/js/adminAjax.js"
+            th:attr="src=@{/js/adminAjax.js}"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+            <div th:include="adminPanel/restaurants :: restaurants"></div>
+        </div>
+        <div class="col-xs-4">
+            <div th:include="adminPanel/categories :: categories"></div>
+        </div>
+        <div class="col-xs-4">
+            <div th:include="adminPanel/users :: users"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

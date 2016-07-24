@@ -2,8 +2,8 @@ package accenture.team3.fooddelivery.services.Impl;
 
 import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.dto.RestaurantGetDto;
-import accenture.team3.fooddelivery.dto.RestaurantPostDto;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantGetDto;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantPostDto;
 import accenture.team3.fooddelivery.services.RestaurantService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

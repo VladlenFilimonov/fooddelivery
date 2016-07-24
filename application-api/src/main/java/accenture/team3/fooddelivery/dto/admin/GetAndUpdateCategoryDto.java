@@ -1,20 +1,30 @@
-package accenture.team3.fooddelivery.dto.category.admin;
+package accenture.team3.fooddelivery.dto.admin;
 
 import java.util.Set;
 
-public class AddCategoryDto {
+public class GetAndUpdateCategoryDto {
 
+    private Long id;
     private String name;
     private String pictureURL;
     private Set<Integer> restaurantsId;
 
-    public AddCategoryDto() {
+    public GetAndUpdateCategoryDto() {
     }
 
-    public AddCategoryDto(String name, String pictureURL, Set<Integer> restaurantsId) {
+    public GetAndUpdateCategoryDto(Long id, String name, String pictureURL, Set<Integer> restaurantsId) {
+        this.id = id;
         this.name = name;
         this.pictureURL = pictureURL;
         this.restaurantsId = restaurantsId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Set;
 
 @Entity
 public class Comment {
@@ -23,21 +22,20 @@ public class Comment {
     private String content;
     @ManyToOne
     private User user;
-    @ManyToOne(targetEntity = Restaurant.class)
-    private Set<Restaurant> restaurant;
+    @ManyToOne
+    private Restaurant restaurant;
 
     public Comment() {
     }
 
-    public Comment(byte status, byte type, String content, CreateUpdateTime createUpdateTime, User user) {
+    public Comment(CreateUpdateTime createUpdateTime, byte status, byte type, String content, User user, Restaurant restaurant) {
+        this.createUpdateTime = createUpdateTime;
         this.status = status;
         this.type = type;
         this.content = content;
-        this.createUpdateTime = createUpdateTime;
         this.user = user;
+        this.restaurant = restaurant;
     }
-
-    /* Getters and Setters */
 
     public long getId() {
         return id;
@@ -45,6 +43,14 @@ public class Comment {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public CreateUpdateTime getCreateUpdateTime() {
+        return createUpdateTime;
+    }
+
+    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
+        this.createUpdateTime = createUpdateTime;
     }
 
     public byte getStatus() {
@@ -71,46 +77,41 @@ public class Comment {
         this.content = content;
     }
 
-    public CreateUpdateTime getCreateUpdateTime() {
-        return createUpdateTime;
-    }
-
-    public void setCreateUpdateTime(CreateUpdateTime createUpdateTime) {
-        this.createUpdateTime = createUpdateTime;
-    }
-
     public User getUser() {
-        return this.user;
+        return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
 
-    public Set<Restaurant> getRestaurant() {
+    public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Set<Restaurant> restaurant) {
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Comment)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Comment comment = (Comment) o;
 
         if (status != comment.status) return false;
         if (type != comment.type) return false;
+        if (createUpdateTime != null ? !createUpdateTime.equals(comment.createUpdateTime) : comment.createUpdateTime != null)
+            return false;
         return content != null ? content.equals(comment.content) : comment.content == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) status;
+        int result = createUpdateTime != null ? createUpdateTime.hashCode() : 0;
+        result = 31 * result + (int) status;
         result = 31 * result + (int) type;
         result = 31 * result + (content != null ? content.hashCode() : 0);
         return result;

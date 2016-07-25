@@ -1,4 +1,4 @@
-package accenture.team3.fooddelivery.dto.admin;
+package accenture.team3.fooddelivery.dto.admin.users;
 
 public class RestaurantListForUsersDto {
     private Long id;

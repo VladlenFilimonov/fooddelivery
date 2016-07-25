@@ -1,8 +1,8 @@
 package accenture.team3.fooddelivery.utils;
 
 import accenture.team3.fooddelivery.dao.UserRolesDao;
-import accenture.team3.fooddelivery.domain.UserDependencies.SecurityRoles;
-import accenture.team3.fooddelivery.domain.UserDependencies.UserRole;
+import accenture.team3.fooddelivery.domain.userDependencies.SecurityRoles;
+import accenture.team3.fooddelivery.domain.userDependencies.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

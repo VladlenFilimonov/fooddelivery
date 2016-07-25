@@ -57,7 +57,7 @@ public class CommentBuilder {
         comment.setStatus(status);
         comment.setCreateUpdateTime(createUpdateTime);
         comment.setContent(content);
-        comment.setRestaurant(restaurant);
+//        comment.setRestaurant(restaurant);
         comment.setType(type);
 
         return comment;

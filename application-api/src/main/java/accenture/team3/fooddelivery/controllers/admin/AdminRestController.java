@@ -1,7 +1,7 @@
 package accenture.team3.fooddelivery.controllers.admin;
 
-import accenture.team3.fooddelivery.dto.admin.AddNewUserDto;
-import accenture.team3.fooddelivery.dto.admin.UserDto;
+import accenture.team3.fooddelivery.dto.admin.users.AddNewUserDto;
+import accenture.team3.fooddelivery.dto.admin.users.UserDto;
 import accenture.team3.fooddelivery.services.admin.AdminService;
 import accenture.team3.fooddelivery.services.exceptions.ArgumentValidationException;
 import org.springframework.beans.factory.annotation.Autowired;

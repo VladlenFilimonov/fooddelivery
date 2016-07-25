@@ -21,7 +21,7 @@ public class Restaurant {
     private String phone;
     @Embedded
     private DeliveryTime deliveryTime;
-    @OneToMany(targetEntity = Schedule.class)
+    @OneToMany
     private Set<Schedule> schedule;
     private BigDecimal freeDeliveryFrom;
     private boolean freeDeliveryWithClientCard;
@@ -37,7 +37,7 @@ public class Restaurant {
     private byte status;
     @OneToMany
     private Set<Rating> rating;
-    @OneToMany(targetEntity = Comment.class)
+    @OneToMany
     private Set<Comment> comment;
     @ManyToOne
     private User user;
@@ -45,12 +45,12 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Restaurant(Long id, String name, String url, String phone, DeliveryTime deliveryTime, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, CreateUpdateTime createUpdateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status) {
-        this.id = id;
+    public Restaurant(String name, String url, String phone, DeliveryTime deliveryTime, Set<Schedule> schedule, BigDecimal freeDeliveryFrom, boolean freeDeliveryWithClientCard, boolean cardPay, CreateUpdateTime createUpdateTime, Map<Long, String> categoryURL, Set<Category> categories, String logoUrl, byte status, Set<Rating> rating, Set<Comment> comment, User user) {
         this.name = name;
         this.url = url;
         this.phone = phone;
         this.deliveryTime = deliveryTime;
+        this.schedule = schedule;
         this.freeDeliveryFrom = freeDeliveryFrom;
         this.freeDeliveryWithClientCard = freeDeliveryWithClientCard;
         this.cardPay = cardPay;
@@ -59,6 +59,9 @@ public class Restaurant {
         this.categories = categories;
         this.logoUrl = logoUrl;
         this.status = status;
+        this.rating = rating;
+        this.comment = comment;
+        this.user = user;
     }
 
     public Long getId() {
@@ -99,6 +102,14 @@ public class Restaurant {
 
     public void setDeliveryTime(DeliveryTime deliveryTime) {
         this.deliveryTime = deliveryTime;
+    }
+
+    public Set<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Set<Schedule> schedule) {
+        this.schedule = schedule;
     }
 
     public BigDecimal getFreeDeliveryFrom() {
@@ -189,18 +200,10 @@ public class Restaurant {
         this.user = user;
     }
 
-    public Set<Schedule> getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(Set<Schedule> schedule) {
-        this.schedule = schedule;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Restaurant)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Restaurant that = (Restaurant) o;
 
@@ -210,8 +213,12 @@ public class Restaurant {
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (url != null ? !url.equals(that.url) : that.url != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
+        if (deliveryTime != null ? !deliveryTime.equals(that.deliveryTime) : that.deliveryTime != null) return false;
         if (freeDeliveryFrom != null ? !freeDeliveryFrom.equals(that.freeDeliveryFrom) : that.freeDeliveryFrom != null)
             return false;
+        if (createUpdateTime != null ? !createUpdateTime.equals(that.createUpdateTime) : that.createUpdateTime != null)
+            return false;
+        if (categoryURL != null ? !categoryURL.equals(that.categoryURL) : that.categoryURL != null) return false;
         return logoUrl != null ? logoUrl.equals(that.logoUrl) : that.logoUrl == null;
 
     }
@@ -221,9 +228,12 @@ public class Restaurant {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (url != null ? url.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (deliveryTime != null ? deliveryTime.hashCode() : 0);
         result = 31 * result + (freeDeliveryFrom != null ? freeDeliveryFrom.hashCode() : 0);
         result = 31 * result + (freeDeliveryWithClientCard ? 1 : 0);
         result = 31 * result + (cardPay ? 1 : 0);
+        result = 31 * result + (createUpdateTime != null ? createUpdateTime.hashCode() : 0);
+        result = 31 * result + (categoryURL != null ? categoryURL.hashCode() : 0);
         result = 31 * result + (logoUrl != null ? logoUrl.hashCode() : 0);
         result = 31 * result + (int) status;
         return result;

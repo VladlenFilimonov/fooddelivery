@@ -17,6 +17,11 @@ public class Category {
     private byte status;
     @Embedded
     private CreateUpdateTime createUpdateTime;
+    //    @ManyToMany(mappedBy = "categories")
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name="CATEGORY_RESTAURANTS",
+//            joinColumns={@JoinColumn(name="CATEGORY_ID")},
+//            inverseJoinColumns={@JoinColumn(name="RESTAURANTS_ID")})
     @ManyToMany
     private Set<Restaurant> restaurants;
 
@@ -72,6 +77,7 @@ public class Category {
         this.createUpdateTime = createUpdateTime;
     }
 
+    //    @ManyToMany(mappedBy = "categories")
     public Set<Restaurant> getRestaurants() {
         return restaurants;
     }

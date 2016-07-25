@@ -2,7 +2,9 @@ package accenture.team3.fooddelivery.services.Impl;
 
 import accenture.team3.fooddelivery.dao.CategoryDao;
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.dto.category.CategoryWithRestaurantsDto;
 import accenture.team3.fooddelivery.services.CategoryCrudService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.List;
 class CategoryCrudServiceImpl implements CategoryCrudService {
 
     private CategoryDao categoryDao;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public CategoryCrudServiceImpl(CategoryDao categoryDao) {
+    public CategoryCrudServiceImpl(CategoryDao categoryDao, ModelMapper modelMapper) {
         this.categoryDao = categoryDao;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -35,8 +39,9 @@ class CategoryCrudServiceImpl implements CategoryCrudService {
     }
 
     @Override
-    public Category findOneById(Long id) {
-        return categoryDao.findOne(id);
+    public CategoryWithRestaurantsDto findOneById(Long id) {
+        Category category = categoryDao.findOne(id);
+        return convertToDto(category);
     }
 
     @Override
@@ -48,4 +53,10 @@ class CategoryCrudServiceImpl implements CategoryCrudService {
         }
         return id;
     }
+
+    private CategoryWithRestaurantsDto convertToDto(Category category) {
+        CategoryWithRestaurantsDto categoryWithRestaurantsDto = modelMapper.map(category, CategoryWithRestaurantsDto.class);
+        return categoryWithRestaurantsDto;
+    }
+
 }

@@ -3,6 +3,6 @@
  */
 foodDeliveryApp.factory('appConfig', function () {
     return {
-        apiUrl: 'http://localhost:8080/api/'
+        apiUrl: 'http://localhost:8080/api'
     }
 });

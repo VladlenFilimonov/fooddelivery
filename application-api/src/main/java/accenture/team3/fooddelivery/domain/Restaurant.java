@@ -30,6 +30,15 @@ public class Restaurant {
     private CreateUpdateTime createUpdateTime;
     @ElementCollection
     private Map<Long, String> categoryURL;
+    //    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "CATEGORY_RESTAURANTS",
+//            joinColumns = @JoinColumn(name = "RESTAURANTS_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+//    )
+//    @JoinTable(name="RESTAURANT_CATEGORIES",
+//            joinColumns={@JoinColumn(name="CATEGORY_ID")},
+//            inverseJoinColumns={@JoinColumn(name="RESTAURANTS_ID")})
     @ManyToMany
     @JsonIgnore
     private Set<Category> categories;
@@ -37,6 +46,8 @@ public class Restaurant {
     private byte status;
     @OneToMany
     private Set<Rating> rating;
+    //    @OneToMany
+//    private Set<Category> categories;
     @OneToMany
     private Set<Comment> comment;
     @ManyToOne
@@ -156,6 +167,12 @@ public class Restaurant {
         return categories;
     }
 
+    //    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "CATEGORY_RESTAURANTS",
+//            joinColumns = @JoinColumn(name = "RESTAURANTS_ID"),
+//            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+//    )
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }

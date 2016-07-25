@@ -12,6 +12,7 @@ public class CategoryWithRestaurantsDto {
     private byte status;
     private CreateUpdateTime createUpdateTime;
     private Set<RestaurantGetDto> restaurants;
+//    private Set<Restaurant> restaurants;
 
     public CategoryWithRestaurantsDto() {
     }
@@ -72,4 +73,12 @@ public class CategoryWithRestaurantsDto {
     public void setRestaurants(Set<RestaurantGetDto> restaurants) {
         this.restaurants = restaurants;
     }
+
+//    public Set<Restaurant> getRestaurants() {
+//        return restaurants;
+//    }
+//
+//    public void setRestaurants(Set<Restaurant> restaurants) {
+//        this.restaurants = restaurants;
+//    }
 }

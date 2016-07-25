@@ -1,6 +1,7 @@
 package accenture.team3.fooddelivery.services;
 
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.dto.category.CategoryWithRestaurantsDto;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface CategoryCrudService {
 
     List<Category> findAll();
 
-    Category findOneById(Long id);
+    CategoryWithRestaurantsDto findOneById(Long id);
 
     Long deleteById(Long id);
 }

@@ -15,6 +15,7 @@ var jsFiles = [
     'src_frontend/app/config.js',
     'src_frontend/app/controllers/categoryController.js',
     'src_frontend/app/controllers/indexController.js',
+    'src_frontend/app/services/categoryService.js',
     'src_frontend/app/views/templates.js'
 
 ];

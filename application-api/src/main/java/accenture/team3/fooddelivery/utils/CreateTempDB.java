@@ -15,7 +15,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class CreateTempDB {
@@ -29,14 +32,14 @@ public class CreateTempDB {
     private CommentDao commentDao;
 
     @Autowired
-    public CreateTempDB(CommentDao commentDao, ScheduleDao scheduleDao, AdminService adminService, RestaurantDao restaurantDao, UserDao userDao, CategoryDao categoryDao, RatingDao ratingDao) {
+    public CreateTempDB(AdminService adminService, RestaurantDao restaurantDao, UserDao userDao, CategoryDao categoryDao, RatingDao ratingDao, ScheduleDao scheduleDao, CommentDao commentDao) {
         this.adminService = adminService;
-        this.commentDao = commentDao;
-        this.scheduleDao = scheduleDao;
-        this.ratingDao = ratingDao;
-        this.categoryDao = categoryDao;
         this.restaurantDao = restaurantDao;
         this.userDao = userDao;
+        this.categoryDao = categoryDao;
+        this.ratingDao = ratingDao;
+        this.scheduleDao = scheduleDao;
+        this.commentDao = commentDao;
         createTempUsers();
         createRestaurants();
     }
@@ -130,9 +133,6 @@ public class CreateTempDB {
         Set<Schedule> schedulesSet3 = new HashSet<>();
         schedulesSet1.add(schedule3);
 
-        List<Category> categories = (List<Category>) categoryDao.findAll();
-        Set<Category> categorySet = new HashSet<>(categories);
-
         Rating rating10 = ratingDao.findOne(1l);
         Set<Rating> ratingsSet = new HashSet<>();
         ratingsSet.add(rating10);
@@ -154,34 +154,34 @@ public class CreateTempDB {
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                schedulesSet1,
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                categorySet,
+                new HashSet<>(),
                 "logo.png",
                 (byte) 1,
-                ratingsSet,
-                commentSet1,
+                null,
+                null,
                 userDao.findOne(1l));
         Restaurant restaurant1 = new Restaurant(
                 "Accenture",
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                schedulesSet2,
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                categorySet,
+                new HashSet<>(),
                 "logo.png",
                 (byte) 1,
-                ratingsSet1,
-                commentSet2,
+                null,
+                null,
                 userDao.findOne(2l));
 
         Restaurant restaurant2 = new Restaurant(
@@ -189,37 +189,32 @@ public class CreateTempDB {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                schedulesSet3,
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                categorySet,
+                new HashSet<>(),
                 "logo.png",
                 (byte) 1,
                 null,
                 null,
                 userDao.findOne(2l));
 
-        restaurantDao.save(restaurant);
-        restaurantDao.save(restaurant1);
-        restaurantDao.save(restaurant2);
+        Set<Restaurant> restaurants = new HashSet<>();
+        restaurants.add(restaurant1);
+        restaurants.add(restaurant2);
+        restaurants.add(restaurant);
+
+        category.setRestaurants(restaurants);
+        category1.setRestaurants(restaurants);
+        category2.setRestaurants(restaurants);
 
         categoryDao.save(category);
         categoryDao.save(category1);
         categoryDao.save(category2);
 
-        List<Schedule> scheduleList = (List<Schedule>) scheduleDao.findAll();
-        List<Restaurant> restaurants = (List<Restaurant>) restaurantDao.findAll();
-        for (Schedule schedule : scheduleList) {
-            for (Restaurant restaurant3 : restaurants) {
-                for (Schedule schedule7 : restaurant.getSchedule()) {
-                    if (schedule7.equals(schedule)) schedule.setRestaurant(restaurant3);
-                }
-            }
-        }
-        //scheduleDao.save(scheduleList);
 
     }
 

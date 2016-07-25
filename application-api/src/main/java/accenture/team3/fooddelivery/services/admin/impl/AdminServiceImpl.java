@@ -5,12 +5,12 @@ import accenture.team3.fooddelivery.dao.UserDao;
 import accenture.team3.fooddelivery.dao.UserRolesDao;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.domain.User;
-import accenture.team3.fooddelivery.domain.UserDependencies.UserRole;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
-import accenture.team3.fooddelivery.dto.admin.AddNewUserDto;
-import accenture.team3.fooddelivery.dto.admin.RestaurantListForUsersDto;
-import accenture.team3.fooddelivery.dto.admin.SimpleUserListDto;
-import accenture.team3.fooddelivery.dto.admin.UserDto;
+import accenture.team3.fooddelivery.domain.userDependencies.UserRole;
+import accenture.team3.fooddelivery.dto.admin.users.AddNewUserDto;
+import accenture.team3.fooddelivery.dto.admin.users.RestaurantListForUsersDto;
+import accenture.team3.fooddelivery.dto.admin.users.SimpleUserListDto;
+import accenture.team3.fooddelivery.dto.admin.users.UserDto;
 import accenture.team3.fooddelivery.services.admin.AdminService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class AdminServiceImpl implements AdminService {
+class AdminServiceImpl implements AdminService {
 
     private RestaurantDao restaurantDao;
     private UserDao userDao;

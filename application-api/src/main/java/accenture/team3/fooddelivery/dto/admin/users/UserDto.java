@@ -1,10 +1,10 @@
-package accenture.team3.fooddelivery.dto.admin;
+package accenture.team3.fooddelivery.dto.admin.users;
 
 import accenture.team3.fooddelivery.domain.Comment;
 import accenture.team3.fooddelivery.domain.Rating;
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.domain.UserDependencies.UserRole;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
+import accenture.team3.fooddelivery.domain.userDependencies.UserRole;
 
 import java.util.Set;
 

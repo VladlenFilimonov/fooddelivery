@@ -1,7 +1,7 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.UserDependencies.UserRole;
 import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
+import accenture.team3.fooddelivery.domain.userDependencies.UserRole;
 
 import javax.persistence.*;
 import java.util.Set;

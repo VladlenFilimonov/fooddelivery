@@ -1,7 +1,7 @@
 //package accenture.team3.fooddelivery.utils;
 //
 //
-//import accenture.team3.fooddelivery.domain.Category;
+//import accenture.team3.fooddelivery.domain.category;
 //import accenture.team3.fooddelivery.domain.Comment;
 //import accenture.team3.fooddelivery.domain.Restaurant;
 //import accenture.team3.fooddelivery.domain.User;
@@ -50,18 +50,18 @@
 ////        Set<ScheduleDao> schedule = new HashSet<ScheduleDao>(0);
 ////        schedule.add(mondayScedule);
 //
-//        Category category = new Category((byte) 1, 1l,
+//        category category = new category((byte) 1, 1l,
 //                "Pizza",
 //                "http://pizzaLogo",
 //                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
 //                new HashSet<>());
 //
-//        Category category1 = new Category((byte) 1, 2l,
+//        category category1 = new category((byte) 1, 2l,
 //                "BBQ",
 //                "http://BBQ",
 //                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
 //                new HashSet<>());
-//        Category category2 = new Category((byte) 1, 3l,
+//        category category2 = new category((byte) 1, 3l,
 //                "WOK",
 //                "http://WOK",
 //                new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
@@ -109,7 +109,7 @@
 //        Map<Long, String> restaurantMealURL = new HashMap<>();
 //        restaurantMealURL.put(category.getId(), "http://lido.lv/pizza");
 //        restaurantMealURL.put(category1.getId(), "http://lido.lv/BBQ");
-//        Set<Category> restCategories = new HashSet<>();
+//        Set<category> restCategories = new HashSet<>();
 //        restCategories.add(category);
 //        restCategories.add(category1);
 //        restaurant.setCategoryURL(restaurantMealURL);
@@ -118,7 +118,7 @@
 //        Map<Long, String> restaurantMealURL1 = new HashMap<>();
 //        restaurantMealURL1.put(category1.getId(), "http://accenture.lv/BBQ");
 //        restaurantMealURL1.put(category2.getId(), "http://accenture.lv/WOK");
-//        Set<Category> restMeals1 = new HashSet<>();
+//        Set<category> restMeals1 = new HashSet<>();
 //        restMeals1.add(category1);
 //        restMeals1.add(category2);
 //        restaurant1.setCategoryURL(restaurantMealURL1);
@@ -127,7 +127,7 @@
 //        Map<Long, String> restaurantMealURL2 = new HashMap<>();
 //        restaurantMealURL2.put(category.getId(), "http://stakehouse.lv/BBQ");
 //        restaurantMealURL2.put(category2.getId(), "http://stakehouse.lv/WOK");
-//        Set<Category> restMeals2 = new HashSet<>();
+//        Set<category> restMeals2 = new HashSet<>();
 //        restMeals2.add(category);
 //        restMeals2.add(category2);
 //        restaurant2.setCategoryURL(restaurantMealURL2);

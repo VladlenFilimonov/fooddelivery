@@ -1,6 +1,6 @@
 package accenture.team3.fooddelivery.controllers.admin;
 
-import accenture.team3.fooddelivery.domain.UserDependencies.SecurityRoles;
+import accenture.team3.fooddelivery.domain.userDependencies.SecurityRoles;
 import accenture.team3.fooddelivery.services.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

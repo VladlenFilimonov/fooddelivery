@@ -47,7 +47,7 @@ public class RatingBuilder {
         rating.setCreateUpdateTime(createUpdateTime);
         rating.setStatus(status);
         rating.setUser(user);
-        rating.setRestaurant(restaurant);
+//        rating.setRestaurant(restaurant);
 
         return rating;
     }

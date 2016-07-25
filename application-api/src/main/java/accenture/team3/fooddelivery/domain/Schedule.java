@@ -98,8 +98,6 @@ public class Schedule {
         Schedule schedule = (Schedule) o;
 
         if (status != schedule.status) return false;
-        if (createUpdateTime != null ? !createUpdateTime.equals(schedule.createUpdateTime) : schedule.createUpdateTime != null)
-            return false;
         if (weekDay != schedule.weekDay) return false;
         if (openTime != null ? !openTime.equals(schedule.openTime) : schedule.openTime != null) return false;
         return closeTime != null ? closeTime.equals(schedule.closeTime) : schedule.closeTime == null;
@@ -109,7 +107,6 @@ public class Schedule {
     @Override
     public int hashCode() {
         int result = (int) status;
-        result = 31 * result + (createUpdateTime != null ? createUpdateTime.hashCode() : 0);
         result = 31 * result + (weekDay != null ? weekDay.hashCode() : 0);
         result = 31 * result + (openTime != null ? openTime.hashCode() : 0);
         result = 31 * result + (closeTime != null ? closeTime.hashCode() : 0);

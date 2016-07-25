@@ -17,7 +17,7 @@ public class Category {
     private byte status;
     @Embedded
     private CreateUpdateTime createUpdateTime;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private Set<Restaurant> restaurants;
 
     public Category() {

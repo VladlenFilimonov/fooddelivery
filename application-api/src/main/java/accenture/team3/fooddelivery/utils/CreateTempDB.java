@@ -15,7 +15,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 public class CreateTempDB {
@@ -29,14 +32,14 @@ public class CreateTempDB {
     private CommentDao commentDao;
 
     @Autowired
-    public CreateTempDB(CommentDao commentDao, ScheduleDao scheduleDao, AdminService adminService, RestaurantDao restaurantDao, UserDao userDao, CategoryDao categoryDao, RatingDao ratingDao) {
+    public CreateTempDB(AdminService adminService, RestaurantDao restaurantDao, UserDao userDao, CategoryDao categoryDao, RatingDao ratingDao, ScheduleDao scheduleDao, CommentDao commentDao) {
         this.adminService = adminService;
-        this.commentDao = commentDao;
-        this.scheduleDao = scheduleDao;
-        this.ratingDao = ratingDao;
-        this.categoryDao = categoryDao;
         this.restaurantDao = restaurantDao;
         this.userDao = userDao;
+        this.categoryDao = categoryDao;
+        this.ratingDao = ratingDao;
+        this.scheduleDao = scheduleDao;
+        this.commentDao = commentDao;
         createTempUsers();
         createRestaurants();
     }
@@ -83,10 +86,6 @@ public class CreateTempDB {
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
 
-        categoryDao.save(category);
-        categoryDao.save(category1);
-        categoryDao.save(category2);
-
         Rating rating = new Rating((byte) 1,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 null,
@@ -122,41 +121,57 @@ public class CreateTempDB {
         categoryUrls.put(2l, "http://category.link2");
         categoryUrls.put(3l, "http://category.link3");
 
-        List<Schedule> schedules = (List<Schedule>) scheduleDao.findAll();
-        Set<Schedule> schedulesSet = new HashSet<>(schedules);
+        Schedule schedule1 = scheduleDao.findOne(1l);
+        Set<Schedule> schedulesSet1 = new HashSet<>();
+        schedulesSet1.add(schedule1);
 
-        List<Category> categories = (List<Category>) categoryDao.findAll();
-        Set<Category> categorySet = new HashSet<>(categories);
+        Schedule schedule2 = scheduleDao.findOne(2l);
+        Set<Schedule> schedulesSet2 = new HashSet<>();
+        schedulesSet1.add(schedule2);
 
-        List<Rating> ratingList = (List<Rating>) ratingDao.findAll();
-        Set<Rating> ratingsSet = new HashSet<>(ratingList);
+        Schedule schedule3 = scheduleDao.findOne(3l);
+        Set<Schedule> schedulesSet3 = new HashSet<>();
+        schedulesSet1.add(schedule3);
 
-        List<Comment> comments = (List<Comment>) commentDao.findAll();
-        Set<Comment> commentSet = new HashSet<>(comments);
+        Rating rating10 = ratingDao.findOne(1l);
+        Set<Rating> ratingsSet = new HashSet<>();
+        ratingsSet.add(rating10);
+
+        Rating rating11 = ratingDao.findOne(2l);
+        Set<Rating> ratingsSet1 = new HashSet<>();
+        ratingsSet.add(rating11);
+
+        Comment comment1 = commentDao.findOne(1l);
+        Set<Comment> commentSet1 = new HashSet<>();
+        commentSet1.add(comment1);
+
+        Comment comment22 = commentDao.findOne(2l);
+        Set<Comment> commentSet2 = new HashSet<>();
+        commentSet1.add(comment22);
 
         Restaurant restaurant = new Restaurant(
                 "Lido",
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                schedulesSet,
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                categorySet,
+                new HashSet<>(),
                 "logo.png",
                 (byte) 1,
-                ratingsSet,
-                commentSet,
+                null,
+                null,
                 userDao.findOne(1l));
         Restaurant restaurant1 = new Restaurant(
                 "Accenture",
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new HashSet<>(),
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
@@ -165,8 +180,8 @@ public class CreateTempDB {
                 new HashSet<>(),
                 "logo.png",
                 (byte) 1,
-                new HashSet<>(),
-                new HashSet<>(),
+                null,
+                null,
                 userDao.findOne(2l));
 
         Restaurant restaurant2 = new Restaurant(
@@ -174,7 +189,7 @@ public class CreateTempDB {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new HashSet<>(),
+                null,
                 new BigDecimal(25.00),
                 true,
                 true,
@@ -183,13 +198,24 @@ public class CreateTempDB {
                 new HashSet<>(),
                 "logo.png",
                 (byte) 1,
-                new HashSet<>(),
-                new HashSet<>(),
+                null,
+                null,
                 userDao.findOne(2l));
 
-        restaurantDao.save(restaurant);
-        restaurantDao.save(restaurant1);
-        restaurantDao.save(restaurant2);
+        Set<Restaurant> restaurants = new HashSet<>();
+        restaurants.add(restaurant1);
+        restaurants.add(restaurant2);
+        restaurants.add(restaurant);
+
+        category.setRestaurants(restaurants);
+        category1.setRestaurants(restaurants);
+        category2.setRestaurants(restaurants);
+
+        categoryDao.save(category);
+        categoryDao.save(category1);
+        categoryDao.save(category2);
+
+
     }
 
 
@@ -202,7 +228,8 @@ public class CreateTempDB {
         roles1.add(SecurityRoles.ADMIN.name());
         roles1.add(SecurityRoles.MANAGER.name());
 
-        AddNewUserDto addNewUserDto = new AddNewUserDto("Vladlens",
+        AddNewUserDto addNewUserDto = new AddNewUserDto(
+                "Vladlens",
                 "Filimonovs",
                 "1234", "1234",
                 "vladlenfilimonov@gmail.com",

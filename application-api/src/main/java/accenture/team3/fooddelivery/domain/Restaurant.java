@@ -30,7 +30,7 @@ public class Restaurant {
     private CreateUpdateTime createUpdateTime;
     @ElementCollection
     private Map<Long, String> categoryURL;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "restaurants")
     @JsonIgnore
     private Set<Category> categories;
     private String logoUrl;

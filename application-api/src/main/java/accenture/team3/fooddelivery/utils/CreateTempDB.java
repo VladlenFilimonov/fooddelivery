@@ -83,10 +83,6 @@ public class CreateTempDB {
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 new HashSet<>());
 
-        categoryDao.save(category);
-        categoryDao.save(category1);
-        categoryDao.save(category2);
-
         Rating rating = new Rating((byte) 1,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 null,
@@ -122,24 +118,43 @@ public class CreateTempDB {
         categoryUrls.put(2l, "http://category.link2");
         categoryUrls.put(3l, "http://category.link3");
 
-        List<Schedule> schedules = (List<Schedule>) scheduleDao.findAll();
-        Set<Schedule> schedulesSet = new HashSet<>(schedules);
+        Schedule schedule1 = scheduleDao.findOne(1l);
+        Set<Schedule> schedulesSet1 = new HashSet<>();
+        schedulesSet1.add(schedule1);
+
+        Schedule schedule2 = scheduleDao.findOne(2l);
+        Set<Schedule> schedulesSet2 = new HashSet<>();
+        schedulesSet1.add(schedule2);
+
+        Schedule schedule3 = scheduleDao.findOne(3l);
+        Set<Schedule> schedulesSet3 = new HashSet<>();
+        schedulesSet1.add(schedule3);
 
         List<Category> categories = (List<Category>) categoryDao.findAll();
         Set<Category> categorySet = new HashSet<>(categories);
 
-        List<Rating> ratingList = (List<Rating>) ratingDao.findAll();
-        Set<Rating> ratingsSet = new HashSet<>(ratingList);
+        Rating rating10 = ratingDao.findOne(1l);
+        Set<Rating> ratingsSet = new HashSet<>();
+        ratingsSet.add(rating10);
 
-        List<Comment> comments = (List<Comment>) commentDao.findAll();
-        Set<Comment> commentSet = new HashSet<>(comments);
+        Rating rating11 = ratingDao.findOne(2l);
+        Set<Rating> ratingsSet1 = new HashSet<>();
+        ratingsSet.add(rating11);
+
+        Comment comment1 = commentDao.findOne(1l);
+        Set<Comment> commentSet1 = new HashSet<>();
+        commentSet1.add(comment1);
+
+        Comment comment22 = commentDao.findOne(2l);
+        Set<Comment> commentSet2 = new HashSet<>();
+        commentSet1.add(comment22);
 
         Restaurant restaurant = new Restaurant(
                 "Lido",
                 "http://lido.lv",
                 "1234567",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                schedulesSet,
+                schedulesSet1,
                 new BigDecimal(25.00),
                 true,
                 true,
@@ -149,24 +164,24 @@ public class CreateTempDB {
                 "logo.png",
                 (byte) 1,
                 ratingsSet,
-                commentSet,
+                commentSet1,
                 userDao.findOne(1l));
         Restaurant restaurant1 = new Restaurant(
                 "Accenture",
                 "http://accenture.lv",
                 "987654321",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new HashSet<>(),
+                schedulesSet2,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                new HashSet<>(),
+                categorySet,
                 "logo.png",
                 (byte) 1,
-                new HashSet<>(),
-                new HashSet<>(),
+                ratingsSet1,
+                commentSet2,
                 userDao.findOne(2l));
 
         Restaurant restaurant2 = new Restaurant(
@@ -174,22 +189,38 @@ public class CreateTempDB {
                 "http://stakehouse.lv",
                 "6666666666666",
                 new DeliveryTime(LocalTime.MIN, LocalTime.MAX),
-                new HashSet<>(),
+                schedulesSet3,
                 new BigDecimal(25.00),
                 true,
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                new HashSet<>(),
+                categorySet,
                 "logo.png",
                 (byte) 1,
-                new HashSet<>(),
-                new HashSet<>(),
+                null,
+                null,
                 userDao.findOne(2l));
 
         restaurantDao.save(restaurant);
         restaurantDao.save(restaurant1);
         restaurantDao.save(restaurant2);
+
+        categoryDao.save(category);
+        categoryDao.save(category1);
+        categoryDao.save(category2);
+
+        List<Schedule> scheduleList = (List<Schedule>) scheduleDao.findAll();
+        List<Restaurant> restaurants = (List<Restaurant>) restaurantDao.findAll();
+        for (Schedule schedule : scheduleList) {
+            for (Restaurant restaurant3 : restaurants) {
+                for (Schedule schedule7 : restaurant.getSchedule()) {
+                    if (schedule7.equals(schedule)) schedule.setRestaurant(restaurant3);
+                }
+            }
+        }
+        //scheduleDao.save(scheduleList);
+
     }
 
 
@@ -202,7 +233,8 @@ public class CreateTempDB {
         roles1.add(SecurityRoles.ADMIN.name());
         roles1.add(SecurityRoles.MANAGER.name());
 
-        AddNewUserDto addNewUserDto = new AddNewUserDto("Vladlens",
+        AddNewUserDto addNewUserDto = new AddNewUserDto(
+                "Vladlens",
                 "Filimonovs",
                 "1234", "1234",
                 "vladlenfilimonov@gmail.com",

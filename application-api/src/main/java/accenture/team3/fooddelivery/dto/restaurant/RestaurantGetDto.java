@@ -5,9 +5,6 @@ import lombok.Data;
 
 import java.util.Map;
 
-/**
- * Created by student007 on 16.21.7.
- */
 @Data
 public class RestaurantGetDto {
 

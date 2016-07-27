@@ -58,10 +58,10 @@ class CategoryServiceImpl implements CategoryService {
         Set<Restaurant> restaurants = category.getRestaurants();
         Set<RestaurantGetDto> restaurantsGetDto = new HashSet<>();
 //        restaurantsDto = modelMapper.map(restaurants, RestaurantGetDto.class);
-        for (Restaurant restaurant : restaurants) {
-            restaurantsGetDto.add(modelMapper.map(restaurant, RestaurantGetDto.class));
-        }
-        categoryWithRestaurantsDto.setRestaurants(restaurantsGetDto);
+//        for (Restaurant restaurant : restaurants) {
+//            restaurantsGetDto.add(modelMapper.map(restaurant, RestaurantGetDto.class));
+//        }
+//        categoryWithRestaurantsDto.setRestaurants(restaurantsGetDto);
         return categoryWithRestaurantsDto;
 
     }

@@ -1,17 +1,13 @@
 package accenture.team3.fooddelivery.services.restaurant;
 
-import accenture.team3.fooddelivery.dto.restaurant.RestaurantCreateDto;
-import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
-
-import java.util.stream.Stream;
+import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
+import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetWithComments;
 
 public interface RestaurantService {
 
-    Stream<RestaurantDto> findAll();
+    RestaurantGetDto getRestaurantById(Long id);
 
-    Stream<RestaurantDto> findCurrentlyWorking();
+    RestaurantGetWithComments getRestaurantWithComments(Long id);
 
-    RestaurantDto findById(Long id);
 
-    RestaurantDto create(RestaurantCreateDto restaurantCreateDto);
 }

@@ -1,6 +1,9 @@
-package accenture.team3.fooddelivery.dto.category;
+package accenture.team3.fooddelivery.shared.category;
 
+import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 public class CategoryWithRestaurantsDto {
@@ -9,5 +12,5 @@ public class CategoryWithRestaurantsDto {
     private String pictureURL;
     private int allRestaurants;
     private int workedRestaurants;
-//    private Set<RestaurantGetDto> restaurants;
+    private Set<RestaurantGetDto> restaurants1;
 }

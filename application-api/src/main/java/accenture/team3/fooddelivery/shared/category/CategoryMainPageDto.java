@@ -1,4 +1,4 @@
-package accenture.team3.fooddelivery.dto.category;
+package accenture.team3.fooddelivery.shared.category;
 
 import lombok.Data;
 

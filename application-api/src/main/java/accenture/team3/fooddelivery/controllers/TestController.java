@@ -10,6 +10,6 @@ public class TestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getIndex() {
-        return "index";
+        return "categories";
     }
 }

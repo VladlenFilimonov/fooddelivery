@@ -24,7 +24,7 @@ public class Restaurant {
     @GeneratedValue
     private Long id;
     private String name;
-    private byte[] logo;
+    private String logo;
     @OneToOne(cascade = CascadeType.ALL)
     private Delivery delivery;
     private Boolean acceptCard;
@@ -42,6 +42,22 @@ public class Restaurant {
     private Set<WorkDay> workDays;
     @Embedded
     private Audit audit;
+
+    public boolean isWorkingNow() {
+        if (!this.getStatus().equals(Status.ACTIVE)) {
+            return false;
+        }
+        LocalDateTime now = LocalDateTime.now();
+        return workDays
+                .stream()
+                .filter(d ->
+                        d.getDay().equals(now.getDayOfWeek())
+                                && d.getOpenAt().isBefore(now.toLocalTime())
+                                && d.getCloseAt().isAfter(now.toLocalTime())
+                )
+                .findAny()
+                .isPresent();
+    }
 
     @PrePersist
     @PreUpdate

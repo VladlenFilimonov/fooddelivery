@@ -2,13 +2,16 @@ package accenture.team3.fooddelivery.services.restaurant.impl;
 
 import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Restaurant;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantCreateDto;
 import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Stream;
 
+@Service
 public class RestaurantService implements accenture.team3.fooddelivery.services.restaurant.RestaurantService {
 
     private RestaurantDao dao;
@@ -23,6 +26,16 @@ public class RestaurantService implements accenture.team3.fooddelivery.services.
     @Override
     public Stream<RestaurantDto> findCurrentlyWorking() {
         return findAll().filter(RestaurantDto::isWorkingNow);
+    }
+
+    @Override
+    public RestaurantDto findById(Long id) {
+        return null;
+    }
+
+    @Override
+    public RestaurantDto create(RestaurantCreateDto restaurantCreateDto) {
+        return null;
     }
 
     @Override

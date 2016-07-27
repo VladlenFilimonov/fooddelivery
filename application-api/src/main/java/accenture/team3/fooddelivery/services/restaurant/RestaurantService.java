@@ -11,7 +11,7 @@ public interface RestaurantService {
 
     Stream<RestaurantDto> findCurrentlyWorking();
 
-    RestaurantDto findById(long id);
+    RestaurantDto findById(Long id);
 
     RestaurantDto create(RestaurantCreateDto restaurantCreateDto);
 }

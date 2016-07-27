@@ -53,6 +53,9 @@ public class TempDatabase {
         category01.setName("Pizza");
         category02.setName("BBQ");
         category03.setName("Soup");
+        category01.setName("Logo.png");
+        category02.setName("Logo2.png");
+        category03.setName("Logo3.png");
 
         categoryDao.save(category01);
         categoryDao.save(category02);

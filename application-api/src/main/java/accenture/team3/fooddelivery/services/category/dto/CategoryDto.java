@@ -11,7 +11,7 @@ public class CategoryDto {
 
     Set<RestaurantDto> restaurants;
     private String name;
-    private byte[] logo;
+    private String logo;
 
     public CategoryDto(Category c, Set<RestaurantDto> restaurants) {
         this.name = c.getName();

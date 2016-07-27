@@ -1,14 +1,14 @@
 package accenture.team3.fooddelivery.services.category;
 
+import accenture.team3.fooddelivery.dto.category.CategoryMainPageDto;
 import accenture.team3.fooddelivery.dto.category.CategoryWithRestaurantsDto;
-import accenture.team3.fooddelivery.services.category.dto.CategoryDto;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 public interface CategoryService {
 
-    Stream<CategoryDto> findAllWithWorkingRestaurants();
-
     CategoryWithRestaurantsDto findById(long id);
+
+    List<CategoryMainPageDto> findAllWithWorkingRestaurants();
 
 }

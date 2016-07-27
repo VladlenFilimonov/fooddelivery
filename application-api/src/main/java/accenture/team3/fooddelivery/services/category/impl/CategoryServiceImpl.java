@@ -2,33 +2,41 @@ package accenture.team3.fooddelivery.services.category.impl;
 
 import accenture.team3.fooddelivery.dao.CategoryDao;
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.dto.category.CategoryMainPageDto;
 import accenture.team3.fooddelivery.services.category.CategoryService;
-import accenture.team3.fooddelivery.services.category.dto.CategoryDto;
-import accenture.team3.fooddelivery.services.restaurant.RestaurantService;
 import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 class CategoryServiceImpl implements CategoryService {
 
     private CategoryDao dao;
-    private RestaurantService restaurantService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    public CategoryServiceImpl(CategoryDao dao, RestaurantService restaurantService) {
+    public CategoryServiceImpl(CategoryDao dao, ModelMapper modelMapper) {
         this.dao = dao;
-        this.restaurantService = restaurantService;
+        this.modelMapper = modelMapper;
     }
 
     @Override
-    public Stream<CategoryDto> findAllWithWorkingRestaurants() {
-        Stream<RestaurantDto> restaurants = restaurantService.findCurrentlyWorking();
-        List<Category> all = (List<Category>) dao.findAll();
+    public List<CategoryMainPageDto> findAllWithWorkingRestaurants() {
+        List<Category> categories = (List<Category>) dao.findAll();
+        List<CategoryMainPageDto> categoryMainPageDtos = new ArrayList<>();
+        for (Category category : categories) {
+            CategoryMainPageDto categoryMainPageDto = modelMapper.map(category, CategoryMainPageDto.class);
+            categoryMainPageDto.setPictureURL(category.getLogo());
+            categoryMainPageDto.setAllRestaurants((int) category.getRestaurants().stream().count());
+            categoryMainPageDto.setWorkedRestaurants((int) category.getRestaurants().
+                    stream().
+                    map(r -> modelMapper.map(r, RestaurantDto.class)).filter(RestaurantDto::isWorkingNow).count());
+            categoryMainPageDtos.add(categoryMainPageDto);
+        }
 
-        //combine 2 streams to map into CategoryDto (may use own Collector)
-        return null;
+        return categoryMainPageDtos;
     }
 
 

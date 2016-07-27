@@ -17,7 +17,7 @@ public class Category {
     @GeneratedValue
     private Long id;
     private String name;
-    private byte[] logo;
+    private String logo;
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Restaurant> restaurants;
 }

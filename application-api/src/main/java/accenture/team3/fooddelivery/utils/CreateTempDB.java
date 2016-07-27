@@ -15,10 +15,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CreateTempDB {
@@ -149,6 +146,9 @@ public class CreateTempDB {
         Set<Comment> commentSet2 = new HashSet<>();
         commentSet1.add(comment22);
 
+        List<Category> categories = (List<Category>) categoryDao.findAll();
+        Set<Category> categorySet = new HashSet<>(categories);
+
         Restaurant restaurant = new Restaurant(
                 "Lido",
                 "http://lido.lv",
@@ -160,7 +160,7 @@ public class CreateTempDB {
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                new HashSet<>(),
+                categorySet,
                 "logo.png",
                 (byte) 1,
                 null,
@@ -177,7 +177,7 @@ public class CreateTempDB {
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                new HashSet<>(),
+                categorySet,
                 "logo.png",
                 (byte) 1,
                 null,
@@ -195,12 +195,22 @@ public class CreateTempDB {
                 true,
                 new CreateUpdateTime(LocalDateTime.now(), LocalDateTime.now()),
                 categoryUrls,
-                new HashSet<>(),
+                categorySet,
                 "logo.png",
                 (byte) 1,
                 null,
                 null,
                 userDao.findOne(2l));
+
+        restaurantDao.save(restaurant);
+        restaurantDao.save(restaurant1);
+        restaurantDao.save(restaurant2);
+
+//        List<Restaurant> restaurants = (List<Restaurant>) restaurantDao.findAll();
+//        Set<Restaurant> restaurantSet = new HashSet<>(restaurants);
+//        category.setRestaurants(restaurantSet);
+//        category1.setRestaurants(restaurantSet);
+//        category2.setRestaurants(restaurantSet);
 
         Set<Restaurant> restaurants = new HashSet<>();
         restaurants.add(restaurant1);

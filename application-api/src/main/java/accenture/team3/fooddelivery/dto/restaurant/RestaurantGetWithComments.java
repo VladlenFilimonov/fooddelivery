@@ -10,6 +10,6 @@ import java.util.List;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class RestaurantWithComments extends RestaurantDto {
+public class RestaurantGetWithComments extends RestaurantGetDto {
     private List<CommentDto> commentDtoList;
 }

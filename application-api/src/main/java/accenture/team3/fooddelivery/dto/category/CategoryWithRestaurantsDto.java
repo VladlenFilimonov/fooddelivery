@@ -2,7 +2,7 @@ package accenture.team3.fooddelivery.dto.category;
 
 //import accenture.team3.fooddelivery.domain.commonDependencies.CreateUpdateTime;
 
-import accenture.team3.fooddelivery.dto.restaurant.RestaurantDto;
+import accenture.team3.fooddelivery.dto.restaurant.RestaurantGetDto;
 import lombok.Data;
 
 import java.util.Set;
@@ -14,5 +14,5 @@ public class CategoryWithRestaurantsDto {
     private String pictureURL;
     private int allRestaurants;
     private int workedRestaurants;
-    private Set<RestaurantDto> restaurants;
+    private Set<RestaurantGetDto> restaurants;
 }

@@ -1,29 +1,29 @@
 package accenture.team3.fooddelivery.domain;
 
-import accenture.team3.fooddelivery.domain.embedded.Audit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"id", "audit"})
+@EqualsAndHashCode(exclude = {"id"})
 @AllArgsConstructor
-public class Comment {
+public class WorkDay {
 
     @Id
     @GeneratedValue
     private Long id;
-    private String content;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+    @Enumerated(value = EnumType.STRING)
+    private DayOfWeek day;
+    private LocalTime openAt;
+    private LocalTime closeAt;
     @ManyToOne(cascade = CascadeType.ALL)
     private Restaurant restaurant;
-    @Embedded
-    private Audit audit;
 
-    public Comment() {
+    public WorkDay() {
     }
 }

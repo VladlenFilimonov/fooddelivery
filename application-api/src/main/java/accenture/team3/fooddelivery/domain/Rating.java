@@ -1,9 +1,7 @@
 package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.embedded.Audit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,8 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode(exclude = {"id", "audit"})
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = {"restaurant", "user"})
 public class Rating {
 
     @Id
@@ -18,12 +18,11 @@ public class Rating {
     private Long id;
     private Integer value;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
     @Embedded
     private Audit audit;
-
-    public Rating() {
-    }
 }

@@ -1,8 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -11,6 +9,8 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"id", "logo", "restaurants"})
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = "restaurants")
 public class Category {
 
     @Id
@@ -20,7 +20,4 @@ public class Category {
     private byte[] logo;
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Restaurant> restaurants;
-
-    public Category() {
-    }
 }

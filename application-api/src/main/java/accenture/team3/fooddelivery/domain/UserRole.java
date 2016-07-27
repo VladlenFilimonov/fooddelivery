@@ -4,6 +4,7 @@ import accenture.team3.fooddelivery.domain.classifier.SecurityRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = "id")
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserRole {
 
     @Id
@@ -21,7 +23,4 @@ public class UserRole {
     private Set<User> user;
     @Enumerated(EnumType.STRING)
     private SecurityRole role;
-
-    public UserRole() {
-    }
 }

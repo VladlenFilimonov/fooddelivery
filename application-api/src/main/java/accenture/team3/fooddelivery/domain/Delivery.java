@@ -3,6 +3,7 @@ package accenture.team3.fooddelivery.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 @Data
 @EqualsAndHashCode(exclude = {"id"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class Delivery {
 
     @Id
@@ -25,6 +27,4 @@ public class Delivery {
     private LocalTime timeMax;
     private String phone;
 
-    public Delivery() {
-    }
 }

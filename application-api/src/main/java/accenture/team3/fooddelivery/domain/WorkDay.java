@@ -1,8 +1,6 @@
 package accenture.team3.fooddelivery.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -12,6 +10,8 @@ import java.time.LocalTime;
 @Data
 @EqualsAndHashCode(exclude = {"id"})
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = "restaurant")
 public class WorkDay {
 
     @Id
@@ -22,8 +22,7 @@ public class WorkDay {
     private LocalTime openAt;
     private LocalTime closeAt;
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    public WorkDay() {
-    }
 }

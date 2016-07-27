@@ -1,6 +1,7 @@
 package accenture.team3.fooddelivery.services.restaurant.dto;
 
 import accenture.team3.fooddelivery.domain.WorkDay;
+import accenture.team3.fooddelivery.domain.classifier.Status;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.internal.util.collections.Sets;
@@ -37,11 +38,15 @@ public class RestaurantDtoTest {
 
         r0 = new RestaurantDto();
         r0.setSchedule(Sets.newSet(wd0));
+        r0.setStatus(Status.ACTIVE);
 
         r1 = new RestaurantDto();
         r1.setSchedule(Sets.newSet(wd1));
+        r1.setStatus(Status.ACTIVE);
+
         r2 = new RestaurantDto();
         r2.setSchedule(Sets.newSet(wd2));
+        r2.setStatus(Status.ACTIVE);
 
     }
 

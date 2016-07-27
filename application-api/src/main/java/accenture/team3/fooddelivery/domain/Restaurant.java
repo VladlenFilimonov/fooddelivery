@@ -5,6 +5,7 @@ import accenture.team3.fooddelivery.domain.embedded.Audit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,8 +14,10 @@ import java.util.Set;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"id", "logo", "audit", "urls"})
+@EqualsAndHashCode(exclude = {"id", "logo", "audit", "urls",
+        "workDays", "comments", "ratings", "categories"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class Restaurant {
 
     @Id
@@ -31,17 +34,14 @@ public class Restaurant {
     private Set<Category> categories;
     @ElementCollection
     private Map<Category, String> urls;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Rating> ratings;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Comment> comments;
-    @OneToMany
-    private Set<WorkDay> schedule;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private Set<WorkDay> workDays;
     @Embedded
     private Audit audit;
-
-    public Restaurant() {
-    }
 
     @PrePersist
     @PreUpdate

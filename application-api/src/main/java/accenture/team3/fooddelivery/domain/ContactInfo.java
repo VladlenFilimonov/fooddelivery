@@ -3,6 +3,7 @@ package accenture.team3.fooddelivery.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @EqualsAndHashCode(exclude = {"id"})
 @AllArgsConstructor
+@NoArgsConstructor
 public class ContactInfo {
 
     @Id
@@ -19,7 +21,4 @@ public class ContactInfo {
     private String phone;
     @OneToOne(cascade = CascadeType.ALL)
     private RestaurantManager manager;
-
-    public ContactInfo() {
-    }
 }

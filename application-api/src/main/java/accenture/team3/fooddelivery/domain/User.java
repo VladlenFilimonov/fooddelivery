@@ -1,17 +1,17 @@
 package accenture.team3.fooddelivery.domain;
 
 import accenture.team3.fooddelivery.domain.embedded.Audit;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(exclude = {"id", "audit", "comments"})
+@EqualsAndHashCode(exclude = {"id", "audit", "comments", "roles", "rating"})
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString(exclude = {"comments", "roles", "rating"})
 public class User {
 
     @Id
@@ -24,13 +24,11 @@ public class User {
     protected String login;
     @ManyToMany(cascade = CascadeType.ALL)
     protected Set<UserRole> roles;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     protected Set<Comment> comments;
     @Embedded
     protected Audit audit;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Rating> rating;
 
-    public User() {
-    }
 }

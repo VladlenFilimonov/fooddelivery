@@ -14,5 +14,5 @@ public class CategoryWithRestaurantsDto {
     private String pictureURL;
     private int allRestaurants;
     private int workedRestaurants;
-    private Set<RestaurantDto> restaurants;
+    private Set<RestaurantDto> restaurantsDto;
 }

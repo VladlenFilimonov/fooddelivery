@@ -5,7 +5,6 @@ import accenture.team3.fooddelivery.domain.Category;
 import accenture.team3.fooddelivery.dto.category.CategoryMainPageDto;
 import accenture.team3.fooddelivery.dto.category.CategoryWithRestaurantsDto;
 import accenture.team3.fooddelivery.services.category.CategoryService;
-import accenture.team3.fooddelivery.services.category.dto.CategoryDto;
 import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,10 @@ class CategoryServiceImpl implements CategoryService {
             CategoryMainPageDto categoryMainPageDto = modelMapper.map(category, CategoryMainPageDto.class);
             categoryMainPageDto.setPictureURL(category.getLogo());
             categoryMainPageDto.setAllRestaurants((int) category.getRestaurants().stream().count());
-            categoryMainPageDto.setWorkedRestaurants((int) category.getRestaurants().
-                    stream().
-                    map(r -> modelMapper.map(r, RestaurantDto.class)).filter(RestaurantDto::isWorkingNow).count());
+            categoryMainPageDto.setWorkedRestaurants((int) category.getRestaurants()
+                    .stream()
+                    .map(r -> modelMapper.map(r, RestaurantDto.class))
+                    .filter(RestaurantDto::isWorkingNow).count());
             categoryMainPageDtos.add(categoryMainPageDto);
         }
 

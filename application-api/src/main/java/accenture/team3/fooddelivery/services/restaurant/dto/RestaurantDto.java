@@ -20,14 +20,14 @@ public class RestaurantDto {
     private Map<Category, String> urls;
     private Set<Rating> ratings;
     private Set<Comment> comments;
-    private Set<WorkDay> schedule;
+    private Set<WorkDay> workDays;
 
     public boolean isWorkingNow() {
         if (!this.getStatus().equals(Status.ACTIVE)) {
             return false;
         }
         LocalDateTime now = LocalDateTime.now();
-        return schedule
+        return workDays
                 .stream()
                 .filter(d ->
                         d.getDay().equals(now.getDayOfWeek())

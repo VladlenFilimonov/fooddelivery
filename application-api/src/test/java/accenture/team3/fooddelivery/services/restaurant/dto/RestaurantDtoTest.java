@@ -37,15 +37,15 @@ public class RestaurantDtoTest {
         wd2.setCloseAt(LocalTime.MIDNIGHT);
 
         r0 = new RestaurantDto();
-        r0.setSchedule(Sets.newSet(wd0));
+        r0.setWorkDays(Sets.newSet(wd0));
         r0.setStatus(Status.ACTIVE);
 
         r1 = new RestaurantDto();
-        r1.setSchedule(Sets.newSet(wd1));
+        r1.setWorkDays(Sets.newSet(wd1));
         r1.setStatus(Status.ACTIVE);
 
         r2 = new RestaurantDto();
-        r2.setSchedule(Sets.newSet(wd2));
+        r2.setWorkDays(Sets.newSet(wd2));
         r2.setStatus(Status.ACTIVE);
 
     }

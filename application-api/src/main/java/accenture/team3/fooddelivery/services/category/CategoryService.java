@@ -8,4 +8,5 @@ public interface CategoryService {
 
     Stream<CategoryDto> findAllWithWorkingRestaurants();
 
+
 }

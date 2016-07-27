@@ -15,7 +15,7 @@ public class RestaurantController {
 //    }
 //
 //    @RequestMapping(method = RequestMethod.POST)
-//    public RestaurantGetDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
+//    public RestaurantDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
 //        return restaurantService.create(restaurantPostDto);
 //    }
 //
@@ -25,12 +25,12 @@ public class RestaurantController {
 //    }
 //
 //    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//    public RestaurantGetDto findRestaurant(@PathVariable("id") String id) {
+//    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
 //        return restaurantService.findOneById(Long.parseLong(id));
 //    }
 //
 ////    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-////    public RestaurantGetDto findRestaurant(@PathVariable("id") String id) {
+////    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
 ////        Restaurant restaurant = restaurantService.findOneById(Long.parseLong(id));
 ////        return convertToDto(restaurant);
 ////    }

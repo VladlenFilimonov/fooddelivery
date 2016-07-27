@@ -145,8 +145,8 @@ public class TempDatabase {
                 "AnonymousX",
                 null,
                 null,
-                null,
-                new Audit(LocalDateTime.now(), LocalDateTime.now())
+                new Audit(LocalDateTime.now(), LocalDateTime.now()),
+                null
         );
 
         User user2 = new User(null,
@@ -157,8 +157,8 @@ public class TempDatabase {
                 "login",
                 null,
                 null,
-                null,
-                new Audit(LocalDateTime.now(), LocalDateTime.now())
+                new Audit(LocalDateTime.now(), LocalDateTime.now()),
+                null
         );
 
         userDao.save(user1);

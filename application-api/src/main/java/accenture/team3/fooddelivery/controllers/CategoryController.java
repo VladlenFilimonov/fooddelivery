@@ -25,13 +25,12 @@ public class CategoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<CategoryMainPageDto> findAllCategories() {
-
-//        return categoryService.findAllWithWorkingRestaurants();
+        return categoryService.findAllWithWorkingRestaurants();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CategoryWithRestaurantsDto findCategory(@PathVariable("id") String id) {
-//        return categoryService.findById(Long.parseLong(id));
+        return categoryService.findById(Long.parseLong(id));
     }
 
 }

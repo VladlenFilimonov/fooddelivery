@@ -2,7 +2,6 @@ package accenture.team3.fooddelivery.services.restaurant.impl;
 
 import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.services.restaurant.RestaurantService;
 import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class RestaurantServiceImpl implements RestaurantService {
+public class RestaurantService implements accenture.team3.fooddelivery.services.restaurant.RestaurantService {
 
     private RestaurantDao dao;
     private ModelMapper mapper;
 
     @Autowired
-    public RestaurantServiceImpl(RestaurantDao dao, ModelMapper mapper) {
+    public RestaurantService(RestaurantDao dao, ModelMapper mapper) {
         this.dao = dao;
         this.mapper = mapper;
     }

@@ -31,5 +31,10 @@ class CategoryServiceImpl implements CategoryService {
         return null;
     }
 
+    @Override
+    public CategoryDto findById(long id) {
+        return null;
+    }
+
 
 }

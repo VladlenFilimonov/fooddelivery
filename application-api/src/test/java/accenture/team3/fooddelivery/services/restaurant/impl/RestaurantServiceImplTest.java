@@ -22,7 +22,7 @@ public class RestaurantServiceImplTest {
     ModelMapper mapper = new ModelMapper();
     RestaurantDao dao = mock(RestaurantDao.class);
 
-    RestaurantServiceImpl service = new RestaurantServiceImpl(dao, mapper);
+    RestaurantService service = new RestaurantService(dao, mapper);
 
     Restaurant restaurant0;
     Restaurant restaurant1;

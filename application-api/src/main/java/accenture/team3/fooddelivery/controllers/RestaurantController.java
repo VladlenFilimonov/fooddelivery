@@ -1,19 +1,29 @@
 package accenture.team3.fooddelivery.controllers;
 
+import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
+import accenture.team3.fooddelivery.services.restaurant.impl.RestaurantService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/restaurant")
+@RequestMapping("/api/restaurant")
 public class RestaurantController {
-//
-//    private RestaurantService restaurantService;
-//
-//    @Autowired
-//    public RestaurantController(RestaurantService restaurantService) {
-//        this.restaurantService = restaurantService;
-//    }
-//
+
+    private RestaurantService restaurantService;
+
+    @Autowired
+    public RestaurantController(RestaurantService restaurantService) {
+        this.restaurantService = restaurantService;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
+        return restaurantService.findById(Long.parseLong(id));
+    }
+
 //    @RequestMapping(method = RequestMethod.POST)
 //    public RestaurantDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
 //        return restaurantService.create(restaurantPostDto);

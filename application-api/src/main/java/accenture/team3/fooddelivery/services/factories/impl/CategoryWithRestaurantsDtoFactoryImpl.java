@@ -32,7 +32,7 @@ public class CategoryWithRestaurantsDtoFactoryImpl implements CategoryWithRestau
         CategoryMainPageDto mainPageDto = categoryMainPageDtoFactory.convert(category);
         CategoryWithRestaurantsDto dto = new CategoryWithRestaurantsDto();
         dto.setId(mainPageDto.getId());
-        dto.setName(dto.getName());
+        dto.setName(mainPageDto.getName());
         dto.setWorkedRestaurants(mainPageDto.getWorkedRestaurants());
         dto.setPictureURL(mainPageDto.getPictureURL());
         dto.setRestaurants1(

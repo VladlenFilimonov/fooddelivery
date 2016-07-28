@@ -23,6 +23,6 @@ public class AdminController {
 //        model.addAttribute("simpleUserList", adminService.getSimpleUserList());
 //        model.addAttribute("secRoles", securityRoles);
 //        model.addAttribute("restaurantsForUser", adminService.getRestaurantsForUser());
-//        return "adminPanel/index";
+//        return "adminPanel/categories";
 //    }
 }

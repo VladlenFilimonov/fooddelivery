@@ -1,7 +1,7 @@
 package accenture.team3.fooddelivery.controllers;
 
-import accenture.team3.fooddelivery.services.restaurant.dto.RestaurantDto;
-import accenture.team3.fooddelivery.services.restaurant.impl.RestaurantService;
+import accenture.team3.fooddelivery.services.restaurant.impl.RestaurantServiceImpl;
+import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,21 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
 
-    private RestaurantService restaurantService;
+    private RestaurantServiceImpl restaurantService;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController(RestaurantServiceImpl restaurantService) {
         this.restaurantService = restaurantService;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
-        return restaurantService.findById(Long.parseLong(id));
+    public RestaurantGetDto findRestaurant(@PathVariable("id") Long id) {
+        return restaurantService.getRestaurantById(id);
     }
 
 //    @RequestMapping(method = RequestMethod.POST)
-//    public RestaurantDto createRestaurant(@RequestBody RestaurantPostDto restaurantPostDto) {
-//        return restaurantService.create(restaurantPostDto);
+//    public RestaurantGetDto createRestaurant(@RequestBody RestaurantCreateDto restaurantCreateDto) {
+//        return restaurantService.create(restaurantCreateDto);
 //    }
 //
 //    @RequestMapping(method = RequestMethod.GET)
@@ -35,12 +35,12 @@ public class RestaurantController {
 //    }
 //
 //    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-//    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
+//    public RestaurantGetDto findRestaurant(@PathVariable("id") String id) {
 //        return restaurantService.findOneById(Long.parseLong(id));
 //    }
 //
 ////    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-////    public RestaurantDto findRestaurant(@PathVariable("id") String id) {
+////    public RestaurantGetDto findRestaurant(@PathVariable("id") String id) {
 ////        Restaurant restaurant = restaurantService.findOneById(Long.parseLong(id));
 ////        return convertToDto(restaurant);
 ////    }

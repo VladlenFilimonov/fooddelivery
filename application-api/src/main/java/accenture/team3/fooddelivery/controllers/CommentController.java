@@ -1,22 +1,19 @@
-package accenture.team3.fooddelivery.controllers;
+//package accenture.team3.fooddelivery.controllers;
+//
 
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/comment")
-public class CommentController {
-
-//    private CommentCrudService commentCrudService;
+//@RestController
+//@RequestMapping("/api/comment")
+//public class CommentController {
+//
+//    private CommentService CommentService;
 //
 //    @Autowired
-//    public CommentController(CommentCrudService commentCrudService) {
-//        this.commentCrudService = commentCrudService;
+//    public CommentController(CommentService CommentService) {
+//        this.CommentService = CommentService;
 //    }
 //
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Comment> findAllComments() {
-//        return commentCrudService.findAll();
+//    @RequestMapping(method = RequestMethod.POST)
+//    public List<CommentDto> findAllComments(@RequestBody CommentDto commentDto) {
+//        return null;//CommentService.findAll();
 //    }
-}
+//}

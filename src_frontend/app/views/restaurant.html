@@ -37,7 +37,19 @@
                 <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>
                     <br>
                     <a href="#">www.nonono.lv</a> <br>
-                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>
+                    Average rating <span class="rating">{{restaurant.averageRatings}}</span> <br>
+                    <select name="ratingValue" ng-model="rating.value" ng-change="addRating()">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </p>
             </div>
 

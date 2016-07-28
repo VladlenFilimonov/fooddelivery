@@ -6,20 +6,6 @@ var less = require('gulp-less');
 var angularTemplateCache = require('gulp-angular-templatecache');
 var concat = require('gulp-concat');
 
-// var jsFiles = [
-//     'bower_components/jquery/dist/jquery.js',
-//     'bower_components/angular/angular.js',
-//     'bower_components/angular-resource/angular-resource.js',
-//     'bower_components/angular-route/angular-route.js',
-//     'src_frontend/app/app.js',
-//     'src_frontend/app/config.js',
-//     'src_frontend/app/controllers/categoryController.js',
-//     'src_frontend/app/controllers/indexController.js',
-//     'src_frontend/app/services/categoryService.js',
-//     'src_frontend/app/views/templates.js'
-//
-// ];
-
 var jsFiles = [
     'bower_components/jquery/dist/jquery.js',
     'bower_components/angular/angular.js',

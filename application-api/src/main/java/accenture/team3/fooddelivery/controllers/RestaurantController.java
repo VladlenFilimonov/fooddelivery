@@ -1,12 +1,13 @@
 package accenture.team3.fooddelivery.controllers;
 
+import accenture.team3.fooddelivery.services.comment.CommentService;
+import accenture.team3.fooddelivery.services.rating.RatingService;
 import accenture.team3.fooddelivery.services.restaurant.impl.RestaurantServiceImpl;
+import accenture.team3.fooddelivery.shared.comment.CommentDto;
+import accenture.team3.fooddelivery.shared.rating.RatingDto;
 import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,10 +16,14 @@ import java.util.List;
 public class RestaurantController {
 
     private RestaurantServiceImpl restaurantService;
+    private CommentService commentService;
+    private RatingService ratingService;
 
     @Autowired
-    public RestaurantController(RestaurantServiceImpl restaurantService) {
+    public RestaurantController(RestaurantServiceImpl restaurantService, CommentService commentService, RatingService ratingService) {
         this.restaurantService = restaurantService;
+        this.commentService = commentService;
+        this.ratingService = ratingService;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -29,6 +34,21 @@ public class RestaurantController {
     @RequestMapping(method = RequestMethod.GET)
     public List<RestaurantGetDto> findAllRestaurants() {
         return restaurantService.getAllRestaurantsDto();
+    }
+
+    @RequestMapping(value = "/{id}/comments", method = RequestMethod.GET)
+    public List<CommentDto> getAllComments(@PathVariable("id") Long id) {
+        return commentService.getComments(id);
+    }
+
+    @RequestMapping(value = "/{id}/comments", method = RequestMethod.POST)
+    public List<CommentDto> addComment(@RequestBody CommentDto commentDto, @PathVariable("id") Long id) {
+        return commentService.addComments(commentDto);
+    }
+
+    @RequestMapping(value = "/{id}/rating", method = RequestMethod.POST)
+    public Double addRating(@RequestBody RatingDto ratingDto, @PathVariable("id") Long id) {
+        return ratingService.addRating(ratingDto);
     }
 
 //    @RequestMapping(method = RequestMethod.POST)

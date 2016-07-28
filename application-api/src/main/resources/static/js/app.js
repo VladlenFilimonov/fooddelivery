@@ -25643,13 +25643,13 @@
                 var rhs = right(scope, locals, assign, inputs);
                 var arg = (isDefined(lhs) ? lhs : 0) - (isDefined(rhs) ? rhs : 0);
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'binary*': function (left, right, context) {
             return function (scope, locals, assign, inputs) {
                 var arg = left(scope, locals, assign, inputs) * right(scope, locals, assign, inputs);
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'binary/': function (left, right, context) {
             return function (scope, locals, assign, inputs) {
@@ -31024,7 +31024,7 @@
 
             if (isNumber(date)) {
                 date = new Date(date);
-            }
+    }
 
             if (!isDate(date) || !isFinite(date.getTime())) {
                 return date;
@@ -31876,10 +31876,10 @@
                                 return value[key];
                             };
                         }
-                    }
+        }
                 }
                 return {get: get, descending: descending};
-    });
+            });
         }
 
         function isPrimitive(value) {
@@ -31944,7 +31944,7 @@
                 }
             } else {
                 result = type1 < type2 ? -1 : 1;
-            }
+    }
 
             return result;
         }
@@ -36568,7 +36568,7 @@
                                 previousElements = null;
                             });
                             block = null;
-                        }
+            }
                     }
                 });
             }
@@ -43936,8 +43936,9 @@ foodDeliveryApp.controller('RestaurantController', [
     'restaurantCrud',
     'categoryCrud',
     'commentCrud',
+    'ratingServices',
     '$routeParams',
-    function ($scope, restaurantCrud, categoryCrud, commentCrud, $routeParams) {
+    function ($scope, restaurantCrud, categoryCrud, commentCrud, ratingServices, $routeParams) {
         // var restaurantId = $routeParams.id;
         $scope.comments = [];
         $scope.getAllCategories = function () {
@@ -43955,9 +43956,21 @@ foodDeliveryApp.controller('RestaurantController', [
             $scope.requestProcessing = true;
             $scope.comment.userId = 1;
             $scope.comment.restaurantId = $routeParams.id;
-            commentCrud.save($scope.comment, function (response) {
+            commentCrud.save({id: $routeParams.id}, $scope.comment, function (response) {
                 if (response) {
                     $scope.comments = response;
+                    $scope.comment = {};
+                }
+            });
+            $scope.requestProcessing = false;
+        };
+        $scope.rating = {};
+        $scope.addRating = function () {
+            $scope.rating.userId = 1;
+            $scope.rating.restaurantId = $routeParams.id;
+            ratingServices.save($routeParams.id, $scope.rating).then(function (response) {
+                if (response) {
+                    $scope.restaurant.averageRatings = response;
                 }
             });
             $scope.requestProcessing = false;
@@ -43981,11 +43994,24 @@ foodDeliveryApp.factory('categoryCrud', ['appConfig', '$resource', function (app
 }]);
 
 foodDeliveryApp.factory('commentCrud', ['appConfig', '$resource', function (appConfig, $resource) {
-    return $resource(appConfig.apiUrl + '/comment/:id', {id: '@_id'}, {
+    return $resource(appConfig.apiUrl + '/restaurant/:id/comments', {id: '@_id'}, {
         save: {method: 'POST', cache: false, isArray: true}
     });
 }]);
 
+foodDeliveryApp.factory('ratingServices', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
+    return {
+        save: function (id, data) {
+            var deferred = $q.defer();
+            $http.post(appConfig.apiUrl + '/restaurant/' + id + '/rating', data).success(function (res) {
+                deferred.resolve(res);
+            }).error(function () {
+                deferred.reject("An error occurred while fetching items");
+            });
+            return deferred.promise;
+        }
+    }
+}]);
 /**
  * Created by student007 on 16.25.7.
  */
@@ -44010,7 +44036,8 @@ foodDeliveryApp.factory('userServices', ['$http', '$q', 'appConfig', function ($
     }
 }]);
 angular.module('foodDeliveryApp').run(['$templateCache', function ($templateCache) {
-    $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<h1>{{category.name}}</h1>\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip"\n                   title="{{restaurant.name}}">\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n                </a>\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n');
-    $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\n<div class="row row-centered row-fluid">\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of\n                {{category.allRestaurants}} </p>\n        </a>\n    </div>\n</div>');
-    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n<div class="row" ng-if="comments">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <h3>Comments</h3>\n        <div class="row" ng-repeat="comment in comments">\n            <div class="col-xs-3 col-sm-2">\n                <div class="thumbnail">\n                    <img class=" user-photo"\n                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"\n                         alt="...">\n                </div>\n            </div>\n            <div class="col-xs-9 col-sm-10">\n                <div class="panel panel-default">\n                    <div class="panel-heading">\n                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})\n                    </div>\n                    <div class="panel-body">\n                        {{comment.content}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="row">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <form role="form" name="commentsForm" ng-submit="addComment()" novalidate>\n            <div class="form-group">\n                <label for="comment">Comment:</label>\n                <textarea class="form-control" rows="3" id="comment" ng-model="comment.content">\n\n                </textarea>\n                <button class="btn btn-info" type="submit" ng-disabled="requestProcessing">\n                    <i class="glyphicon" ng-class="{\'glyphicon-ok\': !requestProcessing, \'glyphicon-repeat\': requestProcessing}"></i> Add comment\n                </button>\n            </div>\n        </form>\n    </div>\n</div>');
+    $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\r\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\r\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\r\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\r\n        </a>\r\n    </div>\r\n</div>\r\n<h1>{{category.name}}</h1>\r\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\r\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\r\n    <div class="col-sm-8">\r\n        <div class="row">\r\n            <div class="col-xs-5 col-sm-3">\r\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip"\r\n                   title="{{restaurant.name}}">\r\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\r\n                </a>\r\n            </div>\r\n            <div class="col-xs-7 col-sm-9">\r\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\r\n                <p> Menu: xxxx </p>\r\n                <ul class="list-unstyled">\r\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\r\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\r\n                    </li>\r\n                    <li>\r\n                        Accept Creditcards:\r\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\r\n                        <span class="glyphicon glyphicon-remove text-danger"\r\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class="col-sm-4">\r\n        <div class="row">\r\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\r\n\r\n            </div>\r\n            <div class="col-xs-7 col-sm-12">\r\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\r\n                    <br>\r\n                    <a href="#">www.nonono.lv</a> <br>\r\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\r\n                </p>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n');
+    $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\r\n<div class="row row-centered row-fluid">\r\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\r\n        <a href="#/category/{{category.id}}" class="thumbnail">\r\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\r\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of\r\n                {{category.allRestaurants}} </p>\r\n        </a>\r\n    </div>\r\n</div>');
+    $templateCache.put('views/register-user.html', '<form class="form-horizontal" role="form">\r\n    <h2>Registration Form</h2>\r\n    <div class="form-group">\r\n        <label for="firstName" class="col-sm-3 control-label">Name</label>\r\n        <div class="col-sm-6">\r\n            <input type="text" id="firstName" placeholder="firstName" class="form-control" autofocus>\r\n        </div>\r\n    </div>\r\n    <div class="form-group">\r\n        <label for="lastName" class="col-sm-3 control-label">Name</label>\r\n        <div class="col-sm-6">\r\n            <input type="text" id="firstName" placeholder="firstName" class="form-control" autofocus>\r\n        </div>\r\n    </div>\r\n    <div class="form-group">\r\n        <label for="email" class="col-sm-3 control-label">Email</label>\r\n        <div class="col-sm-6">\r\n            <input type="email" id="email" placeholder="Email" class="form-control">\r\n        </div>\r\n    </div>\r\n    <div class="form-group">\r\n        <label for="password" class="col-sm-3 control-label">Password</label>\r\n        <div class="col-sm-6">\r\n            <input type="password" id="password" placeholder="Password" class="form-control">\r\n        </div>\r\n    </div>\r\n</form>');
+    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\r\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\r\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\r\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\r\n        </a>\r\n    </div>\r\n</div>\r\n<div class="row row-centered">\r\n    <div class="col-sm-8">\r\n        <div class="row">\r\n            <div class="col-xs-5 col-sm-3">\r\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\r\n            </div>\r\n            <div class="col-xs-7 col-sm-9">\r\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\r\n                <p> Menu: xxxx </p>\r\n                <ul class="list-unstyled">\r\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\r\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\r\n                    </li>\r\n                    <li>\r\n                        Accept Creditcards:\r\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\r\n                        <span class="glyphicon glyphicon-remove text-danger"\r\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class="col-sm-4">\r\n        <div class="row">\r\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\r\n\r\n            </div>\r\n            <div class="col-xs-7 col-sm-12">\r\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\r\n                    <br>\r\n                    <a href="#">www.nonono.lv</a> <br>\r\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span> <br>\r\n                    <select name="ratingValue" ng-model="rating.value" ng-change="addRating()">\r\n                        <option value="1">1</option>\r\n                        <option value="2">2</option>\r\n                        <option value="3">3</option>\r\n                        <option value="4">4</option>\r\n                        <option value="5">5</option>\r\n                        <option value="6">6</option>\r\n                        <option value="7">7</option>\r\n                        <option value="8">8</option>\r\n                        <option value="9">9</option>\r\n                        <option value="10">10</option>\r\n                    </select>\r\n                </p>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class="row" ng-if="comments">\r\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\r\n        <h3>Comments</h3>\r\n        <div class="row" ng-repeat="comment in comments">\r\n            <div class="col-xs-3 col-sm-2">\r\n                <div class="thumbnail">\r\n                    <img class=" user-photo"\r\n                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"\r\n                         alt="...">\r\n                </div>\r\n            </div>\r\n            <div class="col-xs-9 col-sm-10">\r\n                <div class="panel panel-default">\r\n                    <div class="panel-heading">\r\n                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})\r\n                    </div>\r\n                    <div class="panel-body">\r\n                        {{comment.content}}\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class="row">\r\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\r\n        <form role="form" name="commentsForm" ng-submit="addComment()" novalidate>\r\n            <div class="form-group">\r\n                <label for="comment">Comment:</label>\r\n                <textarea class="form-control" rows="3" id="comment" ng-model="comment.content">\r\n\r\n                </textarea>\r\n                <button class="btn btn-info" type="submit" ng-disabled="requestProcessing">\r\n                    <i class="glyphicon"\r\n                       ng-class="{\'glyphicon-ok\': !requestProcessing, \'glyphicon-repeat\': requestProcessing}"></i> Add\r\n                    comment\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>');
 }]);

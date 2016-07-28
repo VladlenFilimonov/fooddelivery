@@ -6,8 +6,9 @@ foodDeliveryApp.controller('RestaurantController', [
     'restaurantCrud',
     'categoryCrud',
     'commentCrud',
+    'ratingServices',
     '$routeParams',
-    function ($scope, restaurantCrud, categoryCrud, commentCrud, $routeParams) {
+    function ($scope, restaurantCrud, categoryCrud, commentCrud, ratingServices, $routeParams) {
         // var restaurantId = $routeParams.id;
         $scope.comments = [];
         $scope.getAllCategories = function () {
@@ -25,14 +26,24 @@ foodDeliveryApp.controller('RestaurantController', [
             $scope.requestProcessing = true;
             $scope.comment.userId = 1;
             $scope.comment.restaurantId = $routeParams.id;
-            commentCrud.save($scope.comment, function (response) {
+            commentCrud.save({id: $routeParams.id}, $scope.comment, function (response) {
                 if (response) {
                     $scope.comments = response;
                     $scope.comment = {};
                 }
             });
             $scope.requestProcessing = false;
-
+        };
+        $scope.rating = {};
+        $scope.addRating = function () {
+            $scope.rating.userId = 1;
+            $scope.rating.restaurantId = $routeParams.id;
+            ratingServices.save($routeParams.id, $scope.rating).then(function (response) {
+                if (response) {
+                    $scope.restaurant.averageRatings = response;
+                }
+            });
+            $scope.requestProcessing = false;
         };
         $scope.getAllCategories();
         $scope.getRestaurant();

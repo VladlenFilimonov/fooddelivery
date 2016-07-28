@@ -2,16 +2,16 @@ package accenture.team3.fooddelivery.controllers;
 
 import accenture.team3.fooddelivery.services.restaurant.impl.RestaurantServiceImpl;
 import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/restaurant")
+@Slf4j
 public class RestaurantController {
 
     private RestaurantServiceImpl restaurantService;
@@ -19,6 +19,12 @@ public class RestaurantController {
     @Autowired
     public RestaurantController(RestaurantServiceImpl restaurantService) {
         this.restaurantService = restaurantService;
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handle(RuntimeException e) {
+        log.error("Error Message : {}", e.getMessage(), e);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -14716,7 +14716,7 @@
                         // Since error.stack is read-only in Safari, I'm overriding e and not e.stack here.
                         /* jshint -W022 */
                         e = e.message + '\n' + e.stack;
-                    }
+        }
                     throw $injectorMinErr('modulerr', "Failed to instantiate module {0} due to:\n{1}",
                         module, e.stack || e.message || e);
                 }
@@ -15919,7 +15919,7 @@
                             this._state = DONE_COMPLETE_STATE;
                         }
                     }
-                };
+    };
 
                 return AnimateRunner;
             }];
@@ -15993,7 +15993,7 @@
                         options.to = null;
                     }
                 }
-            };
+    };
         }];
     };
 
@@ -16055,9 +16055,9 @@
                         } catch (e) {
                             $log.error(e);
                         }
-                    }
+        }
                 }
-    }
+            }
         }
 
         function getHash(url) {
@@ -16076,7 +16076,7 @@
                 callback();
             } else {
                 outstandingRequestCallbacks.push(callback);
-    }
+            }
         };
 
         //////////////////////////////////////////////////////////////
@@ -16092,7 +16092,7 @@
                     return history.state;
                 } catch (e) {
                     // MSIE can reportedly throw when there is no state (UNCONFIRMED).
-                }
+        }
             };
 
         cacheState();
@@ -16149,9 +16149,9 @@
                 // in some cases (see #9143).
                 if ($sniffer.history && (!sameBase || !sameState)) {
                     history[replace ? 'replaceState' : 'pushState'](state, '', url);
-                    cacheState();
+        cacheState();
                     // Do the assignment again so that those two variables are referentially identical.
-                    lastHistoryState = cachedState;
+        lastHistoryState = cachedState;
                 } else {
                     if (!sameBase) {
                         pendingLocation = url;
@@ -16178,7 +16178,7 @@
                 //   https://openradar.appspot.com/22186109).
                 // - the replacement is a workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=407172
                 return pendingLocation || location.href.replace(/%27/g, "'");
-            }
+    }
         };
 
         /**
@@ -16348,7 +16348,7 @@
                 clearTimeout(deferId);
                 completeOutstandingRequest(noop);
                 return true;
-            }
+    }
             return false;
         };
 
@@ -25159,7 +25159,7 @@
                                     expression = self.member(left.context, left.name, left.computed) + '(' + args.join(',') + ')';
                                 } else {
                                     expression = right + '(' + args.join(',') + ')';
-                                }
+            }
                                 expression = self.ensureSafeObject(expression);
                                 self.assign(intoId, expression);
                             }, function () {
@@ -25627,7 +25627,7 @@
             return function (scope, locals, assign, inputs) {
                 var arg = !argument(scope, locals, assign, inputs);
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'binary+': function (left, right, context) {
             return function (scope, locals, assign, inputs) {
@@ -25635,7 +25635,7 @@
                 var rhs = right(scope, locals, assign, inputs);
                 var arg = plusFn(lhs, rhs);
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'binary-': function (left, right, context) {
             return function (scope, locals, assign, inputs) {
@@ -31028,7 +31028,7 @@
 
             if (!isDate(date) || !isFinite(date.getTime())) {
                 return date;
-            }
+    }
 
             while (format) {
                 match = DATE_FORMATS_SPLIT.exec(format);
@@ -31805,7 +31805,7 @@
             if (array == null) return array;
             if (!isArrayLike(array)) {
                 throw minErr('orderBy')('notarray', 'Expected array but received: {0}', array);
-            }
+    }
 
             if (!isArray(sortPredicate)) {
                 sortPredicate = [sortPredicate];
@@ -31843,7 +31843,7 @@
                         return getPredicateValue(predicate.get(value), index);
                     })
                 };
-            }
+    }
 
             function doComparison(v1, v2) {
                 for (var i = 0, ii = predicates.length; i < ii; i++) {
@@ -31876,10 +31876,10 @@
                                 return value[key];
                             };
                         }
-        }
+                    }
                 }
                 return {get: get, descending: descending};
-            });
+    });
         }
 
         function isPrimitive(value) {
@@ -31944,7 +31944,7 @@
                 }
             } else {
                 result = type1 < type2 ? -1 : 1;
-    }
+            }
 
             return result;
         }
@@ -36561,7 +36561,7 @@
                         if (childScope) {
                             childScope.$destroy();
                             childScope = null;
-                        }
+            }
                         if (block) {
                             previousElements = getBlockNodes(block.clone);
                             $animate.leave(previousElements).then(function () {
@@ -43886,6 +43886,10 @@ foodDeliveryApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/restaurant.html',
             controller: 'RestaurantController'
         })
+        .when('/register-user', {
+            templateUrl: 'views/register-user.html',
+            controller: 'UserRegisterController'
+        })
         .otherwise({
             redirectTo: '/'
         });
@@ -43935,6 +43939,7 @@ foodDeliveryApp.controller('RestaurantController', [
     '$routeParams',
     function ($scope, restaurantCrud, categoryCrud, commentCrud, $routeParams) {
         // var restaurantId = $routeParams.id;
+        $scope.comments = [];
         $scope.getAllCategories = function () {
             $scope.categories = categoryCrud.query();
         };
@@ -43943,11 +43948,31 @@ foodDeliveryApp.controller('RestaurantController', [
         };
         $scope.getComments = function () {
             $scope.comments = commentCrud.query({id: $routeParams.id})
-        }
+        };
+        $scope.comment = {};
+        console.log(commentCrud);
+        $scope.addComment = function () {
+            $scope.requestProcessing = true;
+            $scope.comment.userId = 1;
+            $scope.comment.restaurantId = $routeParams.id;
+            commentCrud.save($scope.comment, function (response) {
+                if (response) {
+                    $scope.comments = response;
+                }
+            });
+            $scope.requestProcessing = false;
+        };
         $scope.getAllCategories();
         $scope.getRestaurant();
         $scope.getComments();
+
     }]);
+/**
+ * Created by student007 on 16.28.7.
+ */
+foodDeliveryApp.controller('UserRegisterController', ['$scope', 'userServices', function ($scope, userServices) {
+
+}]);
 /**
  * Created by student007 on 16.25.7.
  */
@@ -43956,7 +43981,9 @@ foodDeliveryApp.factory('categoryCrud', ['appConfig', '$resource', function (app
 }]);
 
 foodDeliveryApp.factory('commentCrud', ['appConfig', '$resource', function (appConfig, $resource) {
-    return $resource(appConfig.apiUrl + '/comment/:id', {id: '@_id'}, {});
+    return $resource(appConfig.apiUrl + '/comment/:id', {id: '@_id'}, {
+        save: {method: 'POST', cache: false, isArray: true}
+    });
 }]);
 
 /**
@@ -43966,8 +43993,24 @@ foodDeliveryApp.factory('restaurantCrud', ['appConfig', '$resource', function (a
     return $resource(appConfig.apiUrl + '/restaurant/:id', {id: '@_id'}, {});
 }]);
 
+/**
+ * Created by student007 on 16.28.7.
+ */
+foodDeliveryApp.factory('userServices', ['$http', '$q', 'appConfig', function ($http, $q, appConfig) {
+    return {
+        save: function (data) {
+            var deferred = $q.defer();
+            $http.post(appConfig.apiUrl + 'api/user', data).success(function (res) {
+                deferred.resolve(res);
+            }).error(function () {
+                deferred.reject("An error occured while fetching items");
+            });
+            return deferred.promise;
+        }
+    }
+}]);
 angular.module('foodDeliveryApp').run(['$templateCache', function ($templateCache) {
     $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<h1>{{category.name}}</h1>\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip"\n                   title="{{restaurant.name}}">\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n                </a>\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n');
     $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\n<div class="row row-centered row-fluid">\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of\n                {{category.allRestaurants}} </p>\n        </a>\n    </div>\n</div>');
-    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n<div class="row" ng-if="comments">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <h3>Comments</h3>\n        <div class="row" ng-repeat="comment in comments">\n            <div class="col-xs-3 col-sm-2">\n                <div class="thumbnail">\n                    <img class=" user-photo"\n                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"\n                         alt="...">\n                </div>\n            </div>\n            <div class="col-xs-9 col-sm-10">\n                <div class="panel panel-default">\n                    <div class="panel-heading">\n                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})\n                    </div>\n                    <div class="panel-body">\n                        {{comment.content}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n</div>');
+    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n<div class="row" ng-if="comments">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <h3>Comments</h3>\n        <div class="row" ng-repeat="comment in comments">\n            <div class="col-xs-3 col-sm-2">\n                <div class="thumbnail">\n                    <img class=" user-photo"\n                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"\n                         alt="...">\n                </div>\n            </div>\n            <div class="col-xs-9 col-sm-10">\n                <div class="panel panel-default">\n                    <div class="panel-heading">\n                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})\n                    </div>\n                    <div class="panel-body">\n                        {{comment.content}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="row">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <form role="form" name="commentsForm" ng-submit="addComment()" novalidate>\n            <div class="form-group">\n                <label for="comment">Comment:</label>\n                <textarea class="form-control" rows="3" id="comment" ng-model="comment.content">\n\n                </textarea>\n                <button class="btn btn-info" type="submit" ng-disabled="requestProcessing">\n                    <i class="glyphicon" ng-class="{\'glyphicon-ok\': !requestProcessing, \'glyphicon-repeat\': requestProcessing}"></i> Add comment\n                </button>\n            </div>\n        </form>\n    </div>\n</div>');
 }]);

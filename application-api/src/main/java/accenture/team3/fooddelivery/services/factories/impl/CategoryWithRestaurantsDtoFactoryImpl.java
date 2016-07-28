@@ -1,6 +1,7 @@
 package accenture.team3.fooddelivery.services.factories.impl;
 
 import accenture.team3.fooddelivery.domain.Category;
+import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.services.factories.CategoryMainPageDtoFactory;
 import accenture.team3.fooddelivery.services.factories.CategoryWithRestaurantsDtoFactory;
 import accenture.team3.fooddelivery.services.factories.RestaurantGetDtoFactory;
@@ -32,12 +33,14 @@ public class CategoryWithRestaurantsDtoFactoryImpl implements CategoryWithRestau
         CategoryMainPageDto mainPageDto = categoryMainPageDtoFactory.convert(category);
         CategoryWithRestaurantsDto dto = new CategoryWithRestaurantsDto();
         dto.setId(mainPageDto.getId());
-        dto.setName(dto.getName());
+        dto.setName(mainPageDto.getName());
         dto.setWorkedRestaurants(mainPageDto.getWorkedRestaurants());
+        dto.setAllRestaurants(mainPageDto.getAllRestaurants());
         dto.setPictureURL(mainPageDto.getPictureURL());
         dto.setRestaurants1(
                 category.getRestaurants()
                         .stream()
+                        .filter(Restaurant::isWorkingNow)
                         .map(restaurantGetDtoFactory::convert)
                         .collect(Collectors.toSet())
         );

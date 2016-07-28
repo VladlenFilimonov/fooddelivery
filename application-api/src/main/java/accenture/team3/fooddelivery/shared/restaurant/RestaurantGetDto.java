@@ -1,7 +1,6 @@
 package accenture.team3.fooddelivery.shared.restaurant;
 
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.shared.category.CategoryMainPageDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +20,7 @@ public class RestaurantGetDto {
     private int deliveryTimeMax;
     private String phone;
     private Boolean deliveryAcceptCard;
-    private Map<CategoryMainPageDto, String> categories;
+    private Map<String, String> categories;
     private double averageRatings;
 
     public RestaurantGetDto(Restaurant restaurant) {

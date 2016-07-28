@@ -1,13 +1,16 @@
 package accenture.team3.fooddelivery.services.restaurant;
 
+import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
-import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetWithComments;
+
+import java.util.List;
 
 public interface RestaurantService {
 
-    RestaurantGetDto getRestaurantById(Long id);
+    RestaurantGetDto getRestaurantGetDtoById(Long id);
 
-    RestaurantGetWithComments getRestaurantWithComments(Long id);
+    Restaurant getRestRestaurantById(Long id);
 
+    List<RestaurantGetDto> getAllRestaurantsDto();
 
 }

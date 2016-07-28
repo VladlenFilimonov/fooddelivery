@@ -33,8 +33,8 @@ public class CommentController {
         return commentService.getComments(id);
     }
 
-//    @RequestMapping(method = RequestMethod.POST)
-//    public List<CommentDto> findAllComments(@RequestBody CommentDto commentDto) {
-//        return null;//CommentService.findAll();
-//    }
+    @RequestMapping(method = RequestMethod.POST)
+    public List<CommentDto> addComment(@RequestBody CommentDto commentDto) {
+        return commentService.addComments(commentDto);
+    }
 }

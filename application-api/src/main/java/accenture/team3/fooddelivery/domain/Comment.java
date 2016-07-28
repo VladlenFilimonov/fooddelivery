@@ -4,6 +4,7 @@ import accenture.team3.fooddelivery.domain.embedded.Audit;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -25,4 +26,18 @@ public class Comment {
     private Restaurant restaurant;
     @Embedded
     private Audit audit;
+
+    @PrePersist
+    @PreUpdate
+    public void update() {
+        LocalDateTime now = LocalDateTime.now();
+        if (audit == null) {
+            audit = new Audit();
+            audit.setCreatedAt(now);
+            audit.setUpdatedAt(now);
+        } else {
+            audit.setUpdatedAt(now);
+        }
+
+    }
 }

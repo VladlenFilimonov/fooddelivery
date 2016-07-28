@@ -5,16 +5,11 @@
         </a>
     </div>
 </div>
-<h1>{{category.name}}</h1>
-<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>
-<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">
+<div class="row row-centered">
     <div class="col-sm-8">
         <div class="row">
             <div class="col-xs-5 col-sm-3">
-                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip"
-                   title="{{restaurant.name}}">
-                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">
-                </a>
+                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">
             </div>
             <div class="col-xs-7 col-sm-9">
                 <h4 style="color:orange;">{{restaurant.name}}</h4>
@@ -49,4 +44,28 @@
         </div>
     </div>
 </div>
+<div class="row" ng-if="comments">
+    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">
+        <h3>Comments</h3>
+        <div class="row" ng-repeat="comment in comments">
+            <div class="col-xs-3 col-sm-2">
+                <div class="thumbnail">
+                    <img class=" user-photo"
+                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+                         alt="...">
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        user 00 (00 00 23)
+                    </div>
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil magni est quia.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</div>

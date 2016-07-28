@@ -53,9 +53,9 @@ public class TempDatabase {
         category01.setName("Pizza");
         category02.setName("BBQ");
         category03.setName("Soup");
-        category01.setLogo("Logo.png");
-        category02.setLogo("Logo2.png");
-        category03.setLogo("Logo3.png");
+        category01.setLogo("pizza.jpg");
+        category02.setLogo("bbq.jpg");
+        category03.setLogo("soup.jpg");
 
         categoryDao.save(category01);
         categoryDao.save(category02);
@@ -75,7 +75,7 @@ public class TempDatabase {
         Restaurant restaurant = new Restaurant(
                 null,
                 "Lido",
-                null,
+                "lido.png",
                 new Delivery(null,
                         new BigDecimal(25.00),
                         true,
@@ -94,8 +94,8 @@ public class TempDatabase {
 
         Restaurant restaurant2 = new Restaurant(
                 null,
-                "StakeHouse",
-                null,
+                "SteakHouse",
+                "steak_house.png",
                 new Delivery(null,
                         new BigDecimal(25.00),
                         true,

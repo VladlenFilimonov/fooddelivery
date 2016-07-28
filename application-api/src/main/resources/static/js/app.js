@@ -3168,6 +3168,7 @@
     var rnotwhite = ( /\S+/g );
 
 
+
 // Convert String-formatted options into Object-formatted ones
     function createOptions(options) {
         var object = {};
@@ -3797,6 +3798,8 @@
     };
 
 
+
+
 // The deferred used on DOM ready
     var readyList = jQuery.Deferred();
 
@@ -3881,6 +3884,8 @@
         // A fallback to window.onload, that will always work
         window.addEventListener("load", completed);
     }
+
+
 
 
 // Multifunctional method to get and set values of a collection
@@ -4105,6 +4110,7 @@
     var dataPriv = new Data();
 
     var dataUser = new Data();
+
 
 
 //	Implementation Summary
@@ -4601,6 +4607,7 @@
     var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]+)/i );
 
     var rscriptType = ( /^$|\/(?:java|ecma)script/i );
+
 
 
 // We have to close these tags to support XHTML (#13200)
@@ -7912,6 +7919,8 @@
     });
 
 
+
+
 // Return jQuery for attributes-only inclusion
 
 
@@ -8156,6 +8165,7 @@
     var nonce = jQuery.now();
 
     var rquery = ( /\?/ );
+
 
 
 // Cross-browser xml parsing
@@ -9382,6 +9392,8 @@
     });
 
 
+
+
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
     jQuery.ajaxPrefilter(function (s) {
         if (s.crossDomain) {
@@ -9544,6 +9556,8 @@
     });
 
 
+
+
 // Support: Safari 8 only
 // In Safari 8 documents created via document.implementation.createHTMLDocument
 // collapse sibling forms: the second one becomes a child of the first one.
@@ -9669,6 +9683,8 @@
 
         return this;
     };
+
+
 
 
 // Attach a bunch of functions for handling common AJAX events
@@ -9978,6 +9994,8 @@
     jQuery.parseJSON = JSON.parse;
 
 
+
+
 // Register as a named AMD module, since jQuery can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
@@ -10095,7 +10113,7 @@
             for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
                 message += paramPrefix + 'p' + (i - SKIP_INDEXES) + '=' +
                     encodeURIComponent(toDebugString(templateArgs[i]));
-            }
+    }
 
             return new ErrorConstructor(message);
         };
@@ -10352,14 +10370,14 @@
                     // as on IE8 the result of querySelectorAll is an object without a hasOwnProperty function
                     if (key != 'prototype' && key != 'length' && key != 'name' && (!obj.hasOwnProperty || obj.hasOwnProperty(key))) {
                         iterator.call(context, obj[key], key, obj);
-                    }
+        }
                 }
             } else if (isArray(obj) || isArrayLike(obj)) {
                 var isPrimitive = typeof obj !== 'object';
                 for (key = 0, length = obj.length; key < length; key++) {
                     if (isPrimitive || key in obj) {
                         iterator.call(context, obj[key], key, obj);
-                    }
+        }
                 }
             } else if (obj.forEach && obj.forEach !== forEach) {
                 obj.forEach(iterator, context, obj);
@@ -10382,7 +10400,7 @@
                         iterator.call(context, obj[key], key, obj);
                     }
                 }
-            }
+    }
         }
         return obj;
     }
@@ -10456,14 +10474,14 @@
                         dst[key] = src.cloneNode(true);
                     } else if (isElement(src)) {
                         dst[key] = src.clone();
-                    } else {
+        } else {
                         if (!isObject(dst[key])) dst[key] = isArray(src) ? [] : {};
                         baseExtend(dst[key], [src], true);
-                    }
+        }
                 } else {
                     dst[key] = src;
                 }
-            }
+    }
         }
 
         setHashKey(dst, h);
@@ -10952,7 +10970,7 @@
                 forEach(destination, function (value, key) {
                     if (key !== '$$hashKey') {
                         delete destination[key];
-                    }
+        }
                 });
             }
 
@@ -10980,7 +10998,7 @@
                 for (key in source) {
                     if (source.hasOwnProperty(key)) {
                         destination[key] = copyElement(source[key]);
-                    }
+        }
                 }
             } else {
                 // Slowest path --- hasOwnProperty can't be called as a method
@@ -11066,7 +11084,7 @@
 
             if (isFunction(source.cloneNode)) {
                 return source.cloneNode(true);
-            }
+    }
         }
     }
 
@@ -11146,7 +11164,7 @@
                 if ((length = o1.length) == o2.length) {
                     for (key = 0; key < length; key++) {
                         if (!equals(o1[key], o2[key])) return false;
-                    }
+        }
                     return true;
                 }
             } else if (isDate(o1)) {
@@ -11170,7 +11188,7 @@
                         isDefined(o2[key]) && !isFunction(o2[key])) return false;
                 }
                 return true;
-            }
+    }
         }
         return false;
     }
@@ -11300,7 +11318,7 @@
                 return arguments.length
                     ? fn.apply(self, concat(curryArgs, arguments, 0))
                     : fn.apply(self, curryArgs);
-            }
+        }
                 : function () {
                 return arguments.length
                     ? fn.apply(self, arguments)
@@ -11488,7 +11506,7 @@
                         obj[key] = [obj[key], val];
                     }
                 }
-            }
+    }
         });
         return obj;
     }
@@ -11504,7 +11522,7 @@
             } else {
                 parts.push(encodeUriQuery(key, true) +
                     (value === true ? '' : '=' + encodeUriQuery(value, true)));
-            }
+    }
         });
         return parts.length ? parts.join('&') : '';
     }
@@ -11549,7 +11567,7 @@
             attr = ngAttrPrefixes[i] + ngAttr;
             if (isString(attr = element.getAttribute(attr))) {
                 return attr;
-            }
+    }
         }
         return null;
     }
@@ -11709,7 +11727,7 @@
             if (!appElement && (candidate = element.querySelector('[' + name.replace(':', '\\:') + ']'))) {
                 appElement = candidate;
                 module = candidate.getAttribute(name);
-            }
+    }
         });
         if (appElement) {
             config.strictDi = getNgAttribute(appElement, "strict-di") !== null;
@@ -11792,7 +11810,7 @@
                     'btstrpd',
                     "App already bootstrapped with this element '{0}'",
                     tag.replace(/</, '&lt;').replace(/>/, '&gt;'));
-            }
+    }
 
             modules = modules || [];
             modules.unshift(['$provide', function ($provide) {
@@ -11804,17 +11822,17 @@
                 modules.push(['$compileProvider', function ($compileProvider) {
                     $compileProvider.debugInfoEnabled(true);
                 }]);
-            }
+    }
 
             modules.unshift('ng');
             var injector = createInjector(modules, config.strictDi);
             injector.invoke(['$rootScope', '$rootElement', '$compile', '$injector',
-                function bootstrapApply(scope, element, compile, injector) {
-                    scope.$apply(function () {
-                        element.data('$injector', injector);
-                        compile(element)(scope);
-                    });
-                }]
+                    function bootstrapApply(scope, element, compile, injector) {
+                        scope.$apply(function () {
+                            element.data('$injector', injector);
+                            compile(element)(scope);
+        });
+                    }]
             );
             return injector;
         };
@@ -11924,7 +11942,7 @@
                     events = jQuery._data(elem, "events");
                     if (events && events.$destroy) {
                         jQuery(elem).triggerHandler('$destroy');
-                    }
+        }
                 }
                 originalCleanData(elems);
             };
@@ -11988,7 +12006,7 @@
             key = keys[i];
             if (obj) {
                 obj = (lastInstance = obj)[key];
-            }
+    }
         }
         if (!bindFnToScope && isFunction(obj)) {
             return bind(lastInstance, obj);
@@ -12013,7 +12031,7 @@
                     blockNodes = jqLite(slice.call(nodes, 0, i));
                 }
                 blockNodes.push(node);
-            }
+    }
         }
 
         return blockNodes || nodes;
@@ -12069,57 +12087,57 @@
             /** @type {Object.<string, angular.Module>} */
             var modules = {};
 
-            /**
-             * @ngdoc function
-             * @name angular.module
-             * @module ng
-             * @description
-             *
-             * The `angular.module` is a global place for creating, registering and retrieving Angular
-             * modules.
-             * All modules (angular core or 3rd party) that should be available to an application must be
-             * registered using this mechanism.
-             *
-             * Passing one argument retrieves an existing {@link angular.Module},
-             * whereas passing more than one argument creates a new {@link angular.Module}
-             *
-             *
-             * # Module
-             *
-             * A module is a collection of services, directives, controllers, filters, and configuration information.
-             * `angular.module` is used to configure the {@link auto.$injector $injector}.
-             *
-             * ```js
-             * // Create a new module
-             * var myModule = angular.module('myModule', []);
-             *
-             * // register a new service
-             * myModule.value('appName', 'MyCoolApp');
-             *
-             * // configure existing services inside initialization blocks.
-             * myModule.config(['$locationProvider', function($locationProvider) {
+    /**
+     * @ngdoc function
+     * @name angular.module
+     * @module ng
+     * @description
+     *
+     * The `angular.module` is a global place for creating, registering and retrieving Angular
+     * modules.
+     * All modules (angular core or 3rd party) that should be available to an application must be
+     * registered using this mechanism.
+     *
+     * Passing one argument retrieves an existing {@link angular.Module},
+     * whereas passing more than one argument creates a new {@link angular.Module}
+     *
+     *
+     * # Module
+     *
+     * A module is a collection of services, directives, controllers, filters, and configuration information.
+     * `angular.module` is used to configure the {@link auto.$injector $injector}.
+     *
+     * ```js
+     * // Create a new module
+     * var myModule = angular.module('myModule', []);
+     *
+     * // register a new service
+     * myModule.value('appName', 'MyCoolApp');
+     *
+     * // configure existing services inside initialization blocks.
+     * myModule.config(['$locationProvider', function($locationProvider) {
      *   // Configure existing providers
      *   $locationProvider.hashPrefix('!');
      * }]);
-             * ```
-             *
-             * Then you can create an injector and load your modules like this:
-             *
-             * ```js
-             * var injector = angular.injector(['ng', 'myModule'])
-             * ```
-             *
-             * However it's more likely that you'll just use
-             * {@link ng.directive:ngApp ngApp} or
-             * {@link angular.bootstrap} to simplify this process for you.
-             *
-             * @param {!string} name The name of the module to create or retrieve.
-             * @param {!Array.<string>=} requires If specified then new module is being created. If
-             *        unspecified then the module is being retrieved for further configuration.
-             * @param {Function=} configFn Optional configuration function for the module. Same as
-             *        {@link angular.Module#config Module#config()}.
-             * @returns {angular.Module} new module with the {@link angular.Module} api.
-             */
+     * ```
+     *
+     * Then you can create an injector and load your modules like this:
+     *
+     * ```js
+     * var injector = angular.injector(['ng', 'myModule'])
+     * ```
+     *
+     * However it's more likely that you'll just use
+     * {@link ng.directive:ngApp ngApp} or
+     * {@link angular.bootstrap} to simplify this process for you.
+     *
+     * @param {!string} name The name of the module to create or retrieve.
+     * @param {!Array.<string>=} requires If specified then new module is being created. If
+     *        unspecified then the module is being retrieved for further configuration.
+     * @param {Function=} configFn Optional configuration function for the module. Same as
+     *        {@link angular.Module#config Module#config()}.
+     * @returns {angular.Module} new module with the {@link angular.Module} api.
+     */
             return function module(name, requires, configFn) {
                 var assertNotHasOwnProperty = function (name, context) {
                     if (name === 'hasOwnProperty') {
@@ -12368,7 +12386,7 @@
 
                     if (configFn) {
                         config(configFn);
-                    }
+        }
 
                     return moduleInstance;
 
@@ -12384,7 +12402,7 @@
                             queue[insertMethod || 'push']([provider, method, arguments]);
                             return moduleInstance;
                         };
-                    }
+        }
 
                     /**
                      * @param {string} provider
@@ -12399,7 +12417,7 @@
                         };
                     }
                 });
-            };
+    };
         });
 
     }
@@ -12417,7 +12435,7 @@
 
             for (var i = 0, ii = src.length; i < ii; i++) {
                 dst[i] = src[i];
-            }
+    }
         } else if (isObject(src)) {
             dst = dst || {};
 
@@ -12847,7 +12865,7 @@
         },
         removeEventListenerFn = function (element, type, fn) {
             element.removeEventListener(type, fn, false);
-        };
+    };
 
     /*
      * !!! This is an undocumented "private" function !!!
@@ -13007,7 +13025,7 @@
         if (!(this instanceof JQLite)) {
             if (argIsString && element.charAt(0) != '<') {
                 throw jqLiteMinErr('nosel', 'Looking up elements via selectors is not supported by jqLite! See: http://docs.angularjs.org/api/angular.element');
-            }
+    }
             return new JQLite(element);
         }
 
@@ -13029,7 +13047,7 @@
             var descendants = element.querySelectorAll('*');
             for (var i = 0, l = descendants.length; i < l; i++) {
                 jqLiteRemoveData(descendants[i]);
-            }
+    }
         }
     }
 
@@ -13086,7 +13104,7 @@
                     expandoStore.handle({}, '$destroy');
                 }
                 jqLiteOff(element);
-            }
+    }
             delete jqCache[expandoId];
             element.ng339 = undefined; // don't delete DOM expandos. IE and Chrome don't like it
         }
@@ -13126,9 +13144,9 @@
                         return data && data[key];
                     } else { // mass-setter: data({key1: val1, key2: val2})
                         extend(data, key);
-                    }
+        }
                 }
-            }
+    }
         }
     }
 
@@ -13183,11 +13201,11 @@
                         for (var i = 0; i < length; i++) {
                             root[root.length++] = elements[i];
                         }
-                    }
+        }
                 } else {
                     root[root.length++] = elements;
                 }
-            }
+    }
         }
     }
 
@@ -13207,7 +13225,7 @@
         while (element) {
             for (var i = 0, ii = names.length; i < ii; i++) {
                 if (isDefined(value = jqLite.data(element, names[i]))) return value;
-            }
+    }
 
             // If dealing with a document fragment node with a host element, and no parent, use the host
             // element as the parent. This enables directives within a Shadow DOM or polyfilled Shadow DOM
@@ -13464,7 +13482,7 @@
                         } else {
                             for (key in arg1) {
                                 fn(this[i], key, arg1[key]);
-                            }
+            }
                         }
                     }
                     // return self for chaining
@@ -13529,13 +13547,13 @@
             // Copy event handlers in case event handlers array is modified during execution.
             if ((eventFnsLength > 1)) {
                 eventFns = shallowCopy(eventFns);
-            }
+    }
 
             for (var i = 0; i < eventFnsLength; i++) {
                 if (!event.isImmediatePropagationStopped()) {
                     handlerWrapper(element, event, eventFns[i]);
                 }
-            }
+    }
         };
 
         // TODO: this is a hack for angularMocks/clearDataCache that makes it possible to deregister all
@@ -13771,7 +13789,7 @@
                 forEach(eventFnsCopy, function (fn) {
                     if (!dummyEvent.isImmediatePropagationStopped()) {
                         fn.apply(element, handlerArgs);
-                    }
+        }
                 });
             }
         }
@@ -13840,7 +13858,7 @@
         if (key) {
             if (typeof key === 'function') {
                 key = obj.$$hashKey();
-            }
+    }
             return key;
         }
 
@@ -13862,7 +13880,7 @@
             var uid = 0;
             this.nextUid = function () {
                 return ++uid;
-            };
+    };
         }
         forEach(array, this.put, this);
     }
@@ -14011,7 +14029,7 @@
                         }
                         throw $injectorMinErr('strictdi',
                             '{0} is not using explicit annotation and cannot be invoked in strict mode', name);
-                    }
+        }
                     argDecl = extractArgs(fn);
                     forEach(argDecl[1].split(FN_ARG_SPLIT), function (arg) {
                         arg.replace(FN_ARG, function (all, underscore, name) {
@@ -14020,7 +14038,7 @@
                     });
                 }
                 fn.$inject = $inject;
-            }
+    }
         } else if (isArray(fn)) {
             last = fn.length - 1;
             assertArgFn(fn[last], 'fn');
@@ -14686,7 +14704,7 @@
                         runBlocks.push(providerInjector.invoke(module));
                     } else {
                         assertArgFn(module, 'module');
-                    }
+        }
                 } catch (e) {
                     if (isArray(module)) {
                         module = module[module.length - 1];
@@ -15061,7 +15079,7 @@
 
                 // no element and hash == 'top', scroll to the top of the page
                 else if (hash === 'top') scrollTo(null);
-            }
+    }
 
             // does not scroll when user clicks on anchor link that is currently on
             // (no url change, no $location.hash() change), browser native does scroll
@@ -15076,8 +15094,8 @@
                         jqLiteDocumentLoaded(function () {
                             $rootScope.$evalAsync(scroll);
                         });
-                    });
-            }
+        });
+    }
 
             return scroll;
         }];
@@ -15172,7 +15190,7 @@
                         runner.complete();
                         return runner;
                     }
-                };
+    };
 
 
                 function updateData(data, classes, value) {
@@ -15746,7 +15764,7 @@
                 return function (callback) {
                     passed ? callback() : waitForTick(callback);
                 };
-            };
+    };
         }];
     };
 
@@ -15901,7 +15919,7 @@
                             this._state = DONE_COMPLETE_STATE;
                         }
                     }
-                };
+    };
 
                 return AnimateRunner;
             }];
@@ -15975,7 +15993,7 @@
                         options.to = null;
                     }
                 }
-            };
+    };
         }];
     };
 
@@ -16037,7 +16055,7 @@
                         } catch (e) {
                             $log.error(e);
                         }
-                    }
+        }
                 }
             }
         }
@@ -16074,7 +16092,7 @@
                     return history.state;
                 } catch (e) {
                     // MSIE can reportedly throw when there is no state (UNCONFIRMED).
-                }
+        }
             };
 
         cacheState();
@@ -16131,13 +16149,13 @@
                 // in some cases (see #9143).
                 if ($sniffer.history && (!sameBase || !sameState)) {
                     history[replace ? 'replaceState' : 'pushState'](state, '', url);
-                    cacheState();
+        cacheState();
                     // Do the assignment again so that those two variables are referentially identical.
-                    lastHistoryState = cachedState;
+        lastHistoryState = cachedState;
                 } else {
                     if (!sameBase) {
                         pendingLocation = url;
-                    }
+        }
                     if (replace) {
                         location.replace(url);
                     } else if (!sameBase) {
@@ -16330,7 +16348,7 @@
                 clearTimeout(deferId);
                 completeOutstandingRequest(noop);
                 return true;
-            }
+    }
             return false;
         };
 
@@ -16656,7 +16674,7 @@
                         if (prevEntry) prevEntry.n = nextEntry; //n stands for next, 'next' didn't minify
                     }
                 }
-            }
+    }
 
 
             /**
@@ -17849,7 +17867,7 @@
                                         directive = {compile: valueFn(directive)};
                                     } else if (!directive.compile && directive.link) {
                                         directive.compile = valueFn(directive.link);
-                                    }
+                }
                                     directive.priority = directive.priority || 0;
                                     directive.index = index;
                                     directive.name = directive.name || name;
@@ -17860,7 +17878,7 @@
                                 } catch (e) {
                                     $exceptionHandler(e);
                                 }
-                            });
+            });
                             return directives;
                         }]);
                 }
@@ -18776,7 +18794,7 @@
                                     attrs[nName] = value;
                                     if (getBooleanAttrName(node, nName)) {
                                         attrs[nName] = true; // presence means true
-                                    }
+                }
                                 }
                                 addAttrInterpolateDirective(node, directives, value, nName, isNgAttr);
                                 addDirective(directives, nName, 'A', maxPriority, ignoreDirective, attrStartName,
@@ -19016,7 +19034,7 @@
                                     mightHaveMultipleTransclusionError = true;
                                     break;
                                 }
-                            }
+                }
 
                             didScanForMultipleTransclusion = true;
                         }
@@ -19070,7 +19088,7 @@
                                         // We need only nonTlbTranscludeDirective so that we prevent putting transclusion
                                         // on the same element more than once.
                                         nonTlbTranscludeDirective: nonTlbTranscludeDirective
-                                    });
+                                        });
                             } else {
 
                                 var slots = createMap();
@@ -19113,14 +19131,14 @@
                                             slots[slotName].push(node);
                                         } else {
                                             $template.push(node);
-                                        }
+                }
                                     });
 
                                     // Check for required slots that were not filled
                                     forEach(filledSlots, function (filled, slotName) {
                                         if (!filled) {
                                             throw $compileMinErr('reqslot', 'Required transclusion slot `{0}` was not filled.', slotName);
-                                        }
+                }
                                     });
 
                                     for (var slotName in slots) {
@@ -19905,9 +19923,9 @@
                                         //the CSS classes are the non-interpolated values
                                         if (name === 'class' && newValue != oldValue) {
                                             attr.$updateClass(newValue, oldValue);
-                                        } else {
+                    } else {
                                             attr.$set(name, newValue);
-                                        }
+                    }
                                     });
                                 }
                             };
@@ -20082,7 +20100,7 @@
                                         } else {
                                             // if the parent can be assigned then do so
                                             parentSet(scope, parentValue = destination[scopeName]);
-                                        }
+                }
                                     }
                                     return lastValue = parentValue;
                                 };
@@ -20259,7 +20277,7 @@
                 var token = tokens1[i];
                 for (var j = 0; j < tokens2.length; j++) {
                     if (token == tokens2[j]) continue outer;
-                }
+    }
                 values += (values.length > 0 ? ' ' : '') + token;
             }
         return values;
@@ -20277,7 +20295,7 @@
             var node = jqNodes[i];
             if (node.nodeType === NODE_TYPE_COMMENT) {
                 splice.call(jqNodes, i, 1);
-            }
+    }
         }
         return jqNodes;
     }
@@ -20333,7 +20351,7 @@
                 extend(controllers, name);
             } else {
                 controllers[name] = constructor;
-            }
+    }
         };
 
         /**
@@ -20348,33 +20366,33 @@
 
         this.$get = ['$injector', '$window', function ($injector, $window) {
 
-            /**
-             * @ngdoc service
-             * @name $controller
-             * @requires $injector
-             *
-             * @param {Function|string} constructor If called with a function then it's considered to be the
-             *    controller constructor function. Otherwise it's considered to be a string which is used
-             *    to retrieve the controller constructor using the following steps:
-             *
-             *    * check if a controller with given name is registered via `$controllerProvider`
-             *    * check if evaluating the string on the current scope returns a constructor
-             *    * if $controllerProvider#allowGlobals, check `window[constructor]` on the global
-             *      `window` object (not recommended)
-             *
-             *    The string can use the `controller as property` syntax, where the controller instance is published
-             *    as the specified property on the `scope`; the `scope` must be injected into `locals` param for this
-             *    to work correctly.
-             *
-             * @param {Object} locals Injection locals for Controller.
-             * @return {Object} Instance of given controller.
-             *
-             * @description
-             * `$controller` service is responsible for instantiating controllers.
-             *
-             * It's just a simple call to {@link auto.$injector $injector}, but extracted into
-             * a service, so that one can override this service with [BC version](https://gist.github.com/1649788).
-             */
+    /**
+     * @ngdoc service
+     * @name $controller
+     * @requires $injector
+     *
+     * @param {Function|string} constructor If called with a function then it's considered to be the
+     *    controller constructor function. Otherwise it's considered to be a string which is used
+     *    to retrieve the controller constructor using the following steps:
+     *
+     *    * check if a controller with given name is registered via `$controllerProvider`
+     *    * check if evaluating the string on the current scope returns a constructor
+     *    * if $controllerProvider#allowGlobals, check `window[constructor]` on the global
+     *      `window` object (not recommended)
+     *
+     *    The string can use the `controller as property` syntax, where the controller instance is published
+     *    as the specified property on the `scope`; the `scope` must be injected into `locals` param for this
+     *    to work correctly.
+     *
+     * @param {Object} locals Injection locals for Controller.
+     * @return {Object} Instance of given controller.
+     *
+     * @description
+     * `$controller` service is responsible for instantiating controllers.
+     *
+     * It's just a simple call to {@link auto.$injector $injector}, but extracted into
+     * a service, so that one can override this service with [BC version](https://gist.github.com/1649788).
+     */
             return function $controller(expression, locals, later, ident) {
                 // PRIVATE API:
                 //   param `later` --- indicates that the controller's constructor is invoked at a later time.
@@ -20541,7 +20559,7 @@
         this.$get = ['$log', function ($log) {
             return function (exception, cause) {
                 $log.error.apply($log, arguments);
-            };
+    };
         }];
     }
 
@@ -20564,7 +20582,7 @@
                     domNode = $document[0].body;
                 }
                 return domNode.offsetWidth + 1;
-            };
+    };
         }];
     };
 
@@ -20710,7 +20728,7 @@
                 if ((contentType && (contentType.indexOf(APPLICATION_JSON) === 0)) || isJsonLike(tempData)) {
                     data = fromJson(tempData);
                 }
-            }
+    }
         }
 
         return data;
@@ -20733,7 +20751,7 @@
         function fillInParsed(key, val) {
             if (key) {
                 parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
-            }
+    }
         }
 
         if (isString(headers)) {
@@ -20775,7 +20793,7 @@
                     value = null;
                 }
                 return value;
-            }
+    }
 
             return headersObj;
         };
@@ -20899,7 +20917,7 @@
             if (isDefined(value)) {
                 useApplyAsync = !!value;
                 return this;
-            }
+    }
             return useApplyAsync;
         };
 
@@ -20947,11 +20965,11 @@
 
                 var defaultCache = $cacheFactory('$http');
 
-                /**
-                 * Make sure that default param serializer is exposed as a function
-                 */
-                defaults.paramSerializer = isString(defaults.paramSerializer) ?
-                    $injector.get(defaults.paramSerializer) : defaults.paramSerializer;
+    /**
+     * Make sure that default param serializer is exposed as a function
+     */
+    defaults.paramSerializer = isString(defaults.paramSerializer) ?
+        $injector.get(defaults.paramSerializer) : defaults.paramSerializer;
 
                 /**
                  * Interceptors stored in reverse order. Inner interceptors before outer interceptors.
@@ -20975,7 +20993,7 @@
                  * @requires $q
                  * @requires $injector
                  *
-                 * @description
+     * @description
                  * The `$http` service is a core Angular service that facilitates communication with the remote
                  * HTTP servers via the browser's [XMLHttpRequest](https://developer.mozilla.org/en/xmlhttprequest)
                  * object or via [JSONP](http://en.wikipedia.org/wiki/JSONP).
@@ -21110,7 +21128,7 @@
      *  },
      *  data: { test: 'test' }
      * }
-                 *
+     *
                  * $http(req).then(function(){...}, function(){...});
                  * ```
                  *
@@ -21941,7 +21959,7 @@
                         url += ((url.indexOf('?') == -1) ? '?' : '&') + serializedParams;
                     }
                     return url;
-                }
+    }
             }];
     }
 
@@ -22132,7 +22150,7 @@
                 if (event) {
                     if (event.type === "load" && !callbacks.wasCalled(callbackPath)) {
                         event = {type: "error"};
-                    }
+        }
                     text = event.type;
                     status = event.type === "error" ? 404 : 200;
                 }
@@ -22140,7 +22158,7 @@
                 if (done) {
                     done(status, text);
                 }
-            };
+    };
 
             addEventListenerFn(script, "load", callback);
             addEventListenerFn(script, "error", callback);
@@ -22487,7 +22505,7 @@
                             return compute(values);
                         } catch (err) {
                             $exceptionHandler($interpolateMinErr.interr(text, err));
-                        }
+            }
 
                     }, {
                         // all of these properties are undocumented for now
@@ -22828,7 +22846,7 @@
                     delete callbacks[callback.id];
                     delete callbackMap[callbackPath];
                 }
-            };
+    };
         }];
     };
 
@@ -22998,7 +23016,7 @@
                 rewrittenUrl = appBaseNoFile + appUrl;
             } else if (appBaseNoFile == url + '/') {
                 rewrittenUrl = appBaseNoFile;
-            }
+    }
             if (rewrittenUrl) {
                 this.$$parse(rewrittenUrl);
             }
@@ -23113,7 +23131,7 @@
             if (stripHash(appBase) == stripHash(url)) {
                 this.$$parse(url);
                 return true;
-            }
+    }
             return false;
         };
     }
@@ -23150,7 +23168,7 @@
                 rewrittenUrl = appBase + hashPrefix + appUrl;
             } else if (appBaseNoFile === url + '/') {
                 rewrittenUrl = appBaseNoFile;
-            }
+    }
             if (rewrittenUrl) {
                 this.$$parse(rewrittenUrl);
             }
@@ -23405,7 +23423,7 @@
                     } else {
                         throw $locationMinErr('isrcharg',
                             'The first argument of the `$location#search()` call must be a string or an object.');
-                    }
+        }
                     break;
                 default:
                     if (isUndefined(paramValue) || paramValue === null) {
@@ -23488,7 +23506,7 @@
             if (Location !== LocationHtml5Url || !this.$$html5) {
                 throw $locationMinErr('nostate', 'History API state support is available only ' +
                     'in HTML5 mode and only in browsers supporting HTML5 History API');
-            }
+    }
             // The user might modify `stateObject` after invoking `$location.state(stateObject)`
             // but we're changing the $$state reference to $browser.state() during the $digest
             // so the modification window is narrow.
@@ -23510,7 +23528,7 @@
         return function (value) {
             if (isUndefined(value)) {
                 return this[property];
-            }
+    }
 
             this[property] = preprocess(value);
             this.$$compose();
@@ -23838,7 +23856,7 @@
                 function afterLocationChange(oldUrl, oldState) {
                     $rootScope.$broadcast('$locationChangeSuccess', $location.absUrl(), oldUrl,
                         $location.$$state, oldState);
-                }
+    }
             }];
     }
 
@@ -24002,7 +24020,7 @@
                 return function (arg1, arg2) {
                     logFn(arg1, arg2 == null ? '' : arg2);
                 };
-            }
+    }
         }];
     }
 
@@ -24094,7 +24112,7 @@
                 throw $parseMinErr('isecobj',
                     'Referencing Object in Angular expressions is disallowed! Expression: {0}',
                     fullExpression);
-            }
+    }
         }
         return obj;
     }
@@ -24113,7 +24131,7 @@
                 throw $parseMinErr('isecff',
                     'Referencing call, apply or bind in Angular expressions is disallowed! Expression: {0}',
                     fullExpression);
-            }
+    }
         }
     }
 
@@ -24123,7 +24141,7 @@
                 obj === {}.constructor || obj === [].constructor || obj === Function.constructor) {
                 throw $parseMinErr('isecaf',
                     'Assigning to a constructor is disallowed! Expression: {0}', fullExpression);
-            }
+    }
         }
     }
 
@@ -24328,7 +24346,7 @@
                     } else {
                         var rep = ESCAPE[ch];
                         string = string + (rep || ch);
-                    }
+        }
                     escape = false;
                 } else if (ch === '\\') {
                     escape = true;
@@ -24758,7 +24776,7 @@
                 findConstantAndWatchExpressions(ast.object, $filter);
                 if (ast.computed) {
                     findConstantAndWatchExpressions(ast.property, $filter);
-                }
+    }
                 ast.constant = ast.object.constant && (!ast.computed || ast.property.constant);
                 ast.toWatch = [ast];
                 break;
@@ -24880,7 +24898,7 @@
                 this.recurse(assignable, result);
                 this.return_(result);
                 extra = 'fn.assign=' + this.generateFunction('assign', 's,v,l');
-            }
+    }
             var toWatch = getInputs(ast.body);
             self.stage = 'inputs';
             forEach(toWatch, function (watch, key) {
@@ -25056,7 +25074,7 @@
                                     self.if_(
                                         self.not(self.nonComputedMember('s', ast.name)),
                                         self.lazyAssign(self.nonComputedMember('s', ast.name), '{}'));
-                                }
+            }
                                 self.assign(intoId, self.nonComputedMember('s', ast.name));
                             });
                         }, intoId && self.lazyAssign(intoId, self.nonComputedMember('l', ast.name))
@@ -25081,13 +25099,13 @@
                                 self.addEnsureSafeMemberName(right);
                                 if (create && create !== 1) {
                                     self.if_(self.not(self.computedMember(left, right)), self.lazyAssign(self.computedMember(left, right), '{}'));
-                                }
+            }
                                 expression = self.ensureSafeObject(self.computedMember(left, right));
                                 self.assign(intoId, expression);
                                 if (nameId) {
                                     nameId.computed = true;
                                     nameId.name = right;
-                                }
+            }
                             } else {
                                 ensureSafeMemberName(ast.property.name);
                                 if (create && create !== 1) {
@@ -25406,7 +25424,7 @@
             var assign;
             if ((assignable = assignableAST(ast))) {
                 assign = this.recurse(assignable);
-            }
+    }
             var toWatch = getInputs(ast.body);
             var inputs;
             if (toWatch) {
@@ -25510,7 +25528,7 @@
                                 var values = [];
                                 for (var i = 0; i < args.length; ++i) {
                                     values.push(ensureSafeObject(args[i](scope, locals, assign, inputs), self.expression));
-                                }
+            }
                                 value = ensureSafeObject(rhs.value.apply(rhs.context, values), self.expression);
                             }
                             return context ? {value: value} : value;
@@ -25747,7 +25765,7 @@
                         if (lhs && !(lhs[rhs])) {
                             lhs[rhs] = {};
                         }
-                    }
+        }
                     value = lhs[rhs];
                     ensureSafeObject(value, expression);
                 }
@@ -25756,7 +25774,7 @@
                 } else {
                     return value;
                 }
-            };
+    };
         },
         nonComputedMember: function (left, right, expensiveChecks, context, create, expression) {
             return function (scope, locals, assign, inputs) {
@@ -25776,7 +25794,7 @@
                 } else {
                     return value;
                 }
-            };
+    };
         },
         inputs: function (input, watchId) {
             return function (scope, value, locals, inputs) {
@@ -25937,7 +25955,7 @@
                     literals: copy(literals),
                     isIdentifierStart: isFunction(identStart) && identStart,
                     isIdentifierContinue: isFunction(identContinue) && identContinue
-                };
+        };
             var runningChecksEnabled = false;
 
             $parse.$$runningExpensiveChecks = function () {
@@ -26096,7 +26114,7 @@
                         scope.$$postDigest(function () {
                             if (isDefined(lastValue)) {
                                 unwatch();
-                            }
+            }
                         });
                     }
                 }, objectEquality);
@@ -26168,7 +26186,7 @@
                 }
 
                 return fn;
-            }
+    }
         }];
     }
 
@@ -26490,7 +26508,7 @@
                         deferred.resolve(state.value);
                     } else {
                         deferred.reject(state.value);
-                    }
+        }
                 } catch (e) {
                     deferred.reject(e);
                     exceptionHandler(e);
@@ -26580,9 +26598,9 @@
                                 result.notify(isFunction(callback) ? callback(progress) : progress);
                             } catch (e) {
                                 exceptionHandler(e);
-                            }
+            }
                         }
-                    });
+        });
                 }
             }
         });
@@ -26817,7 +26835,7 @@
                 return function () {
                     $timeout.cancel(timer);
                 };
-            };
+        };
 
             raf.supported = rafSupported;
 
@@ -26901,7 +26919,7 @@
         this.digestTtl = function (value) {
             if (arguments.length) {
                 TTL = value;
-            }
+    }
             return TTL;
         };
 
@@ -26948,68 +26966,68 @@
 
                     $scope.$parent = $scope.$$nextSibling = $scope.$$prevSibling = $scope.$$childHead =
                         $scope.$$childTail = $scope.$root = $scope.$$watchers = null;
-                }
+    }
 
-                /**
-                 * @ngdoc type
-                 * @name $rootScope.Scope
-                 *
-                 * @description
-                 * A root scope can be retrieved using the {@link ng.$rootScope $rootScope} key from the
-                 * {@link auto.$injector $injector}. Child scopes are created using the
-                 * {@link ng.$rootScope.Scope#$new $new()} method. (Most scopes are created automatically when
-                 * compiled HTML template is executed.) See also the {@link guide/scope Scopes guide} for
-                 * an in-depth introduction and usage examples.
-                 *
-                 *
-                 * # Inheritance
-                 * A scope can inherit from a parent scope, as in this example:
-                 * ```js
-                 var parent = $rootScope;
-                 var child = parent.$new();
+    /**
+     * @ngdoc type
+     * @name $rootScope.Scope
+     *
+     * @description
+     * A root scope can be retrieved using the {@link ng.$rootScope $rootScope} key from the
+     * {@link auto.$injector $injector}. Child scopes are created using the
+     * {@link ng.$rootScope.Scope#$new $new()} method. (Most scopes are created automatically when
+     * compiled HTML template is executed.) See also the {@link guide/scope Scopes guide} for
+     * an in-depth introduction and usage examples.
+     *
+     *
+     * # Inheritance
+     * A scope can inherit from a parent scope, as in this example:
+     * ```js
+     var parent = $rootScope;
+     var child = parent.$new();
 
-                 parent.salutation = "Hello";
-                 expect(child.salutation).toEqual('Hello');
+     parent.salutation = "Hello";
+     expect(child.salutation).toEqual('Hello');
 
-                 child.salutation = "Welcome";
-                 expect(child.salutation).toEqual('Welcome');
-                 expect(parent.salutation).toEqual('Hello');
-                 * ```
-                 *
-                 * When interacting with `Scope` in tests, additional helper methods are available on the
-                 * instances of `Scope` type. See {@link ngMock.$rootScope.Scope ngMock Scope} for additional
-                 * details.
-                 *
-                 *
-                 * @param {Object.<string, function()>=} providers Map of service factory which need to be
-                 *                                       provided for the current scope. Defaults to {@link ng}.
-                 * @param {Object.<string, *>=} instanceCache Provides pre-instantiated services which should
-                 *                              append/override services provided by `providers`. This is handy
-                 *                              when unit-testing and having the need to override a default
-                 *                              service.
-                 * @returns {Object} Newly created scope.
-                 *
-                 */
-                function Scope() {
-                    this.$id = nextUid();
-                    this.$$phase = this.$parent = this.$$watchers =
-                        this.$$nextSibling = this.$$prevSibling =
-                            this.$$childHead = this.$$childTail = null;
-                    this.$root = this;
-                    this.$$destroyed = false;
-                    this.$$listeners = {};
-                    this.$$listenerCount = {};
-                    this.$$watchersCount = 0;
-                    this.$$isolateBindings = null;
-                }
+     child.salutation = "Welcome";
+     expect(child.salutation).toEqual('Welcome');
+     expect(parent.salutation).toEqual('Hello');
+     * ```
+     *
+     * When interacting with `Scope` in tests, additional helper methods are available on the
+     * instances of `Scope` type. See {@link ngMock.$rootScope.Scope ngMock Scope} for additional
+     * details.
+     *
+     *
+     * @param {Object.<string, function()>=} providers Map of service factory which need to be
+     *                                       provided for the current scope. Defaults to {@link ng}.
+     * @param {Object.<string, *>=} instanceCache Provides pre-instantiated services which should
+     *                              append/override services provided by `providers`. This is handy
+     *                              when unit-testing and having the need to override a default
+     *                              service.
+     * @returns {Object} Newly created scope.
+     *
+     */
+    function Scope() {
+        this.$id = nextUid();
+        this.$$phase = this.$parent = this.$$watchers =
+            this.$$nextSibling = this.$$prevSibling =
+                this.$$childHead = this.$$childTail = null;
+        this.$root = this;
+        this.$$destroyed = false;
+        this.$$listeners = {};
+        this.$$listenerCount = {};
+        this.$$watchersCount = 0;
+        this.$$isolateBindings = null;
+    }
 
-                /**
-                 * @ngdoc property
-                 * @name $rootScope.Scope#$id
-                 *
-                 * @description
-                 * Unique scope ID (monotonically increasing) useful for debugging.
-                 */
+    /**
+     * @ngdoc property
+     * @name $rootScope.Scope#$id
+     *
+     * @description
+     * Unique scope ID (monotonically increasing) useful for debugging.
+     */
 
                 /**
                  * @ngdoc property
@@ -28175,14 +28193,14 @@
                             delete current.$$listenerCount[name];
                         }
                     } while ((current = current.$parent));
-                }
+    }
 
-                /**
-                 * function used as an initial value for watchers.
-                 * because it's unique we can easily tell it apart from other values
-                 */
-                function initWatchVal() {
-                }
+    /**
+     * function used as an initial value for watchers.
+     * because it's unique we can easily tell it apart from other values
+     */
+    function initWatchVal() {
+    }
 
                 function flushApplyAsync() {
                     while (applyAsyncQueue.length) {
@@ -28273,7 +28291,7 @@
             if (isDefined(regexp)) {
                 imgSrcSanitizationWhitelist = regexp;
                 return this;
-            }
+    }
             return imgSrcSanitizationWhitelist;
         };
 
@@ -28286,7 +28304,7 @@
                     return 'unsafe:' + normalizedVal;
                 }
                 return uri;
-            };
+    };
         };
     }
 
@@ -28326,7 +28344,7 @@
             if (matcher.indexOf('***') > -1) {
                 throw $sceMinErr('iwcard',
                     'Illegal sequence *** in string matcher.  String: {0}', matcher);
-            }
+    }
             matcher = escapeForRegexp(matcher).replace('\\*\\*', '.*').replace('\\*', '[^:/.?&;]*');
             return new RegExp('^' + matcher + '$');
         } else if (isRegExp(matcher)) {
@@ -28576,7 +28594,7 @@
              * @param {*} value The value that that should be considered trusted/safe.
              * @returns {*} A value that can be used to stand in for the provided `value` in places
              * where Angular expects a $sce.trustAs() return value.
-             */
+     */
             function trustAs(type, trustedValue) {
                 var Constructor = (byType.hasOwnProperty(type) ? byType[type] : null);
                 if (!Constructor) {
@@ -28642,7 +28660,7 @@
      *     `$sceDelegate.trustAs`} call.
              * @returns {*} The value the was originally provided to {@link ng.$sceDelegate#trustAs
      *     `$sceDelegate.trustAs`} if valid in this context.  Otherwise, throws an exception.
-             */
+     */
             function getTrusted(type, maybeTrusted) {
                 if (maybeTrusted === null || isUndefined(maybeTrusted) || maybeTrusted === '') {
                     return maybeTrusted;
@@ -29042,13 +29060,13 @@
              * @ngdoc method
              * @name $sce#isEnabled
              * @kind function
-             *
+     *
              * @return {Boolean} true if SCE is enabled, false otherwise.  If you want to set the value, you
              * have to do it at module config time on {@link ng.$sceProvider $sceProvider}.
              *
              * @description
              * Returns a boolean indicating if SCE is enabled.
-             */
+     */
             sce.isEnabled = function () {
                 return enabled;
             };
@@ -29301,28 +29319,28 @@
              *      `context`.
              */
 
-            /**
-             * @ngdoc method
-             * @name $sce#parseAsResourceUrl
-             *
-             * @description
-             * Shorthand method.  `$sce.parseAsResourceUrl(value)` →
-             *     {@link ng.$sce#parseAs `$sce.parseAs($sce.RESOURCE_URL, value)`}
-             *
-             * @param {string} expression String expression to compile.
-             * @returns {function(context, locals)} a function which represents the compiled expression:
-             *
-             *    * `context` – `{object}` – an object against which any expressions embedded in the strings
-             *      are evaluated against (typically a scope object).
-             *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
-             *      `context`.
-             */
+    /**
+     * @ngdoc method
+     * @name $sce#parseAsResourceUrl
+     *
+     * @description
+     * Shorthand method.  `$sce.parseAsResourceUrl(value)` →
+     *     {@link ng.$sce#parseAs `$sce.parseAs($sce.RESOURCE_URL, value)`}
+     *
+     * @param {string} expression String expression to compile.
+     * @returns {function(context, locals)} a function which represents the compiled expression:
+     *
+     *    * `context` – `{object}` – an object against which any expressions embedded in the strings
+     *      are evaluated against (typically a scope object).
+     *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
+     *      `context`.
+     */
 
             /**
              * @ngdoc method
              * @name $sce#parseAsJs
              *
-             * @description
+     * @description
              * Shorthand method.  `$sce.parseAsJs(value)` →
              *     {@link ng.$sce#parseAs `$sce.parseAs($sce.JS, value)`}
              *
@@ -29333,7 +29351,7 @@
              *      are evaluated against (typically a scope object).
              *    * `locals` – `{object=}` – local variables context object, useful for overriding values in
              *      `context`.
-             */
+     */
 
                 // Shorthand delegations.
             var parse = sce.parseAs,
@@ -29409,7 +29427,7 @@
                     transitions = isString(bodyStyle.webkitTransition);
                     animations = isString(bodyStyle.webkitAnimation);
                 }
-            }
+    }
 
 
             return {
@@ -29739,7 +29757,7 @@
                     deferreds[timeoutId] = deferred;
 
                     return promise;
-                }
+    }
 
 
                 /**
@@ -29927,7 +29945,7 @@
                 return decodeURIComponent(str);
             } catch (e) {
                 return str;
-            }
+    }
         }
 
         return function () {
@@ -29950,9 +29968,9 @@
                         if (isUndefined(lastCookies[name])) {
                             lastCookies[name] = safeDecodeURIComponent(cookie.substring(index + 1));
                         }
-                    }
+        }
                 }
-            }
+    }
             return lastCookies;
         };
     }
@@ -30091,7 +30109,7 @@
                 return filters;
             } else {
                 return $provide.factory(name + suffix, factory);
-            }
+    }
         }
 
         this.register = register;
@@ -30290,7 +30308,7 @@
                     break;
                 default:
                     return array;
-            }
+    }
 
             return Array.prototype.filter.call(array, predicateFn);
         };
@@ -30327,7 +30345,7 @@
         predicateFn = function (item) {
             if (shouldMatchPrimitives && !isObject(item)) {
                 return deepCompare(item, expression[anyPropertyKey], comparator, anyPropertyKey, false);
-            }
+    }
             return deepCompare(item, expression, comparator, anyPropertyKey, matchAgainstAnyProp);
         };
 
@@ -30356,7 +30374,7 @@
                         if ((key.charAt(0) !== '$') && deepCompare(actual[key], expected, comparator, anyPropertyKey, true)) {
                             return true;
                         }
-                    }
+        }
                     return dontMatchWholeObject ? false : deepCompare(actual, expected, comparator, anyPropertyKey, false);
                 } else if (expectedType === 'object') {
                     for (key in expected) {
@@ -30454,7 +30472,7 @@
 
             if (isUndefined(fractionSize)) {
                 fractionSize = formats.PATTERNS[1].maxFrac;
-            }
+    }
 
             // if null or undefined pass it through
             return (amount == null)
@@ -30632,7 +30650,7 @@
                 for (var k = 0; k > roundAt; k--) {
                     digits.unshift(0);
                     parsedNumber.i++;
-                }
+        }
                 digits.unshift(1);
                 parsedNumber.i++;
             } else {
@@ -30653,7 +30671,7 @@
         if (carry) {
             digits.unshift(carry);
             parsedNumber.i++;
-        }
+    }
     }
 
     /**
@@ -30733,7 +30751,7 @@
 
             if (exponent) {
                 formattedText += 'e+' + exponent;
-            }
+    }
         }
         if (number < 0 && !isZero) {
             return pattern.negPre + formattedText + pattern.negSuf;
@@ -30750,7 +30768,7 @@
             } else {
                 num = -num;
                 neg = '-';
-            }
+    }
         }
         num = '' + num;
         while (num.length < digits) num = ZERO_CHAR + num;
@@ -30767,7 +30785,7 @@
             var value = date['get' + name]();
             if (offset > 0 || value > -offset) {
                 value += offset;
-            }
+    }
             if (value === 0 && offset == -12) value = 12;
             return padNumber(value, size, trim, negWrap);
         };
@@ -31027,7 +31045,7 @@
             if (timezone) {
                 dateTimezoneOffset = timezoneToOffset(timezone, dateTimezoneOffset);
                 date = convertTimezoneToLocal(date, timezone, true);
-            }
+    }
             forEach(parts, function (value) {
                 fn = DATE_FORMATS[value];
                 text += fn ? fn(date, $locale.DATETIME_FORMATS, dateTimezoneOffset)
@@ -31074,7 +31092,7 @@
         return function (object, spacing) {
             if (isUndefined(spacing)) {
                 spacing = 2;
-            }
+    }
             return toJson(object, spacing);
         };
     }
@@ -31223,7 +31241,7 @@
                 } else {
                     return sliceFn(input, Math.max(0, begin + limit), begin);
                 }
-            }
+    }
         };
     }
 
@@ -31832,11 +31850,11 @@
                     var result = compare(v1.predicateValues[i], v2.predicateValues[i]);
                     if (result) {
                         return result * predicates[i].descending * descending;
-                    }
+        }
                 }
 
                 return compare(v1.tieBreaker, v2.tieBreaker) * descending;
-            }
+    }
         };
 
         function processPredicates(sortPredicates) {
@@ -31849,7 +31867,7 @@
                     if ((predicate.charAt(0) == '+' || predicate.charAt(0) == '-')) {
                         descending = predicate.charAt(0) == '-' ? -1 : 1;
                         predicate = predicate.substring(1);
-                    }
+        }
                     if (predicate !== '') {
                         get = $parse(predicate);
                         if (get.constant) {
@@ -31861,7 +31879,7 @@
                     }
                 }
                 return {get: get, descending: descending};
-            });
+    });
         }
 
         function isPrimitive(value) {
@@ -32328,7 +32346,7 @@
         function defaultLinkFn(scope, element, attr) {
             scope.$watch(attr[normalized], function ngBooleanAttrWatchAction(value) {
                 attr.$set(attrName, !!value);
-            });
+    });
         }
 
         var normalized = directiveNormalize('ng-' + attrName);
@@ -32936,7 +32954,7 @@
                                     setter = getSetter(controller.$name);
                                     setter(scope, controller);
                                 });
-                            }
+            }
                             formElement.on('$destroy', function () {
                                 controller.$$parentForm.$removeControl(controller);
                                 setter(scope, undefined);
@@ -32945,7 +32963,7 @@
                         }
                     };
                 }
-            };
+    };
 
             return formDirective;
 
@@ -34128,7 +34146,7 @@
                         }
                     });
                 }
-            };
+    };
 
             element.on('keydown', function (event) {
                 var key = event.keyCode;
@@ -34165,7 +34183,7 @@
                         if (validity.badInput !== origBadInput || validity.typeMismatch !== origTypeMismatch) {
                             listener(ev);
                         }
-                    });
+        });
                 }
             });
         }
@@ -34175,7 +34193,7 @@
             var value = ctrl.$isEmpty(ctrl.$viewValue) ? '' : ctrl.$viewValue;
             if (element.val() !== value) {
                 element.val(value);
-            }
+    }
         };
     }
 
@@ -34244,7 +34262,7 @@
                             ss: date.getSeconds(),
                             sss: date.getMilliseconds() / 1000
                         };
-                    } else {
+        } else {
                         map = {yyyy: 1970, MM: 1, dd: 1, HH: 0, mm: 0, ss: 0, sss: 0};
                     }
 
@@ -34278,7 +34296,7 @@
                     var parsedDate = parseDate(value, previousDate);
                     if (timezone) {
                         parsedDate = convertTimezoneToLocal(parsedDate, timezone);
-                    }
+        }
                     return parsedDate;
                 }
                 return undefined;
@@ -34292,7 +34310,7 @@
                     previousDate = value;
                     if (previousDate && timezone) {
                         previousDate = convertTimezoneToLocal(previousDate, timezone, true);
-                    }
+        }
                     return $filter('date')(value, format, timezone);
                 } else {
                     previousDate = null;
@@ -34309,7 +34327,7 @@
                     minVal = parseObservedDateValue(val);
                     ctrl.$validate();
                 });
-            }
+    }
 
             if (isDefined(attr.max) || attr.ngMax) {
                 var maxVal;
@@ -34325,11 +34343,11 @@
             function isValidDate(value) {
                 // Invalid Date: getTime() returns NaN
                 return value && !(value.getTime && value.getTime() !== value.getTime());
-            }
+    }
 
             function parseObservedDateValue(val) {
                 return isDefined(val) && !isDate(val) ? parseDate(val) || undefined : val;
-            }
+    }
         };
     }
 
@@ -34361,7 +34379,7 @@
                     throw ngModelMinErr('numfmt', 'Expected `{0}` to be a number', value);
                 }
                 value = value.toString();
-            }
+    }
             return value;
         });
 
@@ -34433,7 +34451,7 @@
         var listener = function (ev) {
             if (element[0].checked) {
                 ctrl.$setViewValue(attr.value, ev && ev.type);
-            }
+    }
         };
 
         element.on('click', listener);
@@ -34453,7 +34471,7 @@
             if (!parseFn.constant) {
                 throw ngModelMinErr('constexpr', 'Expected constant expression for `{0}`, but saw ' +
                     '`{1}`.', name, expression);
-            }
+    }
             return parseFn(context);
         }
         return fallback;
@@ -34746,7 +34764,7 @@
                 if (CONSTANT_VALUE_REGEXP.test(tplAttr.ngValue)) {
                     return function ngValueConstantLink(scope, elm, attr) {
                         attr.$set('value', scope.$eval(attr.ngValue));
-                    };
+        };
                 } else {
                     return function ngValueLink(scope, elm, attr) {
                         scope.$watch(attr.ngValue, function valueWatchAction(value) {
@@ -35038,7 +35056,7 @@
         link: function (scope, element, attr, ctrl) {
             ctrl.$viewChangeListeners.push(function () {
                 scope.$eval(attr.ngChange);
-            });
+    });
         }
     });
 
@@ -35165,7 +35183,7 @@
                     return classes;
                 }
                 return classVal;
-            }
+    }
         }];
     }
 
@@ -36017,7 +36035,7 @@
                                 }
                             });
                         };
-                    }
+        }
                 };
             }];
         }
@@ -36534,7 +36552,7 @@
                                 };
                                 $animate.enter(clone, $element.parent(), $element);
                             });
-                        }
+            }
                     } else {
                         if (previousElements) {
                             previousElements.remove();
@@ -38184,7 +38202,7 @@
                                 scope.$evalAsync(modelCtrl.$setTouched);
                             } else {
                                 scope.$apply(modelCtrl.$setTouched);
-                            }
+            }
                         });
                     }
                 };
@@ -38377,6 +38395,7 @@
     };
 
 
+
 // helper methods
     function addSetValidityMethod(context) {
         var ctrl = context.ctrl,
@@ -38478,7 +38497,7 @@
                 if (obj.hasOwnProperty(prop)) {
                     return false;
                 }
-            }
+    }
         }
         return true;
     }
@@ -38878,7 +38897,7 @@
                             var disableWhen = disableWhenFn(scope, locals);
                             watchedArray.push(disableWhen);
                         }
-                    }
+        }
                     return watchedArray;
                 }),
 
@@ -38906,20 +38925,20 @@
 
                         optionItems.push(optionItem);
                         selectValueMap[selectValue] = optionItem;
-                    }
+        }
 
-                    return {
-                        items: optionItems,
-                        selectValueMap: selectValueMap,
-                        getOptionFromViewValue: function (value) {
-                            return selectValueMap[getTrackByValue(value)];
-                        },
-                        getViewValueFromOption: function (option) {
-                            // If the viewValue could be an object that may be mutated by the application,
-                            // we need to make a copy and not return the reference to the value on the option.
-                            return trackBy ? angular.copy(option.viewValue) : option.viewValue;
-                        }
-                    };
+        return {
+            items: optionItems,
+            selectValueMap: selectValueMap,
+            getOptionFromViewValue: function (value) {
+                return selectValueMap[getTrackByValue(value)];
+            },
+            getViewValueFromOption: function (option) {
+                // If the viewValue could be an object that may be mutated by the application,
+                // we need to make a copy and not return the reference to the value on the option.
+                return trackBy ? angular.copy(option.viewValue) : option.viewValue;
+            }
+        };
                 }
             };
         }
@@ -39003,7 +39022,7 @@
 
                             selectElement[0].value = option.selectValue;
                             option.element.selected = true;
-                        }
+            }
 
                         option.element.setAttribute('selected', 'selected');
                     } else {
@@ -39015,7 +39034,7 @@
                             renderUnknownOption();
                         }
                     }
-                };
+        };
 
                 selectCtrl.readValue = function readNgOptionsValue() {
 
@@ -39457,7 +39476,7 @@
                         if (isUndefined(whenExpFn)) {
                             if (newVal != null) {
                                 $log.debug("ngPluralize: no rule defined for '" + count + "' in " + whenExp);
-                            }
+            }
                             watchRemover = noop;
                             updateElementText();
                         } else {
@@ -40016,7 +40035,7 @@
                                     nextBlockMap[block.id] = block;
                                     updateScope(block.scope, index, valueIdentifier, value, keyIdentifier, key, collectionLength);
                                 });
-                            }
+            }
                         }
                         lastBlockMap = nextBlockMap;
                     });
@@ -40605,7 +40624,7 @@
                                 $animate.enter(caseElement, anchor.parent(), anchor);
                             });
                         });
-                    }
+        }
                 });
             }
         };
@@ -41735,7 +41754,7 @@
                 ctrl.$validators.minlength = function (modelValue, viewValue) {
                     return ctrl.$isEmpty(viewValue) || viewValue.length >= minlength;
                 };
-            }
+    }
         };
     };
 
@@ -41956,7 +41975,7 @@
         for (var key in src) {
             if (src.hasOwnProperty(key) && !(key.charAt(0) === '$' && key.charAt(1) === '$')) {
                 dst[key] = src[key];
-            }
+    }
         }
 
         return dst;
@@ -42803,7 +42822,7 @@
                 if (!(key.charAt(0) === '$' && key.charAt(1) === '$')) {
                     dst[key] = src[key];
                 }
-            }
+    }
         }
 
         return dst || src;
@@ -43216,25 +43235,25 @@
                  * </example>
                  */
 
-                /**
-                 * @ngdoc event
-                 * @name $route#$routeChangeStart
-                 * @eventType broadcast on root scope
-                 * @description
-                 * Broadcasted before a route change. At this  point the route services starts
-                 * resolving all of the dependencies needed for the route change to occur.
-                 * Typically this involves fetching the view template as well as any dependencies
-                 * defined in `resolve` route property. Once  all of the dependencies are resolved
-                 * `$routeChangeSuccess` is fired.
-                 *
-                 * The route change (and the `$location` change that triggered it) can be prevented
-                 * by calling `preventDefault` method of the event. See {@link ng.$rootScope.Scope#$on}
-                 * for more details about event object.
-                 *
-                 * @param {Object} angularEvent Synthetic event object.
-                 * @param {Route} next Future route information.
-                 * @param {Route} current Current route information.
-                 */
+    /**
+     * @ngdoc event
+     * @name $route#$routeChangeStart
+     * @eventType broadcast on root scope
+     * @description
+     * Broadcasted before a route change. At this  point the route services starts
+     * resolving all of the dependencies needed for the route change to occur.
+     * Typically this involves fetching the view template as well as any dependencies
+     * defined in `resolve` route property. Once  all of the dependencies are resolved
+     * `$routeChangeSuccess` is fired.
+     *
+     * The route change (and the `$location` change that triggered it) can be prevented
+     * by calling `preventDefault` method of the event. See {@link ng.$rootScope.Scope#$on}
+     * for more details about event object.
+     *
+     * @param {Object} angularEvent Synthetic event object.
+     * @param {Route} next Future route information.
+     * @param {Route} current Current route information.
+     */
 
                 /**
                  * @ngdoc event
@@ -43243,10 +43262,10 @@
                  * @description
                  * Broadcasted after a route change has happened successfully.
                  * The `resolve` dependencies are now available in the `current.locals` property.
-                 *
+     *
                  * {@link ngRoute.directive:ngView ngView} listens for the directive
                  * to instantiate the controller and render the view.
-                 *
+     *
                  * @param {Object} angularEvent Synthetic event object.
                  * @param {Route} current Current route information.
                  * @param {Route|Undefined} previous Previous route information, or undefined if current is
@@ -43259,7 +43278,7 @@
                  * @eventType broadcast on root scope
                  * @description
                  * Broadcasted if any of the resolve promises are rejected.
-                 *
+     *
                  * @param {Object} angularEvent Synthetic event object
                  * @param {Route} current Current route information.
                  * @param {Route} previous Previous route information.
@@ -43273,10 +43292,10 @@
                  * @description
                  * The `reloadOnSearch` property has been set to false, and we are reusing the same
                  * instance of the Controller.
-                 *
+     *
                  * @param {Object} angularEvent Synthetic event object
                  * @param {Route} current Current/previous route information.
-                 */
+     */
 
                 var forceReload = false,
                     preparedRoute,
@@ -43335,7 +43354,7 @@
                                 throw $routeMinErr('norout', 'Tried updating route when with no current route');
                             }
                         }
-                    };
+        };
 
                 $rootScope.$on('$locationChangeStart', prepareRoute);
                 $rootScope.$on('$locationChangeSuccess', commitRoute);
@@ -43344,37 +43363,37 @@
 
                 /////////////////////////////////////////////////////
 
-                /**
-                 * @param on {string} current url
-                 * @param route {Object} route regexp to match the url against
-                 * @return {?Object}
-                 *
-                 * @description
-                 * Check if the route matches the current url.
-                 *
-                 * Inspired by match in
-                 * visionmedia/express/lib/router/router.js.
-                 */
-                function switchRouteMatcher(on, route) {
-                    var keys = route.keys,
-                        params = {};
+    /**
+     * @param on {string} current url
+     * @param route {Object} route regexp to match the url against
+     * @return {?Object}
+     *
+     * @description
+     * Check if the route matches the current url.
+     *
+     * Inspired by match in
+     * visionmedia/express/lib/router/router.js.
+     */
+    function switchRouteMatcher(on, route) {
+        var keys = route.keys,
+            params = {};
 
-                    if (!route.regexp) return null;
+        if (!route.regexp) return null;
 
-                    var m = route.regexp.exec(on);
-                    if (!m) return null;
+        var m = route.regexp.exec(on);
+        if (!m) return null;
 
-                    for (var i = 1, len = m.length; i < len; ++i) {
-                        var key = keys[i - 1];
+        for (var i = 1, len = m.length; i < len; ++i) {
+            var key = keys[i - 1];
 
-                        var val = m[i];
+            var val = m[i];
 
-                        if (key && val) {
-                            params[key.name] = val;
-                        }
-                    }
-                    return params;
-                }
+            if (key && val) {
+                params[key.name] = val;
+            }
+        }
+        return params;
+    }
 
                 function prepareRoute($locationEvent) {
                     var lastRoute = $route.current;
@@ -43791,7 +43810,7 @@
                                 if (angular.isDefined(autoScrollExp)
                                     && (!autoScrollExp || scope.$eval(autoScrollExp))) {
                                     $anchorScroll();
-                                }
+                }
                             });
                             cleanupLastView();
                         });
@@ -43804,7 +43823,7 @@
                         cleanupLastView();
                     }
                 }
-            }
+    }
         };
     }
 
@@ -43838,7 +43857,7 @@
                 scope[current.resolveAs || '$resolve'] = locals;
 
                 link(scope);
-            }
+    }
         };
     }
 
@@ -43862,6 +43881,10 @@ foodDeliveryApp.config(function ($routeProvider, $locationProvider) {
         .when('/category/:id', {
             templateUrl: 'views/category.html',
             controller: 'CategoryController'
+        })
+        .when('/restaurant/:id', {
+            templateUrl: 'views/restaurant.html',
+            controller: 'RestaurantController'
         })
         .otherwise({
             redirectTo: '/'
@@ -43902,13 +43925,43 @@ foodDeliveryApp.controller('IndexController', ['$scope', 'categoryCrud', functio
     $scope.getAllCategories();
 }]);
 /**
+ * Created by student007 on 16.28.7.
+ */
+foodDeliveryApp.controller('RestaurantController', [
+    '$scope',
+    'restaurantCrud',
+    'categoryCrud',
+    '$routeParams',
+    function ($scope, restaurantCrud, categoryCrud, $routeParams) {
+        $scope.getAllCategories = function () {
+            $scope.categories = categoryCrud.query();
+        };
+        $scope.getRestaurant = function () {
+            $scope.restaurant = restaurantCrud.get({id: $routeParams.id});
+        };
+        $scope.getAllCategories();
+        $scope.getRestaurant();
+    }]);
+/**
  * Created by student007 on 16.25.7.
  */
 foodDeliveryApp.factory('categoryCrud', ['appConfig', '$resource', function (appConfig, $resource) {
     return $resource(appConfig.apiUrl + '/category/:id', {id: '@_id'}, {});
 }]);
 
+foodDeliveryApp.factory('commentCrud', ['appConfig', '$resource', function (appConfig, $resource) {
+    return $resource(appConfig.apiUrl + '/comment/:id', {id: '@_id'}, {});
+}]);
+
+/**
+ * Created by student007 on 16.25.7.
+ */
+foodDeliveryApp.factory('restaurantCrud', ['appConfig', '$resource', function (appConfig, $resource) {
+    return $resource(appConfig.apiUrl + '/restaurant/:id', {id: '@_id'}, {});
+}]);
+
 angular.module('foodDeliveryApp').run(['$templateCache', function ($templateCache) {
-    $templateCache.put('views/category.html', '<ul>\n    <li ng-repeat="category in categories"><a href="#/category/{{category.id}}">{{category.name}}</a></li>\n</ul>\n<h1>{{category.name}}</h1>\n<p>Just info about category</p>\n<ul>\n    <li ng-repeat="restaurant in category.restaurants1">\n        <p>{{restaurant.name}}</p>\n        <p>{{restaurant.phone}}</p>\n        <p><a href="#/restaurant/{{restaurant.id}}">More</a></p>\n    </li>\n</ul>\n');
-    $templateCache.put('views/index.html', '<h1>{{greetings}}</h1>\n<ul>\n    <li ng-repeat="category in categories"><a href="#/category/{{category.id}}">{{category.name}}</a></li>\n</ul>');
+    $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<h1>{{category.name}}</h1>\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip" title="{{restaurant.name}}">\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n                </a>\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong></li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger" ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span> <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n');
+    $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\n<div class="row row-centered row-fluid">\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}} </p>\n        </a>\n    </div>\n</div>');
+    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong></li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger" ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span> <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>');
 }]);

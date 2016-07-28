@@ -16,6 +16,10 @@ foodDeliveryApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/category.html',
             controller: 'CategoryController'
         })
+        .when('/restaurant/:id', {
+            templateUrl: 'views/restaurant.html',
+            controller: 'RestaurantController'
+        })
         .otherwise({
             redirectTo: '/'
         });

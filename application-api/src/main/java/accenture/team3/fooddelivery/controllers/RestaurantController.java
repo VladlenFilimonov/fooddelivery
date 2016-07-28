@@ -21,7 +21,7 @@ public class RestaurantController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public RestaurantGetDto findRestaurant(@PathVariable("id") Long id) {
-        return restaurantService.getRestaurantById(id);
+        return restaurantService.getRestaurantGetDtoById(id);
     }
 
 //    @RequestMapping(method = RequestMethod.POST)

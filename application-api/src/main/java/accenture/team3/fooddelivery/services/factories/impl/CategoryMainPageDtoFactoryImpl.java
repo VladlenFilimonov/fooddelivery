@@ -25,6 +25,7 @@ public class CategoryMainPageDtoFactoryImpl implements CategoryMainPageDtoFactor
                 .filter(Restaurant::isWorkingNow)
                 .count();
         dto.setWorkedRestaurants(worked);
+        dto.setAllRestaurants((int) c.getRestaurants().stream().count());
         return dto;
     }
 }

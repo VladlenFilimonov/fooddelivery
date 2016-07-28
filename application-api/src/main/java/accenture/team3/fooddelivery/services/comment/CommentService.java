@@ -8,5 +8,5 @@ public interface CommentService {
 
     List<CommentDto> getComments(Long id);
 
-    List<CommentDto> addComments();
+    List<CommentDto> addComments(CommentDto commentDto);
 }

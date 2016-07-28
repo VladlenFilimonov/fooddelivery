@@ -2,6 +2,7 @@ package accenture.team3.fooddelivery.services.comment.impl;
 
 
 import accenture.team3.fooddelivery.dao.CommentDao;
+import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Restaurant;
 import accenture.team3.fooddelivery.services.comment.CommentService;
 import accenture.team3.fooddelivery.shared.comment.CommentDto;
@@ -15,23 +16,21 @@ import java.util.stream.Collectors;
 class CommentServiceImpl implements CommentService {
 
     private CommentDao commentDao;
+    private RestaurantDao restaurantDao;
 
     @Autowired
-    public CommentServiceImpl(CommentDao commentDao) {
+    public CommentServiceImpl(CommentDao commentDao, RestaurantDao restaurantDao) {
         this.commentDao = commentDao;
-    }
-
-    public List<CommentDto> getComments(Restaurant restaurant) {
-
-        return commentDao.findAllByRestaurant(restaurant)
-                .stream()
-                .map(CommentDto::new)
-                .collect(Collectors.toList());
+        this.restaurantDao = restaurantDao;
     }
 
     @Override
     public List<CommentDto> getComments(Long id) {
-        return null;
+        Restaurant restaurant = restaurantDao.findOne(id);
+        return commentDao.findAllByRestaurant(restaurant)
+                .stream()
+                .map(CommentDto::new)
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -1,0 +1,88 @@
+<div class="row row-centered row-fluid">
+    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">
+        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">
+            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">
+        </a>
+    </div>
+</div>
+<div class="row row-centered">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-xs-5 col-sm-3">
+                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">
+            </div>
+            <div class="col-xs-7 col-sm-9">
+                <h4 style="color:orange;">{{restaurant.name}}</h4>
+                <p> Menu: xxxx </p>
+                <ul class="list-unstyled">
+                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>
+                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>
+                    </li>
+                    <li>
+                        Accept Creditcards:
+                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>
+                        <span class="glyphicon glyphicon-remove text-danger"
+                              ng-if="!restaurant.deliveryAcceptCard"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">
+
+            </div>
+            <div class="col-xs-7 col-sm-12">
+                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>
+                    <br>
+                    <a href="#">www.nonono.lv</a> <br>
+                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row" ng-if="comments">
+    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">
+        <h3>Comments</h3>
+        <div class="row" ng-repeat="comment in comments">
+            <div class="col-xs-3 col-sm-2">
+                <div class="thumbnail">
+                    <img class=" user-photo"
+                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
+                         alt="...">
+                </div>
+            </div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})
+                    </div>
+                    <div class="panel-body">
+                        {{comment.content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">
+        <form role="form" name="commentsForm" ng-submit="addComment()" novalidate>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="3" id="comment" ng-model="comment.content">
+
+                </textarea>
+                <button class="btn btn-info" type="submit" ng-disabled="requestProcessing">
+                    <i class="glyphicon"
+                       ng-class="{'glyphicon-ok': !requestProcessing, 'glyphicon-repeat': requestProcessing}"></i> Add
+                    comment
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

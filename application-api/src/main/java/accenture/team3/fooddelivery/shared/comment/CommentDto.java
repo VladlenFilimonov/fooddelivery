@@ -13,6 +13,8 @@ public class CommentDto {
     private String userFirstName;
     private String userLastName;
     private String cratedAt;
+    private int userId;
+    private int restaurantId;
 
     public CommentDto(Comment comment) {
         this.id = comment.getId();

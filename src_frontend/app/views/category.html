@@ -1,6 +1,6 @@
 <div class="row row-centered row-fluid">
     <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">
-        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">
+        <a href="#/category/{{category.id}}" class="thumbnail" uib-tooltip="{{category.name}}">
             <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">
         </a>
     </div>

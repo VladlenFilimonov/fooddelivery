@@ -1,6 +1,6 @@
 <div class="row row-centered row-fluid">
     <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">
-        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">
+        <a href="#/category/{{category.id}}" class="thumbnail" uib-tooltip="{{category.name}}">
             <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">
         </a>
     </div>
@@ -89,6 +89,8 @@
                 <textarea class="form-control" rows="3" id="comment" ng-model="comment.content">
 
                 </textarea>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-info" type="submit" ng-disabled="requestProcessing">
                     <i class="glyphicon"
                        ng-class="{'glyphicon-ok': !requestProcessing, 'glyphicon-repeat': requestProcessing}"></i> Add

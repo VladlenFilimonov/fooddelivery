@@ -7,10 +7,15 @@ foodDeliveryApp.controller('UserRegisterController', ['$scope', 'userServices', 
             if (response.id) {
                 $scope.success = true;
                 $scope.error = false;
+                $scope.user = {};
             } else {
                 $scope.error = true;
                 $scope.success = false;
             }
         })
+    }
+    $scope.closeAlert = function () {
+        $scope.success = false;
+        $scope.error = false;
     }
 }]);

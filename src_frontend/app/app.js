@@ -3,7 +3,8 @@
  */
 var foodDeliveryApp = angular.module('foodDeliveryApp', [
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'ui.bootstrap'
 ]);
 
 foodDeliveryApp.config(function ($routeProvider, $locationProvider) {

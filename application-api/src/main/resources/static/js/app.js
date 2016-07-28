@@ -10391,14 +10391,14 @@
                 for (key in obj) {
                     if (obj.hasOwnProperty(key)) {
                         iterator.call(context, obj[key], key, obj);
-                    }
+        }
                 }
             } else {
                 // Slow path for objects which do not have a method `hasOwnProperty`
                 for (key in obj) {
                     if (hasOwnProperty.call(obj, key)) {
                         iterator.call(context, obj[key], key, obj);
-                    }
+        }
                 }
     }
         }
@@ -11005,7 +11005,7 @@
                 for (key in source) {
                     if (hasOwnProperty.call(source, key)) {
                         destination[key] = copyElement(source[key]);
-                    }
+        }
                 }
             }
             setHashKey(destination, h);
@@ -12443,7 +12443,7 @@
                 if (!(key.charAt(0) === '$' && key.charAt(1) === '$')) {
                     dst[key] = src[key];
                 }
-            }
+    }
         }
 
         return dst || src;
@@ -12461,7 +12461,7 @@
                 if (seen.indexOf(val) >= 0) return '...';
 
                 seen.push(val);
-            }
+    }
             return val;
         });
     }
@@ -12731,7 +12731,7 @@
                     $$HashMap: $$HashMapProvider,
                     $$cookieReader: $$CookieReaderProvider
                 });
-            }
+    }
         ]);
     }
 
@@ -13806,7 +13806,7 @@
                     if (isDefined(value)) {
                         // any function which returns a value needs to be wrapped
                         value = jqLite(value);
-                    }
+        }
                 } else {
                     jqLiteAddNodes(value, fn(this[i], arg1, arg2, arg3));
                 }
@@ -14708,7 +14708,7 @@
                 } catch (e) {
                     if (isArray(module)) {
                         module = module[module.length - 1];
-                    }
+        }
                     if (e.message && e.stack && e.stack.indexOf(e.message) == -1) {
                         // Safari & FF's stack traces don't contain error.message content
                         // unlike those of Chrome and IE
@@ -15119,7 +15119,7 @@
             var elm = element[i];
             if (elm.nodeType === ELEMENT_NODE) {
                 return elm;
-            }
+    }
         }
     }
 
@@ -15136,7 +15136,7 @@
             // incase extra spaces were applied to the options
             if (klass.length) {
                 obj[klass] = true;
-            }
+    }
         });
         return obj;
     }
@@ -15737,7 +15737,7 @@
                     options.tempClasses = mergeClasses(options.tempClasses, className);
                     return $$animateQueue.push(element, 'animate', options);
                 }
-            };
+    };
         }];
     }];
 
@@ -15795,7 +15795,7 @@
                             next();
                         });
                     }
-                };
+    };
 
                 AnimateRunner.all = function (runners, callback) {
                     var count = 0;
@@ -15808,7 +15808,7 @@
                         status = status && response;
                         if (++count === runners.length) {
                             callback(status);
-                        }
+        }
                     }
                 };
 
@@ -15830,7 +15830,7 @@
                             timeoutTick(fn);
                         } else {
                             rafTick(fn);
-                        }
+        }
                     };
                     this._state = 0;
                 }
@@ -15845,7 +15845,7 @@
                             fn();
                         } else {
                             this._doneCallbacks.push(fn);
-                        }
+        }
                     },
 
                     progress: noop,
@@ -15856,9 +15856,9 @@
                             this.promise = $q(function (resolve, reject) {
                                 self.done(function (status) {
                                     status === false ? reject() : resolve();
-                                });
+            });
                             });
-                        }
+        }
                         return this.promise;
                     },
 
@@ -15919,7 +15919,7 @@
                             this._state = DONE_COMPLETE_STATE;
                         }
                     }
-    };
+                };
 
                 return AnimateRunner;
             }];
@@ -15993,7 +15993,7 @@
                         options.to = null;
                     }
                 }
-    };
+            };
         }];
     };
 
@@ -16055,9 +16055,9 @@
                         } catch (e) {
                             $log.error(e);
                         }
-        }
+                    }
                 }
-            }
+    }
         }
 
         function getHash(url) {
@@ -16076,7 +16076,7 @@
                 callback();
             } else {
                 outstandingRequestCallbacks.push(callback);
-            }
+    }
         };
 
         //////////////////////////////////////////////////////////////
@@ -16092,7 +16092,7 @@
                     return history.state;
                 } catch (e) {
                     // MSIE can reportedly throw when there is no state (UNCONFIRMED).
-        }
+                }
             };
 
         cacheState();
@@ -16124,7 +16124,7 @@
             // to undefined via `pushState`. Instead, let's change `undefined` to `null` here.
             if (isUndefined(state)) {
                 state = null;
-            }
+    }
 
             // Android Browser BFCache causes location, history reference to become stale.
             if (location !== window.location) location = window.location;
@@ -16149,13 +16149,13 @@
                 // in some cases (see #9143).
                 if ($sniffer.history && (!sameBase || !sameState)) {
                     history[replace ? 'replaceState' : 'pushState'](state, '', url);
-        cacheState();
+                    cacheState();
                     // Do the assignment again so that those two variables are referentially identical.
-        lastHistoryState = cachedState;
+                    lastHistoryState = cachedState;
                 } else {
                     if (!sameBase) {
                         pendingLocation = url;
-        }
+                    }
                     if (replace) {
                         location.replace(url);
                     } else if (!sameBase) {
@@ -16348,7 +16348,7 @@
                 clearTimeout(deferId);
                 completeOutstandingRequest(noop);
                 return true;
-    }
+            }
             return false;
         };
 
@@ -19592,7 +19592,7 @@
                                             parseDirectiveBindings(directive, directive.name);
                                         if (isObject(bindings.isolateScope)) {
                                             directive.$$isolateBindings = bindings.isolateScope;
-                                        }
+                }
                                     }
                                     tDirectives.push(directive);
                                     match = directive;
@@ -20186,7 +20186,7 @@
                             }
                         }
                     };
-                }
+    }
             }];
     }
 
@@ -20451,7 +20451,7 @@
                             if (identifier) {
                                 // If result changed, re-assign controllerAs value to scope.
                                 addIdentifier(locals, identifier, instance, constructor || expression.name);
-                            }
+            }
                         }
                         return instance;
                     }, {
@@ -20477,7 +20477,7 @@
                 }
 
                 locals.$scope[identifier] = instance;
-            }
+    }
         }];
     }
 
@@ -23019,7 +23019,7 @@
     }
             if (rewrittenUrl) {
                 this.$$parse(rewrittenUrl);
-            }
+    }
             return !!rewrittenUrl;
         };
     }
@@ -25110,16 +25110,16 @@
                                 ensureSafeMemberName(ast.property.name);
                                 if (create && create !== 1) {
                                     self.if_(self.not(self.nonComputedMember(left, ast.property.name)), self.lazyAssign(self.nonComputedMember(left, ast.property.name), '{}'));
-                                }
+            }
                                 expression = self.nonComputedMember(left, ast.property.name);
                                 if (self.state.expensiveChecks || isPossiblyDangerousMemberName(ast.property.name)) {
                                     expression = self.ensureSafeObject(expression);
-                                }
+            }
                                 self.assign(intoId, expression);
                                 if (nameId) {
                                     nameId.computed = false;
                                     nameId.name = ast.property.name;
-                                }
+            }
                             }
                         }, function () {
                             self.assign(intoId, 'undefined');
@@ -25466,7 +25466,7 @@
             var left, right, self = this, args, expression;
             if (ast.input) {
                 return this.inputs(ast.input, ast.watchId);
-            }
+    }
             switch (ast.type) {
                 case AST.Literal:
                     return this.value(ast.value, context);
@@ -25553,7 +25553,7 @@
                         var value = [];
                         for (var i = 0; i < args.length; ++i) {
                             value.push(args[i](scope, locals, assign, inputs));
-                        }
+        }
                         return context ? {value: value} : value;
                     };
                 case AST.ObjectExpression:
@@ -25610,7 +25610,7 @@
                     arg = 0;
                 }
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'unary-': function (argument, context) {
             return function (scope, locals, assign, inputs) {
@@ -25621,7 +25621,7 @@
                     arg = 0;
                 }
                 return context ? {value: arg} : arg;
-            };
+    };
         },
         'unary!': function (argument, context) {
             return function (scope, locals, assign, inputs) {
@@ -28211,7 +28211,7 @@
                         }
                     }
                     applyAsyncId = null;
-                }
+    }
 
                 function scheduleApplyAsync() {
                     if (applyAsyncId === null) {
@@ -28219,7 +28219,7 @@
                             $rootScope.$apply(flushApplyAsync);
                         });
                     }
-                }
+    }
             }];
     }
 
@@ -28684,7 +28684,7 @@
                     return htmlSanitizer(maybeTrusted);
                 }
                 throw $sceMinErr('unsafe', 'Attempting to use an unsafe value in a safe context.');
-            }
+    }
 
             return {
                 trustAs: trustAs,
@@ -30388,7 +30388,7 @@
                         if (!deepCompare(actualVal, expectedVal, comparator, anyPropertyKey, matchAnyProperty, matchAnyProperty)) {
                             return false;
                         }
-                    }
+        }
                     return true;
                 } else {
                     return comparator(actual, expected);
@@ -30468,7 +30468,7 @@
         return function (amount, currencySymbol, fractionSize) {
             if (isUndefined(currencySymbol)) {
                 currencySymbol = formats.CURRENCY_SYM;
-            }
+    }
 
             if (isUndefined(fractionSize)) {
                 fractionSize = formats.PATTERNS[1].maxFrac;
@@ -30735,10 +30735,10 @@
             var groups = [];
             if (digits.length >= pattern.lgSize) {
                 groups.unshift(digits.splice(-pattern.lgSize, digits.length).join(''));
-            }
+    }
             while (digits.length > pattern.gSize) {
                 groups.unshift(digits.splice(-pattern.gSize, digits.length).join(''));
-            }
+    }
             if (digits.length) {
                 groups.unshift(digits.join(''));
             }
@@ -30747,7 +30747,7 @@
             // append the decimal digits
             if (decimals.length) {
                 formattedText += decimalSep + decimals.join('');
-            }
+    }
 
             if (exponent) {
                 formattedText += 'e+' + exponent;
@@ -31039,7 +31039,7 @@
                     parts.push(format);
                     format = null;
                 }
-            }
+    }
 
             var dateTimezoneOffset = date.getTimezoneOffset();
             if (timezone) {
@@ -31876,10 +31876,10 @@
                                 return value[key];
                             };
                         }
-                    }
+        }
                 }
                 return {get: get, descending: descending};
-    });
+            });
         }
 
         function isPrimitive(value) {
@@ -31944,7 +31944,7 @@
                 }
             } else {
                 result = type1 < type2 ? -1 : 1;
-            }
+    }
 
             return result;
         }
@@ -34223,7 +34223,7 @@
                 }
 
                 return new Date(year, 0, firstThurs.getDate() + addDays, hours, minutes, seconds, milliseconds);
-            }
+    }
         }
 
         return NaN;
@@ -34273,7 +34273,7 @@
                     });
                     return new Date(map.yyyy, map.MM - 1, map.dd, map.HH, map.mm, map.ss || 0, map.sss * 1000 || 0);
                 }
-            }
+    }
 
             return NaN;
         };
@@ -34338,7 +34338,7 @@
                     maxVal = parseObservedDateValue(val);
                     ctrl.$validate();
                 });
-            }
+    }
 
             function isValidDate(value) {
                 // Invalid Date: getTime() returns NaN
@@ -34770,7 +34770,7 @@
                         scope.$watch(attr.ngValue, function valueWatchAction(value) {
                             attr.$set('value', value);
                         });
-                    };
+        };
                 }
             }
         };
@@ -36557,7 +36557,7 @@
                         if (previousElements) {
                             previousElements.remove();
                             previousElements = null;
-                        }
+            }
                         if (childScope) {
                             childScope.$destroy();
                             childScope = null;
@@ -39103,7 +39103,7 @@
                             return ngModelCtrl.$viewValue.map(function (value) {
                                 return ngOptions.getTrackByValue(value);
                             });
-                        }
+            }
                     }, function () {
                         ngModelCtrl.$render();
                     });
@@ -39233,7 +39233,7 @@
                         ngModelCtrl.$setViewValue(nextValue);
                         ngModelCtrl.$render();
                     }
-                }
+        }
 
             }
         }
@@ -42814,7 +42814,7 @@
 
             for (var i = 0, ii = src.length; i < ii; i++) {
                 dst[i] = src[i];
-            }
+    }
         } else if (isObject(src)) {
             dst = dst || {};
 
@@ -43390,7 +43390,7 @@
 
             if (key && val) {
                 params[key.name] = val;
-            }
+        }
         }
         return params;
     }
@@ -43505,26 +43505,26 @@
                     });
                     // No route matched; fallback to "otherwise" route
                     return match || routes[null] && inherit(routes[null], {params: {}, pathParams: {}});
-                }
+    }
 
-                /**
-                 * @returns {string} interpolation of the redirect path with the parameters
-                 */
-                function interpolate(string, params) {
-                    var result = [];
-                    angular.forEach((string || '').split(':'), function (segment, i) {
-                        if (i === 0) {
-                            result.push(segment);
-                        } else {
-                            var segmentMatch = segment.match(/(\w+)(?:[?*])?(.*)/);
-                            var key = segmentMatch[1];
-                            result.push(params[key]);
-                            result.push(segmentMatch[2] || '');
-                            delete params[key];
-                        }
-                    });
-                    return result.join('');
-                }
+    /**
+     * @returns {string} interpolation of the redirect path with the parameters
+     */
+    function interpolate(string, params) {
+        var result = [];
+        angular.forEach((string || '').split(':'), function (segment, i) {
+            if (i === 0) {
+                result.push(segment);
+            } else {
+                var segmentMatch = segment.match(/(\w+)(?:[?*])?(.*)/);
+                var key = segmentMatch[1];
+                result.push(params[key]);
+                result.push(segmentMatch[2] || '');
+                delete params[key];
+            }
+        });
+        return result.join('');
+    }
             }];
     }
 
@@ -43931,16 +43931,22 @@ foodDeliveryApp.controller('RestaurantController', [
     '$scope',
     'restaurantCrud',
     'categoryCrud',
+    'commentCrud',
     '$routeParams',
-    function ($scope, restaurantCrud, categoryCrud, $routeParams) {
+    function ($scope, restaurantCrud, categoryCrud, commentCrud, $routeParams) {
+        // var restaurantId = $routeParams.id;
         $scope.getAllCategories = function () {
             $scope.categories = categoryCrud.query();
         };
         $scope.getRestaurant = function () {
             $scope.restaurant = restaurantCrud.get({id: $routeParams.id});
         };
+        $scope.getComments = function () {
+            $scope.comments = commentCrud.query({id: $routeParams.id})
+        }
         $scope.getAllCategories();
         $scope.getRestaurant();
+        $scope.getComments();
     }]);
 /**
  * Created by student007 on 16.25.7.
@@ -43961,7 +43967,7 @@ foodDeliveryApp.factory('restaurantCrud', ['appConfig', '$resource', function (a
 }]);
 
 angular.module('foodDeliveryApp').run(['$templateCache', function ($templateCache) {
-    $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<h1>{{category.name}}</h1>\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip" title="{{restaurant.name}}">\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n                </a>\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong></li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger" ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span> <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n');
-    $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\n<div class="row row-centered row-fluid">\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}} </p>\n        </a>\n    </div>\n</div>');
-    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong></li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger" ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span> <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>');
+    $templateCache.put('views/category.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<h1>{{category.name}}</h1>\n<p>Available <strong>{{category.workedRestaurants}}</strong> of {{category.allRestaurants}}</p>\n<div class="row row-centered" ng-repeat="restaurant in category.restaurants1">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <a href="#/restaurant/{{restaurant.id}}" class="thumbnail" data-toggle="tooltip"\n                   title="{{restaurant.name}}">\n                    <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n                </a>\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n');
+    $templateCache.put('views/index.html', '<h4>Choose what you want...</h4>\n<div class="row row-centered row-fluid">\n    <div class="col-xs-4 col-sm-3 col-md-2" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n            <p><b>{{category.name}}</b> <br> available <strong>{{category.workedRestaurants}}</strong> of\n                {{category.allRestaurants}} </p>\n        </a>\n    </div>\n</div>');
+    $templateCache.put('views/restaurant.html', '<div class="row row-centered row-fluid">\n    <div class="col-xs-2 col-lg-1" ng-repeat="category in categories">\n        <a href="#/category/{{category.id}}" class="thumbnail" data-toggle="tooltip" title="pizza">\n            <img class="img-responsive" src="images/category/{{category.pictureURL}}" alt="{{category.name}}">\n        </a>\n    </div>\n</div>\n<div class="row row-centered">\n    <div class="col-sm-8">\n        <div class="row">\n            <div class="col-xs-5 col-sm-3">\n                <img class="img-responsive" src="images/restaurant/{{restaurant.logo}}" alt="{{restaurant.name}}">\n            </div>\n            <div class="col-xs-7 col-sm-9">\n                <h4 style="color:orange;">{{restaurant.name}}</h4>\n                <p> Menu: xxxx </p>\n                <ul class="list-unstyled">\n                    <li>Free delivery starting from: <strong>{{restaurant.deliveryFreeFrom}}</strong></li>\n                    <li>Delivery in: <strong>{{restaurant.deliveryTimeMin}} - {{restaurant.deliveryTimeMax}}</strong>\n                    </li>\n                    <li>\n                        Accept Creditcards:\n                        <span class="glyphicon glyphicon-ok text-success" ng-if="restaurant.deliveryAcceptCard"></span>\n                        <span class="glyphicon glyphicon-remove text-danger"\n                              ng-if="!restaurant.deliveryAcceptCard"></span>\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class="col-sm-4">\n        <div class="row">\n            <div class="col-xs-5 visible-xs-block visible-sm-block visible-md-block">\n\n            </div>\n            <div class="col-xs-7 col-sm-12">\n                <p><span class="glyphicon glyphicon-earphone"></span> <span class="text-lg">{{restaurant.phone}}</span>\n                    <br>\n                    <a href="#">www.nonono.lv</a> <br>\n                    Average rating <span class="rating">{{restaurant.averageRatings}}</span>\n                </p>\n            </div>\n\n        </div>\n    </div>\n</div>\n<div class="row" ng-if="comments">\n    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">\n        <h3>Comments</h3>\n        <div class="row" ng-repeat="comment in comments">\n            <div class="col-xs-3 col-sm-2">\n                <div class="thumbnail">\n                    <img class=" user-photo"\n                         src="http://kikloginonline.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"\n                         alt="...">\n                </div>\n            </div>\n            <div class="col-xs-9 col-sm-10">\n                <div class="panel panel-default">\n                    <div class="panel-heading">\n                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})\n                    </div>\n                    <div class="panel-body">\n                        {{comment.content}}\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n</div>');
 }]);

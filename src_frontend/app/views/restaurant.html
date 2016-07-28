@@ -58,14 +58,26 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        user 00 (00 00 23)
+                        {{comment.userFirstName}} {{comment.userLastName}}({{comment.cratedAt}})
                     </div>
                     <div class="panel-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil magni est quia.
+                        {{comment.content}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<div class="row">
+    <div class="col-md-6 col-sm-offset-1 col-sm-8 col-sm-offset-2 ">
+        <form role="form">
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="3" id="comment"></textarea>
+
+                <button type="submit" class="btn btn-primary">Add comment</button>
+            </div>
+        </form>
+    </div>
 </div>

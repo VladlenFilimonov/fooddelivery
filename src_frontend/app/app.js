@@ -20,6 +20,10 @@ foodDeliveryApp.config(function ($routeProvider, $locationProvider) {
             templateUrl: 'views/restaurant.html',
             controller: 'RestaurantController'
         })
+        .when('/register-user', {
+            templateUrl: 'views/register-user.html',
+            controller: 'UserRegisterController'
+        })
         .otherwise({
             redirectTo: '/'
         });

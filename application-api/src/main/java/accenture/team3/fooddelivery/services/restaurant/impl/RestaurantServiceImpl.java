@@ -3,10 +3,9 @@ package accenture.team3.fooddelivery.services.restaurant.impl;
 import accenture.team3.fooddelivery.dao.RestaurantDao;
 import accenture.team3.fooddelivery.domain.Rating;
 import accenture.team3.fooddelivery.domain.Restaurant;
-import accenture.team3.fooddelivery.services.factories.CategoryMainPageDtoFactory;
+import accenture.team3.fooddelivery.services.comment.CommentService;
 import accenture.team3.fooddelivery.services.restaurant.RestaurantService;
 import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetDto;
-import accenture.team3.fooddelivery.shared.restaurant.RestaurantGetWithComments;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ import java.util.stream.Collectors;
 public class RestaurantServiceImpl implements RestaurantService {
 
     private RestaurantDao dao;
-    private CategoryMainPageDtoFactory factory;
+    private CommentService commentService;
 
     @Autowired
-    public RestaurantServiceImpl(RestaurantDao dao, CategoryMainPageDtoFactory factory) {
+    public RestaurantServiceImpl(RestaurantDao dao, CommentService commentService) {
         this.dao = dao;
-        this.factory = factory;
+        this.commentService = commentService;
     }
 
     @Override
@@ -46,11 +45,6 @@ public class RestaurantServiceImpl implements RestaurantService {
                         entry -> entry.getValue())));
 
         return dto;
-    }
-
-    @Override
-    public RestaurantGetWithComments getRestaurantWithComments(Long id) {
-        return null;
     }
 }
 

@@ -21,7 +21,6 @@ class CommentServiceImpl implements CommentService {
         this.commentDao = commentDao;
     }
 
-    @Override
     public List<CommentDto> getComments(Restaurant restaurant) {
 
         return commentDao.findAllByRestaurant(restaurant)
@@ -30,4 +29,13 @@ class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CommentDto> getComments(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<CommentDto> addComments() {
+        return null;
+    }
 }

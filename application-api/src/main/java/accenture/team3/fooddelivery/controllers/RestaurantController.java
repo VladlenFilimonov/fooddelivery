@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/restaurant")
 public class RestaurantController {
@@ -22,6 +24,11 @@ public class RestaurantController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public RestaurantGetDto findRestaurant(@PathVariable("id") Long id) {
         return restaurantService.getRestaurantGetDtoById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<RestaurantGetDto> findAllRestaurants() {
+        return restaurantService.getAllRestaurantsDto();
     }
 
 //    @RequestMapping(method = RequestMethod.POST)

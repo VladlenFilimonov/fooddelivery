@@ -1,0 +1,12 @@
+<ul>
+    <li ng-repeat="category in categories"><a href="#/category/{{category.id}}">{{category.name}}</a></li>
+</ul>
+<h1>{{category.name}}</h1>
+<p>Just info about category</p>
+<ul>
+    <li ng-repeat="restaurant in category.restaurants1">
+        <p>{{restaurant.name}}</p>
+        <p>{{restaurant.phone}}</p>
+        <p><a href="#/restaurant/{{restaurant.id}}">More</a></p>
+    </li>
+</ul>

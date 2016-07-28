@@ -1,0 +1,4 @@
+angular.module('foodDeliveryApp').run(['$templateCache', function ($templateCache) {
+    $templateCache.put('views/category.html', '<ul>\n    <li ng-repeat="category in categories"><a href="#/category/{{category.id}}">{{category.name}}</a></li>\n</ul>\n<h1>{{category.name}}</h1>\n<p>Just info about category</p>\n<ul>\n    <li ng-repeat="restaurant in category.restaurants1">\n        <p>{{restaurant.name}}</p>\n        <p>{{restaurant.phone}}</p>\n        <p><a href="#/restaurant/{{restaurant.id}}">More</a></p>\n    </li>\n</ul>\n');
+    $templateCache.put('views/index.html', '<h1>{{greetings}}</h1>\n<ul>\n    <li ng-repeat="category in categories"><a href="#/category/{{category.id}}">{{category.name}}</a></li>\n</ul>');
+}]);

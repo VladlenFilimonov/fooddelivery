@@ -42,7 +42,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .entrySet()
                 .stream()
                 .collect(Collectors.toMap(
-                        entry -> factory.convert(entry.getKey()),
+                        entry -> entry.getKey().getName(),
                         entry -> entry.getValue())));
 
         return dto;

@@ -1,4 +1,3 @@
-# fooddelivery
 PROJECT TITLE
 Food Delivery Rating web application. Version 1.0 29.07.2016
 -------------------------------------------------------------
@@ -17,13 +16,13 @@ You can also leave comments about provided service and rate restaurants from 1 t
 ------------------------------------------------------------------------------------------------------------ 
 GETTING STARTED
 ----------------
-- You can get project, by cloning it from GitHub https://github.com/VladlenFilimonov/fooddelivery into your IDE. 
+ You can get project, by cloning it from GitHub https://github.com/VladlenFilimonov/fooddelivery into your IDE. 
 To run application execute external tast  ‘bootRun’’. 
--You can also find Android Application of our project in https://github.com/pikamar/FoodDeliveryApp
+You can also find Android Application of our project in https://github.com/pikamar/FoodDeliveryApp
+
 BUILD WITH
------------
-- Gradle
-- Spring 
-- Hibernate
-- Tomcat
-- Bootstrap
+ Gradle
+ Spring 
+ Hibernate
+ Tomcat
+ Bootstrap

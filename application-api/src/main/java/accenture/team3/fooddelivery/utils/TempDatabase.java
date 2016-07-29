@@ -127,9 +127,10 @@ public class TempDatabase {
         WorkDay workDay2 = new WorkDay(null, DayOfWeek.THURSDAY, LocalTime.MIN, LocalTime.MAX, null);
         WorkDay workDay3 = new WorkDay(null, DayOfWeek.SATURDAY, LocalTime.MIN, LocalTime.MAX, null);
         WorkDay workDay4 = new WorkDay(null, DayOfWeek.SUNDAY, LocalTime.MIN, LocalTime.MAX, null);
+        WorkDay workDay5 = new WorkDay(null, DayOfWeek.FRIDAY, LocalTime.MIN, LocalTime.MAX, null);
 
-        Set<WorkDay> workDays = Sets.newHashSet(workDay1, workDay3);
-        Set<WorkDay> workDays1 = Sets.newHashSet(workDay2, workDay4);
+        Set<WorkDay> workDays = Sets.newHashSet(workDay1, workDay5, workDay3);
+        Set<WorkDay> workDays1 = Sets.newHashSet(workDay2, workDay5, workDay4);
 
         workDays.forEach(v -> v.setRestaurant(restaurant));
         workDays1.forEach(v -> v.setRestaurant(restaurant2));

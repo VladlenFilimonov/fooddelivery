@@ -1,6 +1,9 @@
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'Logo.png','Pizza'),(2,'Logo2.png','Sushi'),(3,'Logo3.png','BBQ'),(4,'Logo4.png','Kebab and Burger'),(5,'Logo5.png','WOK'),(6,'Logo6.png','Pasta'),(7,'Logo7.png','Snacks'),(8,'Logo8.png','Soup'),(9,'Logo9.png','Salad'),(10,'Logo10.png','Main Courses'),(11,'Logo11.png','Desserts');
+INSERT INTO `category` VALUES (1, 'pizza.jpg', 'Pizza'), (2, 'sushi.jpg', 'Sushi'), (3, 'bbq.jpg', 'BBQ'),
+  (4, 'kebab.jpg', 'Kebab and Burger'), (5, 'wok.jpg', 'WOK'), (6, 'pasta.jpg', 'Pasta'), (7, 'snacks.jpg', 'Snacks'),
+  (8, 'soup.jpg', 'Soup'), (9, 'salad.jpg', 'Salad'), (10, 'courses.jpg', 'Main Courses'),
+  (11, 'desserts.jpg', 'Desserts');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -12,7 +15,47 @@ UNLOCK TABLES;
 
 LOCK TABLES `restaurant` WRITE;
 /*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
-INSERT INTO `restaurant` VALUES (3,'',NULL,NULL,'Domino_Club_logo.png','Domino Club','ACTIVE',3),(4,'',NULL,NULL,'CanCan_Pica_logo.png','CanCan Pica','ACTIVE',4),(5,'',NULL,NULL,'Vairak_Saules_logo.png','Vairak Saules','ACTIVE',5),(6,'',NULL,NULL,'IL_Patio_logo.png','IL Patio','ACTIVE',6),(7,'',NULL,NULL,'Express_Pizza_logo.png','Express Pizza','ACTIVE',7),(8,'',NULL,NULL,'Cili_Pica_logo.png','Cili Pica','ACTIVE',8),(9,'\0',NULL,NULL,'Tokyo_City_logo.png','Tokyo City','ACTIVE',9),(10,'\0',NULL,NULL,'Picu_Darbnica_logo.png','Picu Darbnica','ACTIVE',10),(11,'\0',NULL,NULL,'Makss_un_Morics_logo.png','Makss un Morics','ACTIVE',11),(12,'\0',NULL,NULL,'Extra_Pizza_logo.png','Extra Pizza','ACTIVE',12),(13,'\0',NULL,NULL,'Samurai_Sushi_logo.png','Samurai Sushi','ACTIVE',13),(14,'\0',NULL,NULL,'Sushikomplekti.lv_logo.png','Sushikomplekti.lv','ACTIVE',14),(15,'',NULL,NULL,'Bento_Sushi_logo.png','Bento Sushi','ACTIVE',15),(16,'\0',NULL,NULL,'Sushi_Express_logo.png','Sushi Express','ACTIVE',16),(17,'',NULL,NULL,'Gan_Bei_logo.png','Gan Bei','ACTIVE',17),(18,'\0',NULL,NULL,'City_Food_logo.png','City Food','ACTIVE',18),(19,'',NULL,NULL,'Kabuki_Express_logo.png','Kabuki Express','ACTIVE',19),(20,'\0',NULL,NULL,'Sushi_home_logo.png','Sushi home','ACTIVE',20),(21,'\0',NULL,NULL,'Yakuza_logo.png','Yakuza','ACTIVE',21),(22,'\0',NULL,NULL,'Sushi_Max_logo.png','Sushi Max','ACTIVE',22),(23,'\0',NULL,NULL,'Sushi_Mania_logo.png','Sushi Mania','ACTIVE',23),(24,'\0',NULL,NULL,'Mikado_Sushi_logo.png','Mikado Sushi','ACTIVE',24),(25,'\0',NULL,NULL,'Sushi_Service_logo.png','Sushi Service','ACTIVE',25),(26,'\0',NULL,NULL,'Vans_logo.png','Vans','ACTIVE',26),(27,'',NULL,NULL,'LIDO_logo.png','LIDO','ACTIVE',27),(28,'\0',NULL,NULL,'Zalais_Darzs_logo.png','Zalais Darzs','ACTIVE',28),(29,'\0',NULL,NULL,'Uzbekistana_logo.png','Uzbekistana','ACTIVE',29),(30,'\0',NULL,NULL,'Uzbegims_logo.png','Uzbegims','ACTIVE',30),(31,'\0',NULL,NULL,'Erebuni_logo.png','Erebuni','ACTIVE',31),(32,'\0',NULL,NULL,'BEFRITES_logo.png','BEFRITES','ACTIVE',32);
+INSERT INTO `restaurant` VALUES (3, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"q×€x',
+                                 '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"q×€x', 'logo.png',
+                                 'Domino Club', 'ACTIVE', 3),
+  (4, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', 'logo.png', 'CanCan Pica', 'ACTIVE', 4),
+  (5, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', 'logo.png', 'Vairak Saules', 'ACTIVE', 5),
+  (6, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Ü§@x', 'logo.png', 'IL Patio', 'ACTIVE', 6),
+  (7, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', 'logo.png', 'Express Pizza', 'ACTIVE', 7),
+  (8, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', 'logo.png', 'Cili Pica', 'ACTIVE', 8),
+  (9, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', 'logo.png', 'Tokyo City', 'ACTIVE', 9),
+  (10, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\ë\é€x', 'logo.png', 'Picu Darbnica', 'ACTIVE', 10),
+  (11, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\nn\0x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"\nn\0x', 'logo.png', 'Makss un Morics', 'ACTIVE', 11),
+  (12, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"°@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"°@x', 'logo.png', 'Extra Pizza', 'ACTIVE', 12),
+  (13, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"(ò€x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"(ò€x', 'logo.png', 'Samurai Sushi', 'ACTIVE', 13),
+  (14, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', 'logo.png', 'Sushikomplekti.lv', 'ACTIVE', 14),
+  (15, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', 'logo.png', 'Bento Sushi', 'ACTIVE', 15),
+  (16, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', 'logo.png', 'Sushi Express', 'ACTIVE', 16),
+  (17, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"84Àx', 'logo.png', 'Gan Bei', 'ACTIVE', 17),
+  (18, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Gw\0x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"Gw\0x', 'logo.png', 'City Food', 'ACTIVE', 18),
+  (19, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"„€\0x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"„€\0x', 'logo.png', 'Kabuki Express', 'ACTIVE', 19),
+  (20, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"„€\0x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"„€\0x', 'logo.png', 'Sushi home', 'ACTIVE', 20),
+  (21, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', 'logo.png', 'Yakuza', 'ACTIVE', 21),
+  (22, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', 'logo.png', 'Sushi Max', 'ACTIVE', 22),
+  (23, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', 'logo.png', 'Sushi Mania', 'ACTIVE', 23),
+  (24, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"“\Â@x', 'logo.png', 'Mikado Sushi', 'ACTIVE', 24),
+  (25, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x', 'logo.png', 'Sushi Service', 'ACTIVE', 25),
+  (26, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x', 'logo.png', 'Vans', 'ACTIVE', 26),
+  (27, '', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x', 'logo.png', 'LIDO', 'ACTIVE', 27),
+  (28, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"£€x', 'logo.png', 'Zalais Darzs', 'ACTIVE', 28),
+  (29, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx', 'logo.png', 'Uzbekistana', 'ACTIVE', 29),
+  (30, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx', 'logo.png', 'Uzbegims', 'ACTIVE', 30),
+  (31, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx', 'logo.png', 'Erebuni', 'ACTIVE', 31),
+  (32, '\0', '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx',
+   '¬\í\0sr\0\rjava.time.Ser•]„º\"H²\0\0xpw\0\0\à+\"²FÀx', 'logo.png', 'BEFRITES', 'ACTIVE', 32);
 /*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
 UNLOCK TABLES;
 

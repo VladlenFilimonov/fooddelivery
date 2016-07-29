@@ -14,7 +14,7 @@ public class RestaurantGetDtoTest {
     @Test
     public void should_convertHoursToTime() {
         LocalTime localTime = LocalTime.of(1, 40);
-        assertEquals(120, restaurantGetDto.convertHoursInMinutes(localTime));
+        assertEquals(100, restaurantGetDto.convertHoursInMinutes(localTime));
         assertNotEquals(130, restaurantGetDto.convertHoursInMinutes(localTime));
     }
 
